@@ -1,12 +1,13 @@
+
 class Persona:
     def __init__(self, nombre, apellido, cedula, direccion, telefono, fecha_nac, email) -> None:
-        __nombre = nombre
-        __apellido = apellido
-        __cedula = cedula
-        __direccion = direccion
-        __telefono = telefono
-        __fecha_nac = fecha_nac
-        __email = email
+        self.nombre = nombre
+        self.apellido = apellido
+        self.cedula = cedula
+        self.direccion = direccion
+        self.telefono = telefono
+        self.fecha_nac = fecha_nac
+        self.email = email
         
     @property
     def nombre(self):
