@@ -1,12 +1,20 @@
 
 class Aula:
 	
-	def __init__(self, nombre_aula, numero_piso, numero_edificio, canpacidad_asientos):
+	def __init__(self, nombre_aula, numero_piso, numero_edificio, capacidad_asientos):
 		self.nombre_aula = nombre_aula
 		self.numero_piso = numero_piso
 		self.numero_edificio = numero_edificio
-		self.canpacidad_asientos = canpacidad_asientos
+		self.capacidad_asientos = capacidad_asientos
 
+	def __str__(self):
+		txt = f'''
+		Aula: {self.nombre_aula}
+		Piso: {self.numero_piso}
+		Edificio: {self.numero_edificio}
+		Capacidad de Asientos: {self.capacidad_asientos}
+		'''
+		return txt
 # metodos de propiedad del argumeto -> nombre_aula
 	
 	@property
@@ -52,13 +60,13 @@ class Aula:
 # metodos de propiedad del argumeto -> canpacidad_asientos
 	
 	@property
-	def canpacidad_asientos(self):
-		return self.__canpacidad_asientos
+	def capacidad_asientos(self):
+		return self.__capacidad_asientos
 	
-	@canpacidad_asientos.setter
-	def canpacidad_asientos(self, canpacidad_asientos):
-		self.__canpacidad_asientos = canpacidad_asientos
+	@capacidad_asientos.setter
+	def capacidad_asientos(self, capacidad_asientos):
+		self.__capacidad_asientos = capacidad_asientos
 	
-	@canpacidad_asientos.deleter
-	def canpacidad_asientos(self):
-		del self.__canpacidad_asientos
+	@capacidad_asientos.deleter
+	def capacidad_asientos(self):
+		del self.__capacidad_asientos

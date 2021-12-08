@@ -1,24 +1,37 @@
-from . import Persona
+from datos.Persona import Persona
+
+
 class Estudiante(Persona):
 
-	def __init__(self, nombre, apellido, cedula, direccion, telefono, 
-                 fecha_nac, email, id_estudiante, obj_matricula):
+    cont_estudiante = 0
+    __lstEstudiantes = []
 
-		super().__init__(nombre, apellido, cedula, direccion, 
+    def __init__(self, nombre, apellido, cedula, direccion, telefono,
+                 fecha_nac, email, num_carnet, obj_matricula):
+        Estudiante.cont_estudiante += 1
+        super().__init__(nombre, apellido, cedula, direccion,
                          telefono, fecha_nac, email)
-		self.id_estudiante = id_estudiante
-		self.obj_matricula = obj_matricula
+        self.num_carnet = num_carnet
+        self.obj_matricula = obj_matricula
+        self._id_estudiante = Estudiante.cont_estudiante
 
-# metodos de propiedad del argumeto -> id_estudiante
-                                
-	@property
-	def id_estudiante(self):
-		return self.__id_estudiante
-                                
-	@id_estudiante.setter
-	def id_estudiante(self, id_estudiante):
-		self.__id_estudiante = id_estudiante
-                                
-	@id_estudiante.deleter
-	def id_estudiante(self):
-		del self.__id_estudiante
+    # region metodos de propiedad del argumeto -> id_estudiante
+
+    @property
+    def num_carnet(self):
+        return self.__num_carnet
+
+    @num_carnet.setter
+    def num_carnet(self, num_carnet):
+        self.__num_carnet = num_carnet
+
+    @num_carnet.deleter
+    def num_carnet(self):
+        del self.__num_carnet
+    # endregion Metodos -> id_estudiantes
+
+    # region Metodos de Clase
+    @classmethod
+    def crear_persona(cls, objpersona):
+        cls.__lstEstudiantes.append(objpersona)
+    # endregion Metodos de Clase

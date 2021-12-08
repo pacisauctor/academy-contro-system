@@ -1,6 +1,14 @@
+from datetime import date
+
 
 class Persona:
-    def __init__(self, nombre, apellido, cedula, direccion, telefono, fecha_nac, email) -> None:
+
+    contador_personas = 0
+    lstPersona = []
+
+    def __init__(self, nombre, apellido, cedula, direccion,
+                 telefono, fecha_nac, email) -> None:
+        Persona.contador_personas += 1
         self.nombre = nombre
         self.apellido = apellido
         self.cedula = cedula
@@ -8,7 +16,22 @@ class Persona:
         self.telefono = telefono
         self.fecha_nac = fecha_nac
         self.email = email
-        
+        self.id_persona = Persona.contador_personas
+        Persona.crear_persona(self)
+
+    def __str__(self) -> str:
+        txt = f"""\nPersona:{self.id_persona}
+        Nombre: {self.nombre} 
+        Apellido: {self.apellido}
+        Cedula: {self.cedula}
+        Direccion: {self.direccion}
+        Telefono: {self.telefono}
+        Email: {self.email}
+        Fecha de Nacimiento: {self.fecha_nac}
+        """
+        return txt
+
+    # region metodos -> nombre
     @property
     def nombre(self):
         return self.__nombre
@@ -21,6 +44,9 @@ class Persona:
     def nombre(self):
         del self.__nombre
 
+    # endregion metodos -> nombre
+
+    # region metodos -> apellidos
     @property
     def apellido(self):
         return self.__apellido
@@ -33,6 +59,9 @@ class Persona:
     def apellido(self):
         del self.__apellido
 
+    # endregion metodos -> apellidos
+
+    # region metodos -> cedula
     @property
     def cedula(self):
         return self.__cedula
@@ -45,6 +74,9 @@ class Persona:
     def cedula(self):
         del self.__cedula
 
+    # endregion metodos -> cedula
+
+    # region metodos -> direccion
     @property
     def direccion(self):
         return self.__direccion
@@ -57,6 +89,9 @@ class Persona:
     def direccion(self):
         del self.__direccion
 
+    # endregion metodos -> direccion
+
+    # region metodos -> telefono
     @property
     def telefono(self):
         return self.__telefono
@@ -68,7 +103,9 @@ class Persona:
     @telefono.deleter
     def telefono(self):
         del self.__telefono
+    # endregion metodos -> telefono
 
+    # region metodos -> fecha_nac
     @property
     def fecha_nac(self):
         return self.__fecha_nac
@@ -80,7 +117,9 @@ class Persona:
     @fecha_nac.deleter
     def fecha_nac(self):
         del self.__fecha_nac
+    # endregion metodos -> fecha_nac
 
+    # region metodos -> email
     @property
     def email(self):
         return self.__email
@@ -92,6 +131,64 @@ class Persona:
     @email.deleter
     def email(self):
         del self.__email
+    # endregion metodos -> email
 
-    def crear_personal(self):
-        pass
+    # region Otros Metodos
+    def birthday(self):
+        hoy = date.today()
+        edad = hoy.year - self.fecha_nac.year
+
+        if self.fecha_nac.month >= hoy.month:
+            if self.fecha_nac.day > hoy.day:
+                edad -= 1
+
+        return edad
+    # endregion Otros Metodos
+
+    # region Metod de Clase
+    @classmethod
+    def crear_persona(cls, objpersona):
+        cls.lstPersona.append(objpersona)
+
+    @classmethod
+    def detalles_personas(cls):
+        personas_str = ""
+        for persona in cls.lstPersona:
+            personas_str += persona.__str__()
+        return personas_str
+
+    @classmethod
+    def tamaniolst(cls):
+        return len(cls.lstPersona)
+    # endregion Metod de Clase
+
+
+# region Pruebas de la Clase Persona
+if __name__ == '__main__':
+
+    p1 = Persona(
+        'Carlos',
+        'Rosales',
+        '001-150596-100P',
+        'Managua',
+        '5265-8592',
+        date(1996, 5, 15),
+        'carlos@gmail.com'
+    )
+    p2 = Persona(
+        'Alejandro',
+        'Carcamo',
+        '001-271198-100G',
+        'Granada',
+        '7785-5621',
+        date(1998, 11, 27),
+        'alejandro@gmail.com'
+    )
+    # print(p1)
+    # print(p2)
+
+    Persona.crear_persona(p1)
+    Persona.crear_persona(p2)
+
+    print(Persona.detalles_personas())
+# endregion Pruebas de la Clase Persona
