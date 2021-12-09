@@ -1,9 +1,9 @@
 from datetime import date
 
-from datos.Aula import Aula
-from datos.Curso import Curso
-from datos.Persona import Persona
-from datos.Programa import Programa
+from modelo.Aula import Aula
+from modelo.Curso import Curso
+from modelo.Persona import Persona
+from modelo.Programa import Programa
 
 
 class Profesor(Persona):

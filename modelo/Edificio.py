@@ -1,12 +1,15 @@
 class Edificio:
+    __cont_edificio= 0
     def __init__(self, nombre, direccion, numero_edificio, cantidad_pisos,
                  cantidad_aulas, obj_aula):
+        Edificio.__cont_edificio += 1
         self.nombre = nombre
         self.direccion = direccion
         self.numero_edificio = numero_edificio
         self.cantidad_pisos = cantidad_pisos
         self.cantidad_aulas = cantidad_aulas
         self.obj_aula = obj_aula
+        self.id_edificio = Edificio.__cont_edificio
 
     # region metodos de propiedad del argumeto -> nombre
 

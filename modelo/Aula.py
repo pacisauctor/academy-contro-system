@@ -1,12 +1,13 @@
 
 class Aula:
-	
+	__cont_aula = 0
 	def __init__(self, nombre_aula, numero_piso, numero_edificio, capacidad_asientos):
+		Aula.__cont_aula += 1
 		self.nombre_aula = nombre_aula
 		self.numero_piso = numero_piso
 		self.numero_edificio = numero_edificio
 		self.capacidad_asientos = capacidad_asientos
-
+		self.id_aula = Aula.__cont_aula
 	def __str__(self):
 		txt = f'''
 		Aula: {self.nombre_aula}

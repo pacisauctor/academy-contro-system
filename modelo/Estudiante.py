@@ -1,4 +1,4 @@
-from datos.Persona import Persona
+from modelo.Persona import Persona
 
 
 class Estudiante(Persona):

@@ -1,8 +1,12 @@
 class Matricula:
+    
+    __cont_matricula = 0
     def __init__(self, fecha_matricula, hora_matricula, obj_curso):
+        Matricula.__cont_matricula += 1
         self.fecha_matricula = fecha_matricula
         self.hora_matricula = hora_matricula
         self.obj_curso = obj_curso
+        self.id_matricula = Matricula.__cont_matricula
 
     def __str__(self):
         txt = f'''

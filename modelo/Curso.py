@@ -1,4 +1,4 @@
-class Curso:
+ class Curso:
 
     __cont_curso = 0
     def __init__(self, nombre_curso, creditos, cant_hrs_semanales,

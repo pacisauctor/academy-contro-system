@@ -1,7 +1,10 @@
 class TipoProfesor:
+    __cont_tipo_profesor= 0
     def __init__(self, tipo, obj_profesor):
+        TipoProfesor.__cont_tipo_profesor += 1
         self.tipo = tipo
         self.obj_profesor = obj_profesor
+        self.id_tipo_profesor = TipoProfesor.__cont_tipo_profesor
 
 # metodos de propiedad del argumeto -> tipo
                                 
