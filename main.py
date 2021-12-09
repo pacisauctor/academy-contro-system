@@ -6,6 +6,7 @@ from controlador.CProfesor import gestionar as gestionar_profesores
 from controlador.CPrograma import gestionar as gestionar_programas
 from controlador.CTipoProfesor import gestionar as gestionar_tipoProfesor
 from controlador.CTurno import gestionar as gestionar_turnos
+from controlador.CEstudiante import gestionar as gestionar_estudiantes
 
 
 while(True):
@@ -22,7 +23,8 @@ while(True):
           6. Gestionar Programas
           7. Gestionar TipoProfesor
           8. Gestionar Turnos.
-          9. Salir
+          9. Gestionar Estudiantes.
+          10. Salir
           """)
     try:
         opcion = int(input("-> "))
@@ -47,6 +49,8 @@ while(True):
     elif opcion == 8:
         gestionar_turnos("Gestión de turnos")                
     elif opcion == 9:
+        gestionar_estudiantes("Gestión de estudiantes")                
+    elif opcion == 10:
         print("Saliendo")     
         break               
     else:
