@@ -1,7 +1,4 @@
-from modelo.Estudiante import Estudiante
-
 def gestionar(titulo:str):
-    estudiantes = []
     while True:
         print(titulo.upper())
         print("Seleccione una opción")
@@ -18,21 +15,14 @@ def gestionar(titulo:str):
             print(exc)
             print("Escoja una opción válida")
             continue
-        # mostrar los registros
         if opcion == 1:
-            print("Mostrando todos los registros")
-            Estudiante.listar_estudiantes(estudiantes)
+            print("1")
         elif opcion == 2:
-            estudiantes.append(Estudiante.agregar_estudiantes())
-            print("Estudiante agregado")
+            print("2")
         elif opcion == 3:
-            indice = int(input("Id del estudiante:"))
-            estudiantes[indice] = Estudiante.editar_estudiantes(estudiantes[indice])
-            
+            print("3")
         elif opcion == 4:
-            indice = int(input("Id del estudiante:"))
-            estudiantes.pop(indice)
-            print("Estudiante eliminado")
+            print("4")
         elif opcion == 5:
             print("Regresando...")
             break
