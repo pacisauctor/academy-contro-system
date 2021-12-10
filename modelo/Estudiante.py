@@ -38,9 +38,6 @@ class Estudiante(Persona):
     @classmethod
     def listar_estudiantes(cls, list_estudiantes):
         for i in range(len(list_estudiantes)):
-            print("*"*10, end="")
-            print(i, end="")
-            print("*"*10)
             print(list_estudiantes[i])
             
     @classmethod
