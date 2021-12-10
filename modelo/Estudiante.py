@@ -29,6 +29,19 @@ class Estudiante(Persona):
     def num_carnet(self):
         del self.__num_carnet
     # endregion Metodos -> id_estudiantes
+    def convert_to_dictionary(self):
+        return {
+            "num_carnet": self.num_carnet,
+            "obj_matricula": self.obj_matricula,
+            "nombre": self.nombre,
+            "apellido": self.apellido,
+            "cedula": self.cedula,
+            "direccion": self.direccion,
+            "telefono": self.telefono,
+            "fecha_nac": self.fecha_nac,
+            "email": self.email
+        }
+
 
     # region Metodos de Clase
     @classmethod
@@ -36,9 +49,30 @@ class Estudiante(Persona):
         cls.__lstEstudiantes.append(objpersona)
         
     @classmethod
+    def get_from_dictionary(cls, dictionary:dict):
+        return Estudiante(
+            num_carnet = dictionary["num_carnet"],
+            obj_matricula = dictionary["obj_matricula"],
+            nombre = dictionary["nombre"],
+            apellido = dictionary["apellido"],
+            cedula = dictionary["cedula"],
+            direccion = dictionary["direccion"],
+            telefono = dictionary["telefono"],
+            fecha_nac = dictionary["fecha_nac"],
+            email = dictionary["email"]
+        )
+        
+
+        
+    
+    @classmethod
     def listar_estudiantes(cls, list_estudiantes):
-        for i in range(len(list_estudiantes)):
-            print(list_estudiantes[i])
+        print("ID | Nombre | Apellido | Num Carnet")
+        for estudiante in list_estudiantes:
+            print(f"{estudiante._id_estudiante}".ljust(5), end="")
+            print(f"{estudiante.nombre}".ljust(10), end="")
+            print(f"{estudiante.apellido}".ljust(11), end="")
+            print(estudiante.num_carnet)
             
     @classmethod
     def agregar_estudiantes(cls):

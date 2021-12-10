@@ -11,13 +11,12 @@ class Profesor(Persona):
     lstPersona = []
 
     def __init__(self, nombre, apellido, cedula, direccion, telefono, fecha_nac,
-                 email, cod_profesor, obj_programa, obj_curso) -> None:
+                 email, cod_profesor, tipo_profesor) -> None:
         Profesor.contador_profesor = + 1
         super().__init__(nombre, apellido, cedula, direccion, telefono, fecha_nac, email)
         self.__id_profesor = Profesor.contador_profesor
         self.cod_profesor = cod_profesor
-        self.obj_programa = obj_programa
-        self.obj_curso = obj_curso
+        self.tipo_profesor = tipo_profesor
 
     def __str__(self) -> str:
         txt = f"""\nProfesor: {self.cod_profesor}
@@ -27,9 +26,7 @@ class Profesor(Persona):
         Direccion: {self.direccion}
         Telefono: {self.telefono}
         Email: {self.email}
-        Fecha de Nacimiento: {self.fecha_nac}
-        \nPrograma: {self.obj_programa}
-        \nCurso: {self.obj_curso}
+        Fecha de Nacimiento: {self.fecha_nac}\n
         """
         return txt
 
@@ -50,8 +47,72 @@ class Profesor(Persona):
 
     def crear_profesor(self):
         pass
+    
+    def convert_to_dictionary(self)->dict:
+        return {
+            "cod_profesor": self.cod_profesor,
+            "nombre": self.nombre,
+            "apellido": self.apellido,
+            "cedula": self.cedula,
+            "direccion": self.direccion,
+            "telefono": self.telefono,
+            "fecha_nac": self.fecha_nac,
+            "email": self.email
+        }
 
+    @classmethod
+    def get_from_dictionary(cls, dictionary:dict):
+        return Profesor(
+            nombre = dictionary["nombre"],
+            apellido = dictionary["apellido"],
+            cedula = dictionary["cedula"],
+            direccion = dictionary["direccion"],
+            telefono = dictionary["telefono"],
+            fecha_nac = dictionary["fecha_nac"],
+            email = dictionary["email"],
+            cod_profesor=dictionary["cod_profesor"],
+            tipo_profesor=dictionary.get("tipo_profesor"),
+        )
 
+    @classmethod
+    def mostrar_profesores(cls, list_profesores:list):
+        for profe in list_profesores:
+            print(profe)
+            
+    @classmethod
+    def crear_profesor(cls):
+        cod_profesor = input("Digite el cod_profesor del profesor: ")
+        nombre = input("Digite el nombre del profesor: ")
+        apellido = input("Digite el apellido del profesor: ")
+        cedula = input("Digite el cedula del profesor: ")
+        direccion = input("Digite el direccion del profesor: ")
+        telefono = input("Digite el telefono del profesor: ")
+        fecha_nac = input("Digite el fecha_nac del profesor: ")
+        email = input("Digite el email del profesor: ")
+        
+        return Profesor(
+            cod_profesor=cod_profesor,
+            nombre=nombre,
+            apellido=apellido,
+            cedula=cedula,
+            direccion=direccion,
+            telefono=telefono,
+            fecha_nac=fecha_nac,
+            email=email
+        )
+
+    @classmethod
+    def editar_profesor(cls, profesor):
+        profesor.cod_profesor = input("Digite el cod_profesor del profesor: ")
+        profesor.nombre = input("Digite el nombre del profesor: ")
+        profesor.apellido = input("Digite el apellido del profesor: ")
+        profesor.cedula = input("Digite el cedula del profesor: ")
+        profesor.direccion = input("Digite el direccion del profesor: ")
+        profesor.telefono = input("Digite el telefono del profesor: ")
+        profesor.fecha_nac = input("Digite el fecha_nac del profesor: ")
+        profesor.email = input("Digite el email del profesor: ")
+        
+        return profesor
 # region Probar Clase Profesor
 if __name__ == '__main__':
     aul = Aula(

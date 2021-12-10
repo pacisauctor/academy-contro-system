@@ -11,7 +11,7 @@ from modelo.Turno import Turno
 from modelo.Estudiante import Estudiante
 
 
-def save_data(filename:str, list_objects:list, clase:str):
+def save_data(filename:str, list_objects:list):
     """Guarda datos en un csv en la carpeta database
 
     Args:
@@ -21,21 +21,21 @@ def save_data(filename:str, list_objects:list, clase:str):
     """
     list_dicctionary = []
     for object in list_objects:
-        if clase == "aula":
+        if type(object) == Aula:
             list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif clase == "edificio":
+        elif type(object) == Edificio:
             list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif clase == "estudiante":
+        elif type(object) == Estudiante:
+            list_dicctionary.append(object.convert_to_dictionary())
+        elif type(object) == Matricula:
             list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif clase == "matricula":
+        elif type(object) == Profesor:
+            list_dicctionary.append(object.convert_to_dictionary())
+        elif type(object) == Programa:
             list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif clase == "profesor":
+        elif type(object) == TipoProfesor:
             list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif clase == "programa":
-            list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif clase == "tipoprofesor":
-            list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif clase == "curso":
+        elif type(object) == Curso:
             list_dicctionary.append(convert_aula_to_dictionary(object=object))
         
     keys = list_dicctionary[0].keys()
@@ -57,11 +57,11 @@ def load_data(filename:str, clase:str) -> list:
         elif clase == "edificio":
             list_objects.append(convert_dictionary_to_aula(row))
         elif clase == "estudiante":
-            list_objects.append(convert_dictionary_to_aula(row))
+            list_objects.append(Estudiante.get_from_dictionary(row))
         elif clase == "matricula":
             list_objects.append(convert_dictionary_to_aula(row))
         elif clase == "profesor":
-            list_objects.append(convert_dictionary_to_aula(row))
+            list_objects.append(Profesor.get_from_dictionary(row))
         elif clase == "programa":
             list_objects.append(convert_dictionary_to_aula(row))
         elif clase == "tipoprofesor":
@@ -89,3 +89,6 @@ def convert_dictionary_to_aula(dictionary:dict)->Aula:
         capacidad_asientos=dictionary["capacidad_asientos"],
         id_aula=dictionary["id_aula"]
     )
+
+
+
