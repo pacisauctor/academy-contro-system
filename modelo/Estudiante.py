@@ -34,4 +34,38 @@ class Estudiante(Persona):
     @classmethod
     def crear_persona(cls, objpersona):
         cls.__lstEstudiantes.append(objpersona)
+        
+    @classmethod
+    def listar_estudiantes(cls, list_estudiantes):
+        for i in range(len(list_estudiantes)):
+            print("*"*10, end="")
+            print(i, end="")
+            print("*"*10)
+            print(list_estudiantes[i])
+            
+    @classmethod
+    def agregar_estudiantes(cls):
+        nombre = input("Ingrese el nombre del estudiante: ")
+        apellido = input("Ingrese el apellido del estudiante: ")
+        cedula = input("Ingrese el cedula del estudiante: ")
+        direccion = input("Ingrese el direccion del estudiante: ")
+        telefono = input("Ingrese el telefono del estudiante: ")
+        fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
+        email = input("Ingrese el email del estudiante: ")
+        numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
+        estudiante = Estudiante(nombre=nombre, apellido=apellido, cedula=cedula, direccion=direccion, telefono=telefono, fecha_nac=fecha_nac, email=email, num_carnet=numero_carnet, obj_matricula=None)
+        return estudiante
+    
+    @classmethod
+    def editar_estudiantes(cls, estudiante):
+        estudiante.nombre = input("Ingrese el nombre del estudiante: ")
+        estudiante.apellido = input("Ingrese el apellido del estudiante: ")
+        estudiante.cedula = input("Ingrese el cedula del estudiante: ")
+        estudiante.direccion = input("Ingrese el direccion del estudiante: ")
+        estudiante.telefono = input("Ingrese el telefono del estudiante: ")
+        estudiante.fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
+        estudiante.email = input("Ingrese el email del estudiante: ")
+        estudiante.numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
+        
+        return estudiante
     # endregion Metodos de Clase
