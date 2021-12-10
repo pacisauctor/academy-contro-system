@@ -1,5 +1,6 @@
 class Turno:
     __cont_turno= 0
+
     def __init__(self, turno, obj_tipo_profesor):
         Turno.__cont_turno += 1
         self.turno = turno
