@@ -20,13 +20,7 @@ class Profesor(Persona):
 
     def __str__(self) -> str:
         txt = f"""\nProfesor: {self.cod_profesor}
-        Nombre: {self.nombre} 
-        Apellido: {self.apellido}
-        Cedula: {self.cedula}
-        Direccion: {self.direccion}
-        Telefono: {self.telefono}
-        Email: {self.email}
-        Fecha de Nacimiento: {self.fecha_nac}\n
+        {super.__str__(self)}
         """
         return txt
 
@@ -44,9 +38,6 @@ class Profesor(Persona):
         del self.__cod_profesor
 
     # endregion Metodos attr -> cod_profesor
-
-    def crear_profesor(self):
-        pass
     
     def convert_to_dictionary(self)->dict:
         return {
@@ -146,8 +137,7 @@ if __name__ == '__main__':
         '2021-12-15',
         'alex@gmail.com',
         '0215',
-        prg1,
-        cur
+        prg1
     )
 
 

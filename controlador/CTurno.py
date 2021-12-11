@@ -1,3 +1,6 @@
+from modelo.Turno import Turno
+
+
 def gestionar(titulo: str):
     
     while True:
@@ -17,13 +20,22 @@ def gestionar(titulo: str):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            print("1")
+            print(Turno.listar_turno())
         elif opcion == 2:
-            print("2")
+            turno = input("Digita el turno a agregar: [horaInicio-horaFin]-> ")
+            trn = Turno(turno)
+            trn.agrega_turno()
         elif opcion == 3:
-            print("3")
+            print(Turno.listar_turno())
+            op = input('[?] Digita tu opcion: ')
+            turno = input('[?] Proporciona el Nuevo Horario [horaInicio-horaFin]-> ')
+            Turno.edit_turnos(op, turno)
+            print('Turno editado exitosamente!!!')
         elif opcion == 4:
-            print("4")
+            print(Turno.listar_turno())
+            op = input('[?] Digita tu opcion: ')
+            Turno.delete_turnos(op)
+            print('La eliminacion se realizo con exito!!!')
         elif opcion == 5:
             print("Regresando...")
             break
