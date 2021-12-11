@@ -1,12 +1,13 @@
 from controlador.CAula import gestionar as gestionar_aulas
 from controlador.CCurso import gestionar as gestionar_cursos
 from controlador.CEdificio import gestionar as gestionar_edificios
-from controlador.CMatricula import gestionar as gestionar_matriculas
+from controlador.CMatricula import gestionar as gestionar_matriculas, agregar_ver_matriculas
+from controlador.CReglasNegocio import gestionar as gestionar_reglas_de_negocio
 from controlador.CProfesor import gestionar as gestionar_profesores
 from controlador.CPrograma import gestionar as gestionar_programas
 from controlador.CTipoProfesor import gestionar as gestionar_tipoProfesor
 from controlador.CTurno import gestionar as gestionar_turnos
-from controlador.CEstudiante import gestionar as gestionar_estudiantes
+from controlador.CEstudiante import gestionar as gestionar_estudiantes, agregar_estudiantes
 
 aulas = []
 cursos = []
@@ -17,19 +18,6 @@ programas = []
 tiposProfesor = []
 turnos = []
 estudiantes = []
-
-reglas_de_negocio={
-    "min_cursos_por_programa": 4,
-    "max_cursos_por_programa": 6,
-    "min_cursos_docente": 1,
-    "max_cursos_docente": 5,
-    "min_cursos_estudiante": 1,
-    "max_cursos_estudiante": 5,
-    "min_estud_programa":3,
-    "max_estud_programa":15,
-    "min_estud_curso":3,
-    "max_estud_curso":10,
-}
 
 
 def main():
@@ -69,6 +57,7 @@ def submenu_administracion():
         print("""
             1. Gestionar profesores.
             2. Gestionar estudiantes
+            3. Editar reglas de negocio.
             3. Salir
             """)
         try:
@@ -81,6 +70,9 @@ def submenu_administracion():
             gestionar_profesores("Gestionar profesores", profesores)
         elif opcion == 2:
             gestionar_estudiantes("Gestionar estudiantes", estudiantes, matriculas)
+        elif opcion == 4:
+            # TODO
+            gestionar_reglas_de_negocio()
         elif opcion == 3:
             print("Saliendo...")
             return
@@ -108,18 +100,18 @@ def submenu_catalogos():
             pass
         if opcion == 1:
             # TODO
-            gestionar_aulas("Gestionar aulas", aulas)
+            gestionar_aulas("Gestionar aulas", aulas, edificios)
         elif opcion == 2:
-            gestionar_edificios("Gestionar edficicio", edificios)
+            gestionar_edificios("Gestionar edficicio", edificios, aulas)
         elif opcion == 3:
-            gestionar_programas("Gestionar programas", programas)
+            gestionar_programas("Gestionar programas", programas, profesores)
         elif opcion == 4:
             # TODO
-            gestionar_cursos("Gestionar cursos", cursos)
+            gestionar_cursos("Gestionar cursos", cursos, aulas)
         elif opcion == 5:
-            gestionar_turnos("Gestionar turnos", turnos)
+            gestionar_turnos("Gestionar turnos", turnos, tiposProfesor)
         elif opcion == 6:
-            gestionar_tipoProfesor("Gestionar tipo de profesor", tiposProfesor)
+            gestionar_tipoProfesor("Gestionar tipo de profesor", tiposProfesor, profesores)
         elif opcion == 7:
             print("Saliendo...")
             return
@@ -142,9 +134,9 @@ def submenu_matriculas():
             print("Intente otra vez .")
             pass
         if opcion == 1:
-            print("Opción 1: TODO\n")
+            agregar_estudiantes(estudiantes)
         elif opcion == 2:
-            print("Opción 2: TODO\n")
+            agregar_ver_matriculas(estudiantes,matriculas,cursos)
         elif opcion == 3:
             print("Saliendo...")
             return

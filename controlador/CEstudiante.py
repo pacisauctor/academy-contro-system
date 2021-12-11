@@ -37,3 +37,7 @@ def gestionar(titulo:str, estudiantes:list, matriculas:list):
             break
         else:
             print("Escoja una opción válida")
+            
+def agregar_estudiantes(estudiantes:list):
+    print("TODO")
+    return

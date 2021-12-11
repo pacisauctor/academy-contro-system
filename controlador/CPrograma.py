@@ -1,7 +1,7 @@
 from modelo.Programa import Programa
 
 
-def gestionar(titulo:str, programas:list):
+def gestionar(titulo:str, programas:list, profesores:list):
     
     while True:
         

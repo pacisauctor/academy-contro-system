@@ -1,0 +1,2 @@
+def gestionar():
+    pass

@@ -34,3 +34,9 @@ def gestionar(titulo:str, matriculas:list):
             break
         else:
             print("Escoja una opción válida")
+            
+            
+def gestionar_matriculas(estudiantes:list,matriculas:list,cursos:list):
+
+    print("TODO")
+    return

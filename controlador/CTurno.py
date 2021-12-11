@@ -1,7 +1,7 @@
 from modelo.Turno import Turno
 
 
-def gestionar(titulo: str, turnos:list):
+def gestionar(titulo: str, turnos:list, tiposProfesor:list):
     
     while True:
         print(titulo.upper())

@@ -1,7 +1,7 @@
 from modelo.Edificio import Edificio
 
 
-def gestionar(titulo: str, edificios:list):
+def gestionar(titulo: str, edificios:list, aulas:list):
     
     while True:
         print(titulo.upper())
