@@ -1,9 +1,8 @@
-from helpers import load_data, save_data
 from modelo.Profesor import Profesor
 
 
-def gestionar(titulo:str):
-    profesores = load_data("database/profesores.csv", "profesor")
+def gestionar(titulo:str, profesores:list):
+    
     while True:
         print(titulo.upper())
         print("Seleccione una opción")
@@ -31,7 +30,6 @@ def gestionar(titulo:str):
             eleccion = int(input("Seleccione el ID del profesor:"))
             profesores.pop(eleccion)
         elif opcion == 5:
-            save_data("database/profesores.csv", profesores)
             print("Regresando...")
             break
         else:

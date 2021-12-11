@@ -1,18 +1,18 @@
 from modelo.Estudiante import Estudiante
 from helpers import load_data, save_data
 
-def gestionar(titulo:str):
-    estudiantes = load_data("database/estudiantes.csv", "estudiante")
+def gestionar(titulo:str, estudiantes:list, matriculas:list):
     
     while True:
         print(titulo.upper())
         print("Seleccione una opción")
         print("""
-            1. Mostrar todas los registros.
-            2. Ingresar un nuevo registro
-            3. Editar un registro existente.
-            4. Eliminar un registro
-            5. Regresar al menú principal
+            1. Mostrar todas los estudiantes.
+            2. Ingresar un nuevo estudiante
+            3. Editar un estudiante.
+            4. Eliminar un estudiante
+            5. Gestionar notas de un estudiante
+            6. Regresar al menú principal
             """)
         try:
             opcion = int(input("-->"))
@@ -31,7 +31,9 @@ def gestionar(titulo:str):
             eleccion = int(input("Ingrese el ID del estudiante: "))
             estudiantes.pop(eleccion -1)
         elif opcion == 5:
-            save_data("database/estudiantes.csv", estudiantes)
+            # TODO
+            pass
+        elif opcion == 6:
             print("Regresando...")
             break
         else:

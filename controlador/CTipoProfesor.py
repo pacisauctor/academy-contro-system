@@ -2,7 +2,7 @@ from modelo.Profesor import Profesor
 from modelo.TipoProfesor import TipoProfesor
 
 
-def gestionar(titulo:str):
+def gestionar(titulo:str, tiposProfesor:list):
     while True:
         print(titulo.upper())
         print("Seleccione una opción")

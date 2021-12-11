@@ -2,8 +2,8 @@ from helpers import load_data, save_data
 from modelo.Edificio import Edificio
 
 
-def gestionar(titulo: str):
-    edificios = load_data("database/edificios.csv", "edificio")
+def gestionar(titulo: str, edificios:list):
+    
     while True:
         print(titulo.upper())
         print("Seleccione una opción")
@@ -23,7 +23,7 @@ def gestionar(titulo: str):
         if opcion == 1:
             Edificio.listar_edificio(edificios)
         elif opcion == 2:
-            Edificio.append(Edificio.agregar_edificio())
+            edificios.append(Edificio.agregar_edificio())
         elif opcion == 3:
             eleccion = int(input("Ingrese el ID del edificio: "))
             Edificio.editar_edificio(edificios[eleccion - 1])
@@ -31,7 +31,7 @@ def gestionar(titulo: str):
             eleccion = int(input("Ingrese el ID del estudiante: "))
             edificios.pop(eleccion -1)
         elif opcion == 5:
-            save_data("database/edificios.csv", edificios)
+            
             print("Regresando...")
             break
         else:

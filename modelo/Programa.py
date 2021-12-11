@@ -5,12 +5,13 @@ class Programa:
     """Clase programa"""
     cont_prgrama = 0
 
-    def __init__(self, nombre_programa, fecha_programa, status_programa, director):
+    def __init__(self, nombre_programa, fecha_programa, duracion_anios, status_programa, director):
         """Constructor de la clase programa"""
         Programa.cont_prgrama += 1
         self.nombre_programa = nombre_programa
         self.fecha_programa = fecha_programa
         self.status_programa = status_programa
+        self.duracion_anios = duracion_anios
         self.director = director
         self.id_programa = Programa.cont_prgrama
 
@@ -20,6 +21,7 @@ class Programa:
         Nombre del Programa: {self.nombre_programa}
         Fecha de Inicio: {self.fecha_programa}
         Estado: {self.status_programa}
+        Duracion (años): {self.duracion_anios}
         Director: {self.director}\n'''
         return txt
 
@@ -85,6 +87,18 @@ class Programa:
     def director(self):
         del self.__director
 
+
+    @property
+    def duracion_anios(self):
+        return self.__duracion_anios
+
+    @duracion_anios.setter
+    def duracion_anios(self, duracion_anios):
+        self.__duracion_anios = duracion_anios
+
+    @duracion_anios.deleter
+    def duracion_anios(self):
+        del self.__duracion_anios
     # endregion metodos -> directos
 
     # region Metodos de clase
@@ -103,21 +117,6 @@ class Programa:
             director = indice
         )
     
-    def convert_to_dictionary(self):
-        return {
-            "nombre_programa": self.nombre_programa,
-            "fecha_programa": self.fecha_programa,
-            "status_programa": self.status_programa,
-            "director": self.director
-        }
-    @classmethod  
-    def get_from_dictionary(self, dictionary:dict):
-        return Programa(
-            nombre_programa = dictionary["nombre_programa"],
-            fecha_programa = dictionary["fecha_programa"],
-            status_programa = dictionary["status_programa"],
-            director = dictionary["director"]
-        )
     
     @classmethod
     def editar_programa(cls, programa):

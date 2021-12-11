@@ -39,31 +39,6 @@ class Profesor(Persona):
 
     # endregion Metodos attr -> cod_profesor
     
-    def convert_to_dictionary(self)->dict:
-        return {
-            "cod_profesor": self.cod_profesor,
-            "nombre": self.nombre,
-            "apellido": self.apellido,
-            "cedula": self.cedula,
-            "direccion": self.direccion,
-            "telefono": self.telefono,
-            "fecha_nac": self.fecha_nac,
-            "email": self.email
-        }
-
-    @classmethod
-    def get_from_dictionary(cls, dictionary:dict):
-        return Profesor(
-            nombre = dictionary["nombre"],
-            apellido = dictionary["apellido"],
-            cedula = dictionary["cedula"],
-            direccion = dictionary["direccion"],
-            telefono = dictionary["telefono"],
-            fecha_nac = dictionary["fecha_nac"],
-            email = dictionary["email"],
-            cod_profesor=dictionary["cod_profesor"],
-            tipo_profesor=dictionary.get("tipo_profesor"),
-        )
 
     @classmethod
     def mostrar_profesores(cls, list_profesores:list):

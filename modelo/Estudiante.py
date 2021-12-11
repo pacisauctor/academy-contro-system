@@ -29,18 +29,6 @@ class Estudiante(Persona):
     def num_carnet(self):
         del self.__num_carnet
     # endregion Metodos -> id_estudiantes
-    def convert_to_dictionary(self):
-        return {
-            "num_carnet": self.num_carnet,
-            "obj_matricula": self.obj_matricula,
-            "nombre": self.nombre,
-            "apellido": self.apellido,
-            "cedula": self.cedula,
-            "direccion": self.direccion,
-            "telefono": self.telefono,
-            "fecha_nac": self.fecha_nac,
-            "email": self.email
-        }
 
 
     # region Metodos de Clase
@@ -48,21 +36,6 @@ class Estudiante(Persona):
     def crear_persona(cls, objpersona):
         cls.__lstEstudiantes.append(objpersona)
         
-    @classmethod
-    def get_from_dictionary(cls, dictionary:dict):
-        return Estudiante(
-            num_carnet = dictionary["num_carnet"],
-            obj_matricula = dictionary["obj_matricula"],
-            nombre = dictionary["nombre"],
-            apellido = dictionary["apellido"],
-            cedula = dictionary["cedula"],
-            direccion = dictionary["direccion"],
-            telefono = dictionary["telefono"],
-            fecha_nac = dictionary["fecha_nac"],
-            email = dictionary["email"]
-        )
-        
-
         
     
     @classmethod

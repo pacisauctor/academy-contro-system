@@ -47,22 +47,7 @@ class Matricula:
         del self.__hora_matricula
     # endregion metodos -> hora_matricula
     
-    def convert_to_dictionary(self)->dict:
-        return {
-            "fecha_matricula": self.fecha_matricula,
-            "hora_matricula": self.hora_matricula,
-            "obj_curso": self.obj_curso,
-        }
-        
-    @classmethod
-    def get_from_dictionary(cls, dictionary:dict):
-        return Matricula(
-            fecha_matricula= dictionary.get("fecha_matricula"),
-            hora_matricula= dictionary.get("hora_matricula"),
-            obj_curso= dictionary.get("obj_curso")
-        )
-
-    
+   
 
     @classmethod
     def listar_matricula(cls, list_matricula):

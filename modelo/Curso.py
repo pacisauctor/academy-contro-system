@@ -2,12 +2,13 @@ class Curso:
 
     __cont_curso = 0
     def __init__(self, nombre_curso, creditos, cant_hrs_semanales,
-                 programa, obj_aula):
+                 programa,precio, obj_aula):
         Curso.__cont_curso += 1
         self.nombre_curso = nombre_curso
         self.creditos = creditos
         self.cant_hrs_semanales = cant_hrs_semanales
         self.programa = programa
+        self.precio = precio
         self.obj_aula = obj_aula
         self.id_curso = Curso.__cont_curso
 
@@ -83,3 +84,15 @@ class Curso:
     def programa(self):
         del self.__programa
     # endregion metodos -> programa
+
+    @property
+    def precio(self):
+        return self.__precio
+
+    @precio.setter
+    def precio(self, precio):
+        self.__precio = precio
+
+    @precio.deleter
+    def precio(self):
+        del self.__precio

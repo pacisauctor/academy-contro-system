@@ -1,4 +1,4 @@
-def gestionar(titulo: str):
+def gestionar(titulo: str, cursos:list):
     while True:
         print(titulo.upper())
         print("Seleccione una opción")

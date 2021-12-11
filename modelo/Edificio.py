@@ -92,26 +92,6 @@ class Edificio:
         del self.__cantidad_aulas
         
         
-    def convert_to_dictionary(self):
-        return {
-            "nombre":self.nombre,
-            "direccion":self.direccion,
-            "numero_edificio":self.numero_edificio,
-            "cantidad_pisos":self.cantidad_pisos,
-            "cantidad_aulas":self.cantidad_aulas,
-            "obj_aula":self.obj_aula
-        }
-        
-    @classmethod  
-    def get_from_dictionary(self, dictionary:dict):
-        return Edificio(
-            nombre=dictionary.get("nombre"), 
-            direccion=dictionary.get("direccion"), 
-            numero_edificio=dictionary.get("numero_edificio"), 
-            cantidad_pisos=dictionary.get("cantidad_pisos"), 
-            cantidad_aulas=dictionary.get("cantidad_aulas"), 
-            obj_aula=dictionary.get("obj_aula"))
-    # endregion metodos -> cantidad_aulas
 
     @classmethod
     def listar_edificio(cls, list_edificio):
