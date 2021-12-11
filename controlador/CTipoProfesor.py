@@ -20,10 +20,15 @@ def gestionar(titulo:str, tiposProfesor:list, profesores:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            print(TipoProfesor.listar_tipos())
+            print("ID | Nombre")
+            for tipoProfesor in tiposProfesor:
+                print(f"{tipoProfesor.id_tipo_profesor}: {tipoProfesor.tipo}")
+                
         elif opcion == 2:
             tipo = input('Digita el tipo de profesor a agregar: ')
             TipoProfesor.agregar_tipo(tipo)
+            tiposProfesor.append(TipoProfesor(tipo))
+            print('Elemento agregado exitosamente!!!')
         elif opcion == 3:
             TipoProfesor.edit_tipo()
             print('Elemento agregado exitosamente!!!')
