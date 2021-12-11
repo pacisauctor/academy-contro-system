@@ -1,5 +1,4 @@
 from modelo.Estudiante import Estudiante
-from helpers import load_data, save_data
 
 def gestionar(titulo:str, estudiantes:list, matriculas:list):
     

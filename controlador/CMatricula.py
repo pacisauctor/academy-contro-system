@@ -1,8 +1,7 @@
 from modelo.Matricula import Matricula
-from helpers import load_data, save_data
 
-def gestionar(titulo:str):
-    matriculas = load_data("database/matriculas.csv", "matricula")
+def gestionar(titulo:str, matriculas:list):
+    
     while True:
         
         print(titulo.upper())
@@ -31,7 +30,6 @@ def gestionar(titulo:str):
             eleccion = int(input("Ingrese el ID de matricula: "))
             matriculas.pop(eleccion -1)
         elif opcion == 5:
-            save_data("database/matriculas.csv", matriculas)
             print("Regresando...")
             break
         else:
