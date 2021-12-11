@@ -1,12 +1,17 @@
+from modelo.Matricula import Matricula
+from helpers import load_data, save_data
+
 def gestionar(titulo:str):
+    matriculas = load_data("database/matriculas.csv", "matricula")
     while True:
+        
         print(titulo.upper())
         print("Seleccione una opción")
         print("""
-            1. Mostrar todas los registros.
-            2. Ingresar un nuevo registro
-            3. Editar un registro existente.
-            4. Eliminar un registro
+            1. Mostrar todas los registros de matricula.
+            2. Ingresar un nuevo registro de matricula.
+            3. Editar un registro existente de matricula.
+            4. Eliminar un registro de matricula.
             5. Regresar al menú principal
             """)
         try:
@@ -16,14 +21,17 @@ def gestionar(titulo:str):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            print("1")
+            Matricula.listar_matricula(matriculas)
         elif opcion == 2:
-            print("2")
+            Matricula.append(Matricula.agregar_matricula())
         elif opcion == 3:
-            print("3")
+            eleccion = int(input("Ingrese el ID de matricula: "))
+            Matricula.editar_matricula(matriculas[eleccion - 1])
         elif opcion == 4:
-            print("4")
+            eleccion = int(input("Ingrese el ID de matricula: "))
+            matriculas.pop(eleccion -1)
         elif opcion == 5:
+            save_data("database/matriculas.csv", matriculas)
             print("Regresando...")
             break
         else:

@@ -21,22 +21,8 @@ def save_data(filename:str, list_objects:list):
     """
     list_dicctionary = []
     for object in list_objects:
-        if type(object) == Aula:
-            list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif type(object) == Edificio:
-            list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif type(object) == Estudiante:
-            list_dicctionary.append(object.convert_to_dictionary())
-        elif type(object) == Matricula:
-            list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif type(object) == Profesor:
-            list_dicctionary.append(object.convert_to_dictionary())
-        elif type(object) == Programa:
-            list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif type(object) == TipoProfesor:
-            list_dicctionary.append(convert_aula_to_dictionary(object=object))
-        elif type(object) == Curso:
-            list_dicctionary.append(convert_aula_to_dictionary(object=object))
+        list_dicctionary.append(object.convert_to_dictionary())
+        
         
     keys = list_dicctionary[0].keys()
     
@@ -55,15 +41,15 @@ def load_data(filename:str, clase:str) -> list:
         if clase == "aula":
             list_objects.append(convert_dictionary_to_aula(row))
         elif clase == "edificio":
-            list_objects.append(convert_dictionary_to_aula(row))
+            list_objects.append(Edificio.get_from_dictionary(row))
         elif clase == "estudiante":
             list_objects.append(Estudiante.get_from_dictionary(row))
         elif clase == "matricula":
-            list_objects.append(convert_dictionary_to_aula(row))
+            list_objects.append(Matricula.get_from_dictionary(row))
         elif clase == "profesor":
             list_objects.append(Profesor.get_from_dictionary(row))
         elif clase == "programa":
-            list_objects.append(convert_dictionary_to_aula(row))
+            list_objects.append(Programa.get_from_dictionary(row))
         elif clase == "tipoprofesor":
             list_objects.append(convert_dictionary_to_aula(row))
         elif clase == "curso":

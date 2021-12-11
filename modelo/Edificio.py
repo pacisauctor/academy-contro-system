@@ -1,5 +1,7 @@
 class Edificio:
     __cont_edificio= 0
+    __lstEdificio = []
+
     def __init__(self, nombre, direccion, numero_edificio, cantidad_pisos,
                  cantidad_aulas, obj_aula):
         Edificio.__cont_edificio += 1
@@ -88,4 +90,53 @@ class Edificio:
     @cantidad_aulas.deleter
     def cantidad_aulas(self):
         del self.__cantidad_aulas
+        
+        
+    def convert_to_dictionary(self):
+        return {
+            "nombre":self.nombre,
+            "direccion":self.direccion,
+            "numero_edificio":self.numero_edificio,
+            "cantidad_pisos":self.cantidad_pisos,
+            "cantidad_aulas":self.cantidad_aulas,
+            "obj_aula":self.obj_aula
+        }
+        
+    @classmethod  
+    def get_from_dictionary(self, dictionary:dict):
+        return Edificio(
+            nombre=dictionary.get("nombre"), 
+            direccion=dictionary.get("direccion"), 
+            numero_edificio=dictionary.get("numero_edificio"), 
+            cantidad_pisos=dictionary.get("cantidad_pisos"), 
+            cantidad_aulas=dictionary.get("cantidad_aulas"), 
+            obj_aula=dictionary.get("obj_aula"))
     # endregion metodos -> cantidad_aulas
+
+    @classmethod
+    def listar_edificio(cls, list_edificio):
+        for i in range(len(list_edificio)):
+            print(list_edificio[i])
+
+    @classmethod
+    def agregar_edificio(cls):
+        nombre = input("Ingrese el nombre del edificio: ")
+        direccion = input("Ingrese la direccion del edificio: ")
+        numero_edificio = input("Ingrese el numero de edificio: ")
+        cantidad_pisos = input("Ingrese la cantidad de pisos del edificio: ")
+        cantidad_aulas = input("Ingrese cantidad de aulas: ")
+
+        edificio = Edificio(nombre=nombre, direccion=direccion, numero_edificio=numero_edificio, cantidad_pisos=cantidad_pisos, cantidad_aulas=cantidad_aulas, obj_aula=None)
+        return edificio
+
+    @classmethod
+    def editar_edificio(cls, edificio):
+        edificio.nombre = input("Ingrese el nombre del edificio: ")
+        edificio.direccion = input("Ingrese la dirrecion del edificio: ")
+        edificio.numero_edificio = input("Ingrese el numero del edificio: ")
+        edificio.cantidad_pisos = input("Ingrese la cantidad de pisos: ")
+        edificio.cantidad_aulas = input("Ingrese la cantidad de aulas: ")
+
+        return edificio
+    
+    

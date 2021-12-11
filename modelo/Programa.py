@@ -4,7 +4,6 @@ from datetime import date
 class Programa:
     """Clase programa"""
     cont_prgrama = 0
-    __lstProgramas = []
 
     def __init__(self, nombre_programa, fecha_programa, status_programa, director):
         """Constructor de la clase programa"""
@@ -90,15 +89,51 @@ class Programa:
 
     # region Metodos de clase
     @classmethod
-    def agregar_programa(cls, objprograma):
-        cls.__lstProgramas.append(objprograma)
+    def agregar_programa(cls):
+        nombre_programa = input("Ingrese el nombre_programa: ")
+        fecha_programa = input("Ingrese el fecha_programa: ")
+        status_programa = input("Ingrese el status_programa: ")
+        indice = int(input("Ingrese el id del profesor:"))
+        
+        
+        return Programa(
+            nombre_programa = nombre_programa,
+            fecha_programa = fecha_programa,
+            status_programa = status_programa,
+            director = indice
+        )
+    
+    def convert_to_dictionary(self):
+        return {
+            "nombre_programa": self.nombre_programa,
+            "fecha_programa": self.fecha_programa,
+            "status_programa": self.status_programa,
+            "director": self.director
+        }
+    @classmethod  
+    def get_from_dictionary(self, dictionary:dict):
+        return Programa(
+            nombre_programa = dictionary["nombre_programa"],
+            fecha_programa = dictionary["fecha_programa"],
+            status_programa = dictionary["status_programa"],
+            director = dictionary["director"]
+        )
+    
+    @classmethod
+    def editar_programa(cls, programa):
+        programa.nombre_programa = input("Ingrese el nombre_programa: ")
+        programa.fecha_programa = input("Ingrese el fecha_programa: ")
+        programa.status_programa = input("Ingrese el status_programa: ")
+        programa.director =  int(input("Ingrese el id del profesor:"))
+        return programa
 
     @classmethod
-    def mostrar_detalle(cls):
-        programas = ''
-        for program in cls.__lstProgramas:
-            programas += program.__str__()
-        return programas
+    def mostrar_programas(cls, programas:list):
+        for programa in programas:
+            print(programa)
+    
+    
+    
     # endregion Metodos de clase
 
 
