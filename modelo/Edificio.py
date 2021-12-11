@@ -1,16 +1,19 @@
+from modelo.Aula import Aula
+
+
 class Edificio:
     __cont_edificio= 0
     __lstEdificio = []
 
     def __init__(self, nombre, direccion, numero_edificio, cantidad_pisos,
-                 cantidad_aulas, obj_aula):
+                 cantidad_aulas):
         Edificio.__cont_edificio += 1
         self.nombre = nombre
         self.direccion = direccion
         self.numero_edificio = numero_edificio
         self.cantidad_pisos = cantidad_pisos
         self.cantidad_aulas = cantidad_aulas
-        self.obj_aula = obj_aula
+        self.aulas = []
         self.id_edificio = Edificio.__cont_edificio
 
     # region metodos de propiedad del argumeto -> nombre
@@ -28,7 +31,15 @@ class Edificio:
         del self.__nombre
 
     # endregion metodos -> nombre
-
+    def agregar_aula(self, aula:Aula):
+        self.aulas.append(aula)
+        
+    def remover_aula(self, aula:Aula)->bool:
+        for aula_it in self.aulas:
+            if aula.id_aula == aula_it.id_aula:
+                self.aulas.remove(aula_it)
+                return True
+        return False
     # region metodos de propiedad del argumeto -> direccion
 
     @property

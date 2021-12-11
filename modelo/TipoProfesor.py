@@ -1,3 +1,6 @@
+from modelo.Profesor import Profesor
+
+
 class TipoProfesor:
 
     __cont_tipo_profesor= 0
@@ -7,6 +10,7 @@ class TipoProfesor:
     def __init__(self, tipo):
         TipoProfesor.__cont_tipo_profesor += 1
         self.tipo = tipo
+        self.profesores = []
         self.id_tipo_profesor = TipoProfesor.__cont_tipo_profesor
 
     def __str__(self):
@@ -16,7 +20,17 @@ class TipoProfesor:
         '''
         return txt
 # metodos de propiedad del argumeto -> tipo
-                                
+               
+    def agregar_profesor(self, profesor:Profesor):
+        self.profesores.append(profesor)
+    
+    def eliminar_profesor(self, profesor:Profesor) -> bool:
+        for profesor_it in self.profesores:
+            if profesor_it.id_profesor == profesor.id_profesor:
+                self.profesores.remove(profesor_it)
+                return True
+        return False
+        
     @property
     def tipo(self):
         return self.__tipo

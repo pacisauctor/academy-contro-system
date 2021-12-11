@@ -11,12 +11,13 @@ class Profesor(Persona):
     lstPersona = []
 
     def __init__(self, nombre, apellido, cedula, direccion, telefono, fecha_nac,
-                 email, cod_profesor, tipo_profesor) -> None:
+                 email, cod_profesor) -> None:
         Profesor.contador_profesor = + 1
         super().__init__(nombre, apellido, cedula, direccion, telefono, fecha_nac, email)
-        self.__id_profesor = Profesor.contador_profesor
+        self.id_profesor = Profesor.contador_profesor
         self.cod_profesor = cod_profesor
-        self.tipo_profesor = tipo_profesor
+        self.programas = []
+        self.cursos = []
 
     def __str__(self) -> str:
         txt = f"""\nProfesor: {self.cod_profesor}
@@ -24,6 +25,25 @@ class Profesor(Persona):
         """
         return txt
 
+    def agregar_programa(self, programa:Programa):
+        self.programas.append(programa)
+        
+    def remover_programa(self, programa:Programa)->bool:
+        for programa_it in self.programas:
+            if programa.id_programa == programa_it.id_programa:
+                self.programas.remove(programa_it)
+                return True
+        return False
+    
+    def agregar_curso(self, curso:Curso):
+        self.cursos.append(curso)
+        
+    def remover_curso(self, curso:Curso)->bool:
+        for curso_it in self.cursos:
+            if curso.id_curso == curso_it.id_curso:
+                self.cursos.remove(curso_it)
+                return True
+        return False
     # region Metodos attr -> cod_profesor
     @property
     def cod_profesor(self):

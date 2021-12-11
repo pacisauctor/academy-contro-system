@@ -1,3 +1,4 @@
+from modelo.Matricula import Matricula
 from modelo.Persona import Persona
 
 
@@ -7,12 +8,12 @@ class Estudiante(Persona):
     __lstEstudiantes = []
 
     def __init__(self, nombre, apellido, cedula, direccion, telefono,
-                 fecha_nac, email, num_carnet, obj_matricula):
+                 fecha_nac, email, num_carnet):
         Estudiante.cont_estudiante += 1
         super().__init__(nombre, apellido, cedula, direccion,
                          telefono, fecha_nac, email)
         self.num_carnet = num_carnet
-        self.obj_matricula = obj_matricula
+        self.matriculas = []
         self._id_estudiante = Estudiante.cont_estudiante
 
     # region metodos de propiedad del argumeto -> id_estudiante
@@ -30,7 +31,15 @@ class Estudiante(Persona):
         del self.__num_carnet
     # endregion Metodos -> id_estudiantes
 
-
+    def agregar_matricula(self, matricula:Matricula):
+        self.matriculas.append(matricula)
+        
+    def remover_matricula(self, matricula:Matricula)->bool:
+        for matricula_it in self.matriculas:
+            if matricula.id_matricula == matricula_it.id_matricula:
+                self.matriculas.remove(matricula_it)
+                return True
+        return False
     # region Metodos de Clase
     @classmethod
     def crear_persona(cls, objpersona):

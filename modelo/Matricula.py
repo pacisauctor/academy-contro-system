@@ -1,12 +1,15 @@
 from datetime import date, datetime, time
+
+from modelo.Curso import Curso
 class Matricula:
     
     __cont_matricula = 0
-    def __init__(self, fecha_matricula, hora_matricula, obj_curso):
+    def __init__(self, fecha_matricula, hora_matricula):
         Matricula.__cont_matricula += 1
         self.fecha_matricula = fecha_matricula
         self.hora_matricula = hora_matricula
-        self.obj_curso = obj_curso
+        self.curso = None
+        self.total_pagar = 0
         self.id_matricula = Matricula.__cont_matricula
 
     def __str__(self):
@@ -29,9 +32,35 @@ class Matricula:
     @fecha_matricula.deleter
     def fecha_matricula(self):
         del self.__fecha_matricula
+        
+    @property
+    def curso(self):
+        return self.__curso
+
+    @curso.setter
+    def curso(self, curso:Curso):
+        self.__curso = curso
+
+    @curso.deleter
+    def curso(self):
+        del self.__curso
+        
 
     # endregion metodos -> fecha_matricula
+    @property
+    def total_pagar(self):
+        return self.__total_pagar
 
+    @total_pagar.setter
+    def total_pagar(self, total_pagar):
+        self.__total_pagar = total_pagar
+
+    @total_pagar.deleter
+    def total_pagar(self):
+        del self.__total_pagar
+    
+    
+  
     # region metodos de propiedad del argumeto -> hora_matricula
 
     @property

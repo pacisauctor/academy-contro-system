@@ -1,3 +1,6 @@
+from modelo.TipoProfesor import TipoProfesor
+
+
 class Turno:
 
     __cont_turno= 0
@@ -6,6 +9,7 @@ class Turno:
     def __init__(self, turno):
         Turno.__cont_turno += 1
         self.turno = turno
+        self.tipoProfesores = [] 
         self.id_turno = (len(Turno.dicTurnos) + 1)
 
     def __str__(self):
@@ -14,6 +18,16 @@ class Turno:
         Turno: {self.turno}
         '''
         return txt
+    
+    def agregar_tipoProfesor(self, tipoProfesor:TipoProfesor):
+        self.tipoProfesores.append(tipoProfesor)
+    
+    def eliminar_tipoProfesor(self, tipoProfesor:TipoProfesor)->bool:
+        for tipoProfesorIt in self.tipoProfesores:
+            if tipoProfesorIt.id_tipo_profesor == tipoProfesor.id_tipo_profesor:
+                self.tipoProfesores.remove(tipoProfesor)
+                return True
+        return False
     # metodos de propiedad del argumeto -> turno
 
     @property

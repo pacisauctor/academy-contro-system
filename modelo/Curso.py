@@ -1,15 +1,18 @@
+from modelo.Aula import Aula
+
+
 class Curso:
 
     __cont_curso = 0
     def __init__(self, nombre_curso, creditos, cant_hrs_semanales,
-                 programa,precio, obj_aula):
+                 programa,precio):
         Curso.__cont_curso += 1
         self.nombre_curso = nombre_curso
         self.creditos = creditos
         self.cant_hrs_semanales = cant_hrs_semanales
         self.programa = programa
         self.precio = precio
-        self.obj_aula = obj_aula
+        self.aulas = []
         self.id_curso = Curso.__cont_curso
 
     def __str__(self):
@@ -35,6 +38,16 @@ class Curso:
     @nombre_curso.deleter
     def nombre_curso(self):
         del self.__nombre_curso
+    
+    def agregar_aula(self, aula:Aula):
+        self.aulas.append(aula)
+        
+    def remover_aula(self, aula:Aula)->bool:
+        for aula_it in self.aulas:
+            if aula.id_aula == aula_it.id_aula:
+                self.aulas.remove(aula_it)
+                return True
+        return False
 
     # endregion metodos -> nombre_curso
 
