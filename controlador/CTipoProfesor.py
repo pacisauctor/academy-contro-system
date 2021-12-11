@@ -1,3 +1,7 @@
+from modelo.Profesor import Profesor
+from modelo.TipoProfesor import TipoProfesor
+
+
 def gestionar(titulo:str):
     while True:
         print(titulo.upper())
@@ -16,13 +20,16 @@ def gestionar(titulo:str):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            print("1")
+            print(TipoProfesor.listar_tipos())
         elif opcion == 2:
-            print("2")
+            tipo = input('Digita el tipo de profesor a agregar: ')
+            TipoProfesor.agregar_tipo(tipo)
         elif opcion == 3:
-            print("3")
+            TipoProfesor.edit_tipo()
+            print('Elemento agregado exitosamente!!!')
         elif opcion == 4:
-            print("4")
+            TipoProfesor.delete_tipo()
+            print('El tipo de profesor se a eliminado exitosamente!!!')
         elif opcion == 5:
             print("Regresando...")
             break
