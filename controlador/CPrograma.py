@@ -1,3 +1,6 @@
+from datetime import date
+
+from controlador.CReglasNegocio import valida_duracion_programa
 from modelo.Programa import Programa
 
 
@@ -22,16 +25,39 @@ def gestionar(titulo:str, programas:list, profesores:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            programas.append(Programa.agregar_programa())
+            prg = Programa()
+            print('Proporciona los siguientes datos...')
+            prg.nombre_programa = input('Nombre del Programa: ')
+            prg.fecha_programa = date.today()
+            prg.duracion_anios = valida_duracion_programa()
+            prg.director = input('Director: ')
+            programas.append(prg)
+
         elif opcion == 2:
-            Programa.mostrar_programas(programas)
+            for program in programas:
+                print(program.__str__())
         elif opcion == 3:
-            eleccion = int(input("Seleccione el programa a editar: "))
-            Programa.editar_programa(programas[eleccion-1])
+            for program in programas:
+                print(program.__str__())
+            op = int(input('[?] Digita el id del programa: '))
+            print('Proporciona los siguientes datos...')
+            programas[(op-1)].nombre_programa = input('Nombre del Programa: ')
+            programas[(op-1)].fecha_programa = date.today()
+            programas[(op-1)].duracion_anios = valida_duracion_programa()
+            programas[(op-1)].director = input('Director: ')
+
         elif opcion == 4:
-            print("4 todo")
+            for program in programas:
+                print(program.__str__())
+            op = int(input('[?] Digita el id del programa: '))
+            desicion = input('Desea establecer el estado del programa, como abierto? y/n: ').lower()
+            if desicion == 'y':
+                programas[(op - 1)].status_programa = 'Abierto'
         elif opcion == 5:
-            print("5 todo")
+            for program in programas:
+                print(program.__str__())
+            op = int(input('[?] Digita el id del programa: '))
+            programas.pop((op-1))
         elif opcion == 5:
             print("Regresando...")
             break

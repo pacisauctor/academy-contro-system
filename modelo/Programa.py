@@ -5,7 +5,8 @@ class Programa:
     """Clase programa"""
     cont_prgrama = 0
 
-    def __init__(self, nombre_programa, fecha_programa, duracion_anios, status_programa, director):
+    def __init__(self, nombre_programa=None, fecha_programa=None,
+                 duracion_anios=None, status_programa='Cerrado', director=None):
         """Constructor de la clase programa"""
         Programa.cont_prgrama += 1
         self.nombre_programa = nombre_programa
@@ -102,22 +103,7 @@ class Programa:
     # endregion metodos -> directos
 
     # region Metodos de clase
-    @classmethod
-    def agregar_programa(cls):
-        nombre_programa = input("Ingrese el nombre_programa: ")
-        fecha_programa = input("Ingrese el fecha_programa: ")
-        status_programa = input("Ingrese el status_programa: ")
-        indice = int(input("Ingrese el id del profesor:"))
-        
-        
-        return Programa(
-            nombre_programa = nombre_programa,
-            fecha_programa = fecha_programa,
-            status_programa = status_programa,
-            director = indice
-        )
-    
-    
+
     @classmethod
     def editar_programa(cls, programa):
         programa.nombre_programa = input("Ingrese el nombre_programa: ")
@@ -130,9 +116,6 @@ class Programa:
     def mostrar_programas(cls, programas:list):
         for programa in programas:
             print(programa)
-    
-    
-    
     # endregion Metodos de clase
 
 
