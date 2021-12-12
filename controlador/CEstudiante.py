@@ -20,6 +20,8 @@ def gestionar(titulo:str, estudiantes:list, matriculas:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
+            for estudiante in estudiantes:
+                print(f"{estudiante.num_carnet}: {estudiante.nombre} {estudiante.apellido}")
             Estudiante.listar_estudiantes(estudiantes)
         elif opcion == 2:
             estudiantes.append(Estudiante.agregar_estudiantes())

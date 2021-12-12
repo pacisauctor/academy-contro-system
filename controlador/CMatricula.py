@@ -20,6 +20,8 @@ def gestionar(titulo:str, matriculas:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
+            for matricula in matriculas:
+                print(f"{matricula.id_matricula}")
             Matricula.listar_matricula(matriculas)
         elif opcion == 2:
             Matricula.append(Matricula.agregar_matricula())

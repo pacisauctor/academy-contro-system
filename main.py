@@ -70,10 +70,10 @@ def submenu_administracion():
             gestionar_profesores("Gestionar profesores", profesores)
         elif opcion == 2:
             gestionar_estudiantes("Gestionar estudiantes", estudiantes, matriculas)
-        elif opcion == 4:
+        elif opcion == 3:
             # TODO
             gestionar_reglas_de_negocio()
-        elif opcion == 3:
+        elif opcion == 4:
             print("Saliendo...")
             return
         else:
