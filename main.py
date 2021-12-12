@@ -104,7 +104,7 @@ def submenu_catalogos():
         elif opcion == 2:
             gestionar_edificios("Gestionar edficicio", edificios, aulas)
         elif opcion == 3:
-            gestionar_programas("Gestionar programas", programas, profesores)
+            gestionar_programas("Gestionar programas")
         elif opcion == 4:
             # TODO
             gestionar_cursos("Gestionar cursos", cursos, aulas)
