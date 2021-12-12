@@ -1,7 +1,7 @@
 from controlador.CAula import gestionar as gestionar_aulas
 from controlador.CCurso import gestionar as gestionar_cursos
 from controlador.CEdificio import gestionar as gestionar_edificios
-from controlador.CMatricula import gestionar as gestionar_matriculas, agregar_ver_matriculas
+from controlador.CMatricula import gestionar as gestionar_matriculas
 from controlador.CReglasNegocio import gestionar as gestionar_reglas_de_negocio
 from controlador.CProfesor import gestionar as gestionar_profesores
 from controlador.CPrograma import gestionar as gestionar_programas
@@ -134,9 +134,9 @@ def submenu_matriculas():
             print("Intente otra vez .")
             pass
         if opcion == 1:
-            gestionar_estudiantes(estudiantes)
+            gestionar_estudiantes("Gestionar Estudiantes",estudiantes,matriculas)
         elif opcion == 2:
-            agregar_ver_matriculas(estudiantes, matriculas, cursos)
+            gestionar_matriculas(estudiantes, matriculas, cursos)
         elif opcion == 3:
             print("Saliendo...")
             return
