@@ -7,7 +7,7 @@ from controlador.CProfesor import gestionar as gestionar_profesores
 from controlador.CPrograma import gestionar as gestionar_programas
 from controlador.CTipoProfesor import gestionar as gestionar_tipoProfesor
 from controlador.CTurno import gestionar as gestionar_turnos
-from controlador.CEstudiante import gestionar as gestionar_estudiantes, agregar_estudiantes
+from controlador.CEstudiante import gestionar as gestionar_estudiantes
 
 aulas = []
 cursos = []
@@ -21,10 +21,10 @@ estudiantes = []
 
 
 def main():
-    while(True):
-        print("-"*15)
+    while (True):
+        print("-" * 15)
         print("ACADEMICAL CONTROL SYSTEM")
-        print("-"*15)
+        print("-" * 15)
         print("Menu de opciones.")
         print("""
             1. Administración.
@@ -49,10 +49,10 @@ def main():
             return
         else:
             print("Seleccione una opción válida.")
-            
+
 
 def submenu_administracion():
-    while(True):
+    while (True):
         print("Menu de opciones.")
         print("""
             1. Gestionar profesores.
@@ -81,7 +81,7 @@ def submenu_administracion():
 
 
 def submenu_catalogos():
-    while(True):
+    while (True):
         print("Menu de opciones.")
         print("""
             1. Gestionar aulas.
@@ -120,7 +120,7 @@ def submenu_catalogos():
 
 
 def submenu_matriculas():
-    while(True):
+    while (True):
         print("Menu de opciones.")
         print("""
             1. Agregar estudiantes.
@@ -134,9 +134,9 @@ def submenu_matriculas():
             print("Intente otra vez .")
             pass
         if opcion == 1:
-            agregar_estudiantes(estudiantes)
+            gestionar_estudiantes(estudiantes)
         elif opcion == 2:
-            agregar_ver_matriculas(estudiantes,matriculas,cursos)
+            agregar_ver_matriculas(estudiantes, matriculas, cursos)
         elif opcion == 3:
             print("Saliendo...")
             return
@@ -146,5 +146,3 @@ def submenu_matriculas():
 
 if __name__ == "__main__":
     main()
-
-            
