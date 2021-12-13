@@ -43,7 +43,6 @@ def gestionar(titulo:str):
             input()
         elif opcion == 3:
 
-            Programa.listar_programas()
             Programa.editar_programa()
             print('Programa editado correctamente...')
             print('Precione enter para continuar...')
@@ -51,18 +50,16 @@ def gestionar(titulo:str):
         elif opcion == 4:
 
             print('Por defecto los programas se encuentrar "Cerrados"')
-            Programa.listar_programas()
             Programa.modificar_status_programa()
             print('Programa editado correctamente...')
             print('Precione enter para continuar...')
             input()
         elif opcion == 5:
-            Programa.listar_programas()
             Programa.eliminar_programa()
             print('Programa eliminado correctamente...')
             print('Precione enter para continuar...')
             input()
-        elif opcion == 5:
+        elif opcion == 6:
             print("Regresando...")
             break
         else:

@@ -17,6 +17,7 @@ class Programa:
         self.status_programa = status_programa
         self.duracion_anios = duracion_anios
         self.director = director
+        self.lstCursos = []
         self.id_programa = Programa.cont_prgrama
 
     def __str__(self) -> str:
@@ -90,8 +91,9 @@ class Programa:
     @director.deleter
     def director(self):
         del self.__director
+    # endregion metodos -> directos
 
-
+    # region metodos -> duracion anios
     @property
     def duracion_anios(self):
         return self.__duracion_anios
@@ -103,22 +105,9 @@ class Programa:
     @duracion_anios.deleter
     def duracion_anios(self):
         del self.__duracion_anios
-    # endregion metodos -> directos
+    # endregion metodos -> duracion anios
 
     # region Metodos de clase
-
-    # @classmethod
-    # def editar_programa(cls, programa):
-    #     programa.nombre_programa = input("Ingrese el nombre_programa: ")
-    #     programa.fecha_programa = input("Ingrese el fecha_programa: ")
-    #     programa.status_programa = input("Ingrese el status_programa: ")
-    #     programa.director =  int(input("Ingrese el id del profesor:"))
-    #     return programa
-
-    @classmethod
-    def mostrar_programas(cls, programas:list):
-        for programa in programas:
-            print(programa)
 
     @classmethod
     def ingresar_registro(cls, obj_programa):
@@ -131,16 +120,17 @@ class Programa:
 
     @classmethod
     def editar_programa(cls):
+        Programa.listar_programas()
         op = int(input('[?] Digita el id del programa: '))
         print('Proporciona los siguientes datos...')
         cls.__lstprogramas[(op - 1)].nombre_programa = input('Nombre del Programa: ')
         cls.__lstprogramas[(op - 1)].fecha_programa = date.today()
         cls.__lstprogramas[(op - 1)].duracion_anios = valida_duracion_programa()
         cls.__lstprogramas[(op - 1)].director = input('Director: ')
-    # endregion Metodos de clase
 
     @classmethod
     def modificar_status_programa(cls):
+        Programa.listar_programas()
         op = int(input('[?] Digita el id del programa: '))
         desicion = input('Desea establecer el estado del programa, como abierto? y/n: ').lower()
         if desicion == 'y':
@@ -148,6 +138,7 @@ class Programa:
 
     @classmethod
     def eliminar_programa(cls):
+        Programa.listar_programas()
         op = int(input('[?] Digita el id del programa: '))
         cls.__lstprogramas.pop((op - 1))
 
@@ -157,6 +148,7 @@ class Programa:
         op = int(input('[?] Digita el id del programa: '))
         program_elegido = cls.__lstprogramas[(op-1)]
         return program_elegido
+    # endregion Metodos de clase
 
     #  FALTA --> Se bebe sobreescribir el metodo destructor __del__
 

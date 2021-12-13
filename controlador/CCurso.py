@@ -1,4 +1,8 @@
-def gestionar(titulo: str, cursos:list, aulas:list):
+from modelo.Curso import Curso
+from modelo.Programa import Programa
+
+
+def gestionar(titulo: str):
     while True:
         print(titulo.upper())
         print("Seleccione una opción")
@@ -15,16 +19,36 @@ def gestionar(titulo: str, cursos:list, aulas:list):
             print(exc)
             print("Escoja una opción válida")
             continue
+
         if opcion == 1:
-            print("1")
+            Curso.listar_registros_cursos()
+            input()
+
         elif opcion == 2:
-            print("2")
+            cur = Curso()
+            cur.nombre_curso = input('Proporciona el nombre del curso: ')
+            cur.creditos = int(input('Proporciona la cantidad de creditos del curso: '))
+            cur.cant_hrs_semanales = float(input('Proporciona la cantidad de horas semanales: '))
+            cur.precio = float(input('Proporciona el precio del curso: '))
+            prog = Programa.obtener_programa()
+            cur.add_programa(prog)
+
+            Curso.add_registro_curso(cur)
+            print('Curso agregado exitosamente!!!\nPresione Enter para continuar')
+            input()
+
         elif opcion == 3:
-            print("3")
+            Curso.editar_registro_curso()
+            print('Curso editado exitosamente!!!')
+            input()
         elif opcion == 4:
-            print("4")
+            Curso.eliminar_registro_curso()
+            print('Curso eliminado exitosamente!!!')
+            input()
+
         elif opcion == 5:
             print("Regresando...")
             break
+
         else:
             print("Escoja una opción válida")
