@@ -133,15 +133,6 @@ def submenu_matriculas():
             print(ex)
             print("Intente otra vez .")
             pass
-        if opcion == 1:
-            gestionar_estudiantes("Gestionar Estudiantes",estudiantes,matriculas)
-        elif opcion == 2:
-            gestionar_matriculas(estudiantes, matriculas, cursos)
-        elif opcion == 3:
-            print("Saliendo...")
-            return
-        else:
-            print("Seleccione una opción válida.")
 
 
 if __name__ == "__main__":
