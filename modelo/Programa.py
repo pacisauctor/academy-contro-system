@@ -158,6 +158,8 @@ class Programa:
         program_elegido = cls.__lstprogramas[(op-1)]
         return program_elegido
 
+    #  FALTA --> Se bebe sobreescribir el metodo destructor __del__
+
 # region Pruebas de la clase programa
 # if __name__ == '__main__':
 #     prg1 = Programa(
