@@ -20,33 +20,15 @@ def gestionar(titulo: str, estudiantes: list, matriculas: list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            for estudiante in estudiantes:
-                print(f"{estudiante.num_carnet}: {estudiante.nombre} {estudiante.apellido} ")
+            Estudiante.listar_estudiantes()
 
         elif opcion == 2:
-            numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
-            nombre = input("Ingrese el nombre del estudiante: ")
-            apellido = input("Ingrese el apellido del estudiante: ")
-            cedula = input("Ingrese el cedula del estudiante: ")
-            direccion = input("Ingrese el direccion del estudiante: ")
-            telefono = input("Ingrese el telefono del estudiante: ")
-            fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
-            email = input("Ingrese el email del estudiante: ")
-            est = Estudiante(nombre,apellido,cedula,direccion,telefono,fecha_nac,email,numero_carnet,None)
-            estudiantes.append(est)
+            Estudiante.agregar_estudiantes()
         elif opcion == 3:
-            eleccion = int(input("Ingrese el ID del estudiante: "))
-            estudiantes[eleccion - 1].numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
-            estudiantes[eleccion - 1].nombre = input("Ingrese el nombre del estudiante: ")
-            estudiantes[eleccion - 1].apellido = input("Ingrese el apellido del estudiante: ")
-            estudiantes[eleccion - 1].cedula = input("Ingrese el cedula del estudiante: ")
-            estudiantes[eleccion - 1].direccion = input("Ingrese el direccion del estudiante: ")
-            estudiantes[eleccion - 1].telefono = input("Ingrese el telefono del estudiante: ")
-            estudiantes[eleccion - 1].fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
-            estudiantes[eleccion - 1].email = input("Ingrese el email del estudiante: ")
+            Estudiante.editar_estudiantes()
+
         elif opcion == 4:
-            eleccion = int(input("Ingrese el ID del estudiante: "))
-            estudiantes.pop(eleccion - 1)
+            Estudiante.eliminar_estudiante()
         elif opcion == 5:
             # TODO
             pass

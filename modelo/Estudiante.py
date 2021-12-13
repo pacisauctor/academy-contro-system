@@ -48,13 +48,13 @@ class Estudiante(Persona):
         
     
     @classmethod
-    def listar_estudiantes(cls, list_estudiantes):
+    def listar_estudiantes(cls):
         print("ID | Nombre | Apellido | Num Carnet")
-        for estudiante in list_estudiantes:
+        for estudiante in cls.__lstEstudiantes:
             print(f"{estudiante._id_estudiante}".ljust(5), end="")
+            print(f"{estudiante.num_carnet}".ljust(5), end="")
             print(f"{estudiante.nombre}".ljust(10), end="")
             print(f"{estudiante.apellido}".ljust(11), end="")
-            print(estudiante.num_carnet)
             
     @classmethod
     def agregar_estudiantes(cls):
@@ -67,18 +67,26 @@ class Estudiante(Persona):
         email = input("Ingrese el email del estudiante: ")
         numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
         estudiante = Estudiante(nombre=nombre, apellido=apellido, cedula=cedula, direccion=direccion, telefono=telefono, fecha_nac=fecha_nac, email=email, num_carnet=numero_carnet, obj_matricula=None)
-        return estudiante
+        cls.__lstEstudiantes.append(estudiante)
     
     @classmethod
-    def editar_estudiantes(cls, estudiante):
-        estudiante.nombre = input("Ingrese el nombre del estudiante: ")
-        estudiante.apellido = input("Ingrese el apellido del estudiante: ")
-        estudiante.cedula = input("Ingrese el cedula del estudiante: ")
-        estudiante.direccion = input("Ingrese el direccion del estudiante: ")
-        estudiante.telefono = input("Ingrese el telefono del estudiante: ")
-        estudiante.fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
-        estudiante.email = input("Ingrese el email del estudiante: ")
-        estudiante.numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
-        
-        return estudiante
+    def editar_estudiantes(cls):
+        cls.listar_estudiantes()
+        eleccion = int(input("Ingrese el ID del estudiante: "))
+        cls.__lstEstudiantes[eleccion - 1].numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
+        cls.__lstEstudiantes[eleccion - 1].nombre = input("Ingrese el nombre del estudiante: ")
+        cls.__lstEstudiantes[eleccion - 1].apellido = input("Ingrese el apellido del estudiante: ")
+        cls.__lstEstudiantes[eleccion - 1].cedula = input("Ingrese el cedula del estudiante: ")
+        cls.__lstEstudiantes[eleccion - 1].direccion = input("Ingrese el direccion del estudiante: ")
+        cls.__lstEstudiantes[eleccion - 1].telefono = input("Ingrese el telefono del estudiante: ")
+        cls.__lstEstudiantes[eleccion - 1].fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
+        cls.__lstEstudiantes[eleccion - 1].email = input("Ingrese el email del estudiante: ")
+
+
+    @classmethod
+    def eliminar_estudiante(cls):
+        cls.listar_estudiantes()
+        eleccion = int(input("Ingrese el ID del estudiante: "))
+        cls.__lstEstudiantes.pop(eleccion - 1)
+
     # endregion Metodos de Clase
