@@ -4,14 +4,14 @@ from modelo.Profesor import Profesor
 class TipoProfesor:
 
     __cont_tipo_profesor= 0
-    __dicTipoProfesor = {}
-    __tipos = ['Ciencias Basicas', 'Ingenierias']
+    __ls_registros = []
 
     def __init__(self, tipo):
-        TipoProfesor.__cont_tipo_profesor += 1
         self.tipo = tipo
         self.profesores = []
+        self.turnos = []
         self.id_tipo_profesor = TipoProfesor.__cont_tipo_profesor
+        TipoProfesor.__cont_tipo_profesor += 1
 
     def __str__(self):
         txt = f'''
@@ -29,6 +29,29 @@ class TipoProfesor:
             if profesor_it.id_profesor == profesor.id_profesor:
                 self.profesores.remove(profesor_it)
                 return True
+        return 
+    
+    def agregar_turno(self, turno, is_recursive:bool=True):
+        if is_recursive:
+            turno.agregar_tipoProfesor(self, False)
+        self.turnos.append(turno)
+    
+    def eliminar_turno(self, turno, is_recursive:bool = True) -> bool:
+        """Elimina el turno relacionado al tipo de profesor
+
+        Args:
+            turno
+            is_recursive (bool): Si queremos que se elimine la otra relación, ponemos True
+
+        Returns:
+            bool: Si todo ta bien, ta bien
+        """
+        for turno_it in self.turnoes:
+            if turno_it.id_turno == turno.id_turno:
+                if is_recursive:
+                    turno_it.eliminar_tipoProfesor(self, False)
+                self.turnos.remove(turno_it)
+                return True
         return False
         
     @property
@@ -45,52 +68,67 @@ class TipoProfesor:
 
     # region Metodos de Clase
     @classmethod
-    def listar_tipos_profesores(cls):
-        profesores_str = ""
-        for tip, prof in cls.__dicTipoProfesor:
-            profesores_str += (tip + prof.__str__())
-        return profesores_str
+    def listar_registros(cls):
+        
+        for registro in cls.__ls_registros:
+            print(registro.__str__())
+
 
     @classmethod
-    def agregar_tipo_profesor(cls, obj_tipo, obj_profesor):
-        idTipo = obj_tipo.id_tipo_profesor
-        profesor = obj_profesor
-        cls.__dicTipoProfesor[idTipo] = profesor
+    def agregar_registro(cls):
+        tipo = input("Escriba el tipo de profesor:")
+        tipo_obj = TipoProfesor(tipo)
+        cls.__ls_registros.append(tipo_obj)
 
     @classmethod
-    def listar_tipos(cls):
-        cont = 1
-        for tipo in cls.__tipos:
-            print(f'{cont}) {tipo}')
-            cont += 1
-
+    def listar_registros(cls):
+        for tipo in cls.__ls_registros:
+            print(tipo.__str__())
+            
     @classmethod
-    def agregar_tipo(cls, tipo):
-        cls.__tipos.append(tipo)
-
-    @classmethod
-    def edit_tipo(cls):
-        TipoProfesor.listar_tipos()
+    def detalle_registro(cls):
+        TipoProfesor.listar_registros()
         op = int(input('[?] Digita tu opcion: '))
-        del cls.__tipos[(op-1)]
+        tipo_profesor = cls.__ls_registros[op]
+        print(tipo_profesor.__str__())
+        print("Turnos: ")
+        for turno in tipo_profesor.turnos:
+            print(turno.__str__())
+        print("Profesor: ")
+        for profesor in tipo_profesor.profesores:
+            print(profesor.__str__())
+            
+    @classmethod
+    def agregar_tipoProfesor(cls,  id_tipo_profesor:int):
+        for registro in cls.__ls_registros:
+            if registro.id_tipo_profesor == id_tipo_profesor:
+                return registro
+        return None
+
+    @classmethod
+    def editar_registro(cls):
+        TipoProfesor.listar_registros()
+        op = int(input('[?] Digita tu opcion: '))
         newTipo = input('Digita el nuevo tipo: ')
-        cls.__tipos.insert((op-1), newTipo)
+        for registro in TipoProfesor.__ls_registros:
+            if registro.id_tipo_profesor == op:
+                registro.tipo=newTipo
 
     @classmethod
-    def delete_tipo(cls):
-        TipoProfesor.listar_tipos()
+    def eliminar_registro(cls):
+        TipoProfesor.listar_registros()
         op = int(input('[?] Digita tu opcion: '))
-        del cls.__tipos[(op-1)]
+        for registro in TipoProfesor.__ls_registros:
+            if registro.id_tipo_profesor == op:
+                cls.__ls_registros.remove(registro)
+                
+    @classmethod
+    def obtener_registro(cls, id_tipo):
+        for registro in TipoProfesor.__ls_registros:
+            if registro.id_tipo_profesor == id_tipo:
+                return registro
+            
+        return None        
     # endregion Metodos de Clase
 
-    def define_tipo(self, obj_profesor):
-        print('Establece el tipo de profesor')
-        print(
-            'Codigo: '+obj_profesor.cod_profesor+'\n'
-            +'Profesor: '+obj_profesor.nombre+' '+obj_profesor.apellido
-        )
-        TipoProfesor.listar_tipos()
-        op = int(input('[?] Digita tu opcion: '))
-        self.tipo = TipoProfesor.__tipos[(op-1)]
 
-        TipoProfesor.agregar_tipo_profesor(self, obj_profesor)
