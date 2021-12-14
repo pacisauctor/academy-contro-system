@@ -6,6 +6,7 @@ class Curso:
 
     __cont_curso = 0
     __lst_cursos = list()
+
     def __init__(self, nombre_curso=None, creditos=None,
                  cant_hrs_semanales=None, precio=None):
         Curso.__cont_curso += 1
@@ -115,8 +116,6 @@ class Curso:
 
     # region Metodos de Instancia
 
-
-
     # region Metodos de clase
 
     @classmethod
@@ -155,7 +154,7 @@ class Curso:
 
         op = input('[?] Desea agregar un aula (y/n): ').lower()
         if op == 'y':
-            pass # se debe crear en la clase aula un metodo que me retorne un objeto de aula
+            pass  # se debe crear en la clase aula un metodo que me retorne un objeto de aula
 
         if len(curso_elegido.lstprogramas) > 0:
             op = input('[?] Desea eliminar Programas a los que pertenece el curso (y/n): ').lower()
@@ -182,7 +181,6 @@ class Curso:
             if curso.id_curso == op:
                 cls.__lst_cursos.remove(curso)
 
-
     @classmethod
     def obtener_curso(cls):
         cursoObtenido = None
@@ -190,8 +188,8 @@ class Curso:
         op = int(input('Digita el id del curso: '))
         for curso in cls.__lst_cursos:
             if curso.id_curso == op:
-                 cursoObtenido = curso
-                 break
+                cursoObtenido = curso
+                break
         if cursoObtenido is None:
             print('Error: No se encontro el curso seleccionado.')
         return cursoObtenido
