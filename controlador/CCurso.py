@@ -22,6 +22,7 @@ def gestionar(titulo: str):
 
         if opcion == 1:
             Curso.listar_registros_cursos()
+            print('Preciona enter para continuar...')
             input()
 
         elif opcion == 2:
@@ -30,8 +31,10 @@ def gestionar(titulo: str):
             cur.creditos = int(input('Proporciona la cantidad de creditos del curso: '))
             cur.cant_hrs_semanales = float(input('Proporciona la cantidad de horas semanales: '))
             cur.precio = float(input('Proporciona el precio del curso: '))
-            prog = Programa.obtener_programa()
-            cur.add_programa(prog)
+            desc = input('[?] Desea agregar el curso a un programa (y/n): ').lower()
+            if desc == 'y':
+                prog = Programa.obtener_programa()
+                cur.add_programa(prog)
 
             Curso.add_registro_curso(cur)
             print('Curso agregado exitosamente!!!\nPresione Enter para continuar')

@@ -183,4 +183,16 @@ class Curso:
                 cls.__lst_cursos.remove(curso)
 
 
+    @classmethod
+    def obtener_curso(cls):
+        cursoObtenido = None
+        Curso.listar_registros_cursos()
+        op = int(input('Digita el id del curso: '))
+        for curso in cls.__lst_cursos:
+            if curso.id_curso == op:
+                 cursoObtenido = curso
+                 break
+        if cursoObtenido is None:
+            print('Error: No se encontro el curso seleccionado.')
+        return cursoObtenido
     # endregion Metodos de clase
