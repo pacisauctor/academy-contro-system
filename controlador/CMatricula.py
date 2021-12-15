@@ -13,6 +13,7 @@ def gestionar(titulo:str, matriculas:list):
             4. Eliminar un registro de matricula.
             5. Regresar al menú principal
             """)
+
         try:
             opcion = int(input("-->"))
         except ValueError as exc:

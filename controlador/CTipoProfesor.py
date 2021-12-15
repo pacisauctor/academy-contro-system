@@ -23,7 +23,6 @@ def gestionar(titulo:str, tiposProfesor:list, profesores:list):
             print("ID | Nombre")
             for tipoProfesor in tiposProfesor:
                 print(f"{tipoProfesor.id_tipo_profesor}: {tipoProfesor.tipo}")
-                
         elif opcion == 2:
             tipo = input('Digita el tipo de profesor a agregar: ')
             TipoProfesor.agregar_tipo(tipo)

@@ -20,7 +20,9 @@ def gestionar(titulo: str, edificios:list, aulas:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            Edificio.listar_edificio(edificios)
+            print("| ID Aula | No Edificio| Piso | Capacidad Aula")
+            for edificio in edificios:
+                print(f"{edificio.} : {aula.numero_edificio}: {aula.numero_piso} : {aula.capacidad_asientos}")
         elif opcion == 2:
             edificios.append(Edificio.agregar_edificio())
         elif opcion == 3:
