@@ -19,9 +19,7 @@ def gestionar(titulo: str, aulas:list, edificios:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            print("| ID Aula | No Edificio| Piso | Capacidad Aula")
-            for aula in aulas:
-                print(f"{aula.id_aula} : {aula.numero_edificio}: {aula.numero_piso} : {aula.capacidad_asientos}")
+            Aula.listar_aulas()
         elif opcion == 2:
             print("2")
         elif opcion == 3:

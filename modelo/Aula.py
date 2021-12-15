@@ -1,6 +1,8 @@
 
 class Aula:
 	__cont_aula = 0
+	__list = []
+
 	def __init__(self, nombre_aula, numero_piso, numero_edificio, capacidad_asientos):
 		Aula.__cont_aula += 1
 		self.nombre_aula = nombre_aula
@@ -71,3 +73,13 @@ class Aula:
 	@capacidad_asientos.deleter
 	def capacidad_asientos(self):
 		del self.__capacidad_asientos
+
+
+	@classmethod
+	def listar_aulas(cls):
+		for aula in cls.__list:
+			print(aula.id_aula,end=" ")
+			print(aula.nombre_aula,end=" ")
+			print(aula.numero_edificio,end=" ")
+			print(aula.capacidad_asientos,end = " ")
+
