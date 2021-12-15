@@ -102,3 +102,9 @@ class Aula:
 		cls.__list[eleccion-1].numPisos = int(input("Numero de piso: "))
 		cls.__list[eleccion-1].numEdificio = int(input("Numero de edificio: "))
 		cls.__list[eleccion-1].capacidad = int(input("Capacidad Asientos: "))
+
+	@classmethod
+	def eliminar_aula(cls):
+		cls.listar_aulas()
+		eleccion = int(input("Digite el Id del aula"))
+		cls.__list.pop(eleccion -1 )

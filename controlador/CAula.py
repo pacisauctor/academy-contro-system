@@ -25,8 +25,10 @@ def gestionar(titulo: str, aulas:list, edificios:list):
             Aula.agregar_aula()
         elif opcion == 3:
             print("3")
+            Aula.editar_aula()
         elif opcion == 4:
             print("4")
+            Aula.eliminar_aula()
         elif opcion == 5:
             print("Regresando...")
             break
