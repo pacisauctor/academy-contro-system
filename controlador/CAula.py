@@ -22,6 +22,7 @@ def gestionar(titulo: str, aulas:list, edificios:list):
             Aula.listar_aulas()
         elif opcion == 2:
             print("2")
+            Aula.agregar_aula()
         elif opcion == 3:
             print("3")
         elif opcion == 4:

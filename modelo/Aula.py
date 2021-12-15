@@ -83,3 +83,22 @@ class Aula:
 			print(aula.numero_edificio,end=" ")
 			print(aula.capacidad_asientos,end = " ")
 
+	@classmethod
+	def agregar_aula(cls):
+		nombre = input("Nombre del aula: ")
+		numPisos = int(input("Numero de piso: "))
+		numEdificio = int(input("Numero de edificio: "))
+		capacidad = int(input("Capacidad Asientos: "))
+
+		aula = (nombre,numPisos,numEdificio,capacidad)
+		cls.__list.append(aula)
+
+
+	@classmethod
+	def editar_aula(cls):
+		cls.listar_aulas()
+		eleccion = int(input("Digite el Id del aula"))
+		cls.__list[eleccion-1].nombre = input("Nombre del aula: ")
+		cls.__list[eleccion-1].numPisos = int(input("Numero de piso: "))
+		cls.__list[eleccion-1].numEdificio = int(input("Numero de edificio: "))
+		cls.__list[eleccion-1].capacidad = int(input("Capacidad Asientos: "))
