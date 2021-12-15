@@ -105,9 +105,11 @@ class Edificio:
         
 
     @classmethod
-    def listar_edificio(cls, list_edificio):
-        for i in range(len(list_edificio)):
-            print(list_edificio[i])
+    def listar_edificio(cls):
+        for edificio in cls.__lstEdificio:
+            print(edificio.numero_edificio,end=" ")
+            print(edificio.nombre, end = " ")
+            print(edificio.direccion, end = " ")
 
     @classmethod
     def agregar_edificio(cls):
@@ -117,17 +119,26 @@ class Edificio:
         cantidad_pisos = input("Ingrese la cantidad de pisos del edificio: ")
         cantidad_aulas = input("Ingrese cantidad de aulas: ")
 
-        edificio = Edificio(nombre=nombre, direccion=direccion, numero_edificio=numero_edificio, cantidad_pisos=cantidad_pisos, cantidad_aulas=cantidad_aulas, obj_aula=None)
-        return edificio
+        edificio = Edificio(nombre, direccion, numero_edificio,cantidad_pisos, cantidad_aulas, None)
+        cls.__lstEdificio.append(edificio)
 
     @classmethod
-    def editar_edificio(cls, edificio):
-        edificio.nombre = input("Ingrese el nombre del edificio: ")
-        edificio.direccion = input("Ingrese la dirrecion del edificio: ")
-        edificio.numero_edificio = input("Ingrese el numero del edificio: ")
-        edificio.cantidad_pisos = input("Ingrese la cantidad de pisos: ")
-        edificio.cantidad_aulas = input("Ingrese la cantidad de aulas: ")
+    def editar_edificio(cls):
+        cls.listar_edificio()
+        eleccion = int(input("Ingrese el ID del edificio: "))
 
-        return edificio
-    
+        cls.__lstEdificio[eleccion].nombre = input("Ingrese el nombre del edificio: ")
+        cls.__lstEdificio[eleccion].direccion = input("Ingrese la dirrecion del edificio: ")
+        cls.__lstEdificio[eleccion].numero_edificio = input("Ingrese el numero del edificio: ")
+        cls.__lstEdificio[eleccion].cantidad_pisos = input("Ingrese la cantidad de pisos: ")
+        cls.__lstEdificio[eleccion].cantidad_aulas = input("Ingrese la cantidad de aulas: ")
+
+
+    @classmethod
+    def eliminar_edificio(cls):
+        cls.listar_edificio()
+        eleccion = int(input("Ingrese el ID del edificio: "))
+        cls.__lstEdificio.pop(eleccion)
+
+
     
