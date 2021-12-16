@@ -40,16 +40,6 @@ class Curso:
     @nombre_curso.deleter
     def nombre_curso(self):
         del self.__nombre_curso
-    
-    # def agregar_aula(self, aula:Aula):
-    #     self.aulas.append(aula)
-    #
-    # def remover_aula(self, aula:Aula)->bool:
-    #     for aula_it in self.aulas:
-    #         if aula.id_aula == aula_it.id_aula:
-    #             self.aulas.remove(aula_it)
-    #             return True
-    #     return False
 
     # endregion metodos -> nombre_curso
 
@@ -109,12 +99,14 @@ class Curso:
         self.lstprogramas.remove(obj_aula)
 
     def add_programa(self, obj_programa: Programa):
+        obj_programa.cant_curso += 1
         self.lstprogramas.append(obj_programa)
 
     def delete_progama(self, obj_programa: Programa):
+        obj_programa.cant_curso -= 1
         self.lstprogramas.remove(obj_programa)
 
-    # region Metodos de Instancia
+    # endregion Metodos de Instancia
 
     # region Metodos de clase
 

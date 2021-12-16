@@ -19,6 +19,7 @@ class Programa:
         self.director = director
         self.lstCursos = []
         self.id_programa = Programa.cont_prgrama
+        self.cant_curso = 0
 
     def __str__(self) -> str:
         txt = f'''
@@ -27,8 +28,24 @@ class Programa:
         Fecha de Inicio: {self.fecha_programa}
         Estado: {self.status_programa}
         Duracion (años): {self.duracion_anios}
+        Cantidad de cursos en el programa: {self.cant_curso}
         Director: {self.director}\n'''
         return txt
+
+    # region metodos de propiedad del argumeto -> cant_curso
+    @property
+    def cant_curso(self) -> int:
+        return int(self.__cant_curso)
+
+    @cant_curso.setter
+    def cant_curso(self, cant_curso):
+        self.__cant_curso = int(cant_curso)
+
+    @cant_curso.deleter
+    def cant_curso(self):
+        del self.__cant_curso
+
+    # endregion metodos de propiedad del argumeto -> cant_curso
 
     # region metodos de propiedad del argumeto -> nombre_programa
 
