@@ -1,10 +1,11 @@
 from datetime import date
 
 from controlador.CReglasNegocio import valida_duracion_programa
+from modelo.Profesor import Profesor
 from modelo.Programa import Programa
 
 
-def gestionar(titulo:str):
+def gestionar(titulo: str):
     
     while True:
         
@@ -31,7 +32,7 @@ def gestionar(titulo:str):
             prg.nombre_programa = input('Nombre del Programa: ')
             prg.fecha_programa = date.today()
             prg.duracion_anios = valida_duracion_programa()
-            prg.director = input('Director: ')
+            prg.director = Profesor.obtener_profesor()
             Programa.ingresar_registro(prg)
             print('Programa agregado correctamente...')
             print('Precione enter para continuar...')

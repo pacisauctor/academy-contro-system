@@ -2,6 +2,7 @@ from datetime import date
 
 from controlador import CReglasNegocio
 from controlador.CReglasNegocio import valida_duracion_programa, valida_maxmin_curso_program
+from modelo.Profesor import Profesor
 
 
 class Programa:
@@ -18,9 +19,9 @@ class Programa:
         self.status_programa = status_programa
         self.duracion_anios = duracion_anios
         self.director = director
-        self.lstCursos = []
         self.id_programa = Programa.cont_prgrama
         self.cant_curso = 0
+        self.cant_matriculados = 0
 
     def __str__(self) -> str:
         txt = f'''
@@ -45,6 +46,21 @@ class Programa:
     @cant_curso.deleter
     def cant_curso(self):
         del self.__cant_curso
+
+    # endregion metodos de propiedad del argumeto -> cant_curso
+
+    # region metodos de propiedad del argumeto -> cant_curso
+    @property
+    def cant_matriculados(self) -> int:
+        return self.__cant_matriculados
+
+    @cant_matriculados.setter
+    def cant_matriculados(self, cant_matriculados):
+        self.__cant_matriculados = cant_matriculados
+
+    @cant_matriculados.deleter
+    def cant_matriculados(self):
+        del self.__cant_matriculados
 
     # endregion metodos de propiedad del argumeto -> cant_curso
 
@@ -138,36 +154,37 @@ class Programa:
 
     @classmethod
     def editar_programa(cls):
-        Programa.listar_programas()
+        cls.listar_programas()
         op = int(input('[?] Digita el id del programa: '))
         print('Proporciona los siguientes datos...')
         cls.__lstprogramas[(op - 1)].nombre_programa = input('Nombre del Programa: ')
         cls.__lstprogramas[(op - 1)].fecha_programa = date.today()
         cls.__lstprogramas[(op - 1)].duracion_anios = valida_duracion_programa()
-        cls.__lstprogramas[(op - 1)].director = input('Director: ')
+        cls.__lstprogramas[(op - 1)].director = Profesor.obtener_profesor()
 
     @classmethod
     def modificar_status_programa(cls):
-        Programa.listar_programas()
+        cls.listar_programas()
         op = int(input('[?] Digita el id del programa: '))
-        can_curso = cls.__lstprogramas[(op - 1)].cant_curso
+        matriculados = cls.__lstprogramas[(op - 1)].cant_matriculados
         desicion = input('Desea establecer el estado del programa, como abierto? y/n: ').lower()
         if desicion == 'y':
-            if not(CReglasNegocio.valida_maxmin_curso_program(can_curso)):
-                print('Error. No se pudo cambiar el status del programa...')
+            if not(CReglasNegocio.valida_maxmin_estud_programa(matriculados)):
+                print('Error. No se pudo cambiar el status del programa...\
+                        no se Cumple con la cantidad de matriculas suficientes.')
             else:
                 cls.__lstprogramas[(op - 1)].status_programa = 'Abierto'
                 print('El status del programa se cambio a -> "Abierto"')
 
     @classmethod
     def eliminar_programa(cls):
-        Programa.listar_programas()
+        cls.listar_programas()
         op = int(input('[?] Digita el id del programa: '))
         cls.__lstprogramas.pop((op - 1))
 
     @classmethod
     def obtener_programa(cls):
-        Programa.listar_programas()
+        cls.listar_programas()
         op = int(input('[?] Digita el id del programa: '))
         program_elegido = cls.__lstprogramas[(op-1)]
         return program_elegido

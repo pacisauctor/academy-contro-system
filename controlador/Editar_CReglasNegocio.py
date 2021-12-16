@@ -5,13 +5,13 @@ reglas_de_negocio = {
     "max_cursos_docente": 5,
     "min_cursos_estudiante": 1,
     "max_cursos_estudiante": 5,
-    "min_estud_programa":3,  
-    "max_estud_programa":15, 
-    "min_estud_curso":4,
-    "max_estud_curso":5,
-    "max_notas":100,
-    "min_notas":90
-        }
+    "min_estud_programa": 3,
+    "max_estud_programa": 15,
+    "min_estud_curso": 4,
+    "max_estud_curso": 5,
+    "max_notas": 100,
+    "min_notas": 90
+    }
 """print()
 print(reglas_de_negocio)
 print()"""
