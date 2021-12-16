@@ -1,5 +1,5 @@
 from modelo.Turno import Turno
-
+from modelo.TipoProfesor import TipoProfesor
 
 def gestionar(titulo: str, turnos:list, tiposProfesor:list):
     
@@ -21,48 +21,31 @@ def gestionar(titulo: str, turnos:list, tiposProfesor:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            print("ID  | Nombre")
-            for turno in turnos:
-                print(f"{turno.id_turno}: {turno.turno}")
+            Turno.mostrar_registros()
         elif opcion == 2:
             turno = input("Digita el turno a agregar: ")
             trn = Turno(turno)
-            trn.agrega_turno()
-            seguir = True
-            while(seguir):
-                print("ID  | Nombre")
-                for i in range(len(tiposProfesor)):
-                    print(f"{i} | {tiposProfesor[i].tipo}")
-                eleccion = int(input("Esriba el ID del Tipo de Profesor a agregar en el turno(-1 para salir):\n"))
-                if eleccion == -1:
-                   seguir = False 
+            
+            while True:
+                option = input("¿Desea agregar un tipo de profesor en el turno?(Y/N)")
+                if option.lower() == "y":
+                    TipoProfesor.listar_registros()
+                    id_tipo =  int(input("ID del tipo de profesor: "))
+                    trn.agregar_tipoProfesor(TipoProfesor.obtener_registro(id_tipo))
                 else:
-                    trn.agregar_tipoProfesor(tiposProfesor[eleccion])
-            turnos.append(trn)
+                    break
+            Turno.agregar_registro(trn)
+                
             print("Elemento añadido correctamente")
             
         elif opcion == 3:
-            print("ID  | Nombre")
-            for turno in turnos:
-                print(f"{turno.id_turno}: {turno.turno}")
-            op = int(input('[?] Digita tu opcion: '))
-            turno_value = input("Nuevo valor: ")
-            turnos[op].turno = turno_value
+            Turno.edit_turnos()
             print('Turno editado exitosamente!!!')
         elif opcion == 4:
-            print("ID  | Nombre")
-            for i in len(turnos):
-                print(f"{i}: {turnos[i].turno}")
-            op = int(input('[?] Digita tu opcion: '))
-            turnos.pop(op)
+            Turno.delete_turno()
             print('La eliminacion se realizo con exito!!!')
         elif opcion == 5:
-            print("ID  | Nombre | TiposProfesor")
-            for turno in turnos:
-                print(f"{turno.id_turno}: {turno.turno}  |", end="")
-                for tipo in turno.tipoProfesores:
-                    print(f"{tipo.tipo} |", end="")
-                print()  
+            Turno.ver_detalle()
         elif opcion == 6:
             print("Regresando...")
             break
