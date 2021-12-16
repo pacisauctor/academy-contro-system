@@ -10,6 +10,7 @@ class Matricula:
         self.hora_matricula = hora_matricula
         self.curso = None
         self.total_pagar = 0
+        # nota = 0
         self.id_matricula = Matricula.__cont_matricula
 
     def __str__(self):
@@ -89,9 +90,12 @@ class Matricula:
         print(time.strftime("EL dia es: %d / %m / %y"))
         hora_matricula = datetime.now()
         print(time.strftime(" La hora es: %H:%M:%S"))
-        id_matricula = input("Ingrese el id de matricula: ")
-
         matricula = Matricula(fecha_matricula=fecha_matricula, hora_matricula=hora_matricula, id_matricula=id_matricula, obj_curso=None)
+        # listar estudiantes, y seleccionar el id del estudiante
+        # est.agregar_matricula(matricula)
+        # listar cursos, y selecciono el id del curso
+        # matricula.obj_curso = curso_seleccionado
+        # total_apagar = curso_seleccionado.precio <-- conforme a: años del programa y las notas del estudiante
         return matricula
 
 
