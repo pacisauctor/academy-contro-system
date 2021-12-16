@@ -113,3 +113,12 @@ class Aula:
 		cls.listar_aulas()
 		eleccion = int(input("Digite el Id del aula"))
 		cls.__list.pop(eleccion -1 )
+
+	@classmethod
+	def obtener_aula(cls):
+		"""Metodo que retorna un objeto de aula para agregar a un curso"""
+		cls.listar_aulas()
+		op = int(input('Digite el id del aula a obtener: '))
+		aula_elegida = cls.__list[(op - 1)]
+		return aula_elegida
+
