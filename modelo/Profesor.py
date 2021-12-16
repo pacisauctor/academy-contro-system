@@ -58,7 +58,11 @@ class Profesor(Persona):
         del self.__cod_profesor
 
     # endregion Metodos attr -> cod_profesor
-    
+
+    @classmethod
+    def listar_profesores(cls):
+        for profesor in cls.lstPersona:
+            print(profesor.__str__())
 
     @classmethod
     def mostrar_profesores(cls, list_profesores:list):
@@ -99,6 +103,15 @@ class Profesor(Persona):
         profesor.email = input("Digite el email del profesor: ")
         
         return profesor
+
+    @classmethod
+    def obtener_profesor(cls):
+        """Retorna un objeto de tipo profesor"""
+        cls.listar_profesores()
+        op = int(input('Digita el id del Profesor a obtener: '))
+        obt_profesor = cls.lstPersona[(op - 1)]
+        return obt_profesor
+
 # region Probar Clase Profesor
 if __name__ == '__main__':
     aul = Aula(
