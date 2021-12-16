@@ -1,13 +1,14 @@
 from controlador.Editar_CReglasNegocio import reglas_de_negocio, editar_min_max_curso_programa, editar_minmax_asigna_xdocente, editar_minmax_asigna_xrecibir_estu, editar_minmax_estudiante_aper_programa
 
 # 1 Un programa tiene un minimo y un maximo de cursos o asignaturas.
-def valida_maxmin_curso_program():
+def valida_maxmin_curso_program(cant_curso):
     while True:
-        cat_progr_curso = int(input('Digita la cantidad de cursos del programa : '))
+        cat_progr_curso = cant_curso
         if cat_progr_curso < int(reglas_de_negocio["min_cursos_por_programa"])  or cat_progr_curso > int(reglas_de_negocio["max_cursos_por_programa"]):
               print(f'No puede ecceder el numero de asignatura entre : {reglas_de_negocio["min_cursos_por_programa"]} <--y--> {reglas_de_negocio["max_cursos_por_programa"]}')
+              return False
         else:
-            return  cat_progr_curso
+            return  True
 
 
 # 2 Tanto un estudiante como los profesores pueden recibir o impartir un numero 

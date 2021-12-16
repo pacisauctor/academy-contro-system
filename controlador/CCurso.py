@@ -1,3 +1,4 @@
+from controlador import CReglasNegocio
 from modelo.Curso import Curso
 from modelo.Programa import Programa
 
@@ -34,7 +35,11 @@ def gestionar(titulo: str):
             desc = input('[?] Desea agregar el curso a un programa (y/n): ').lower()
             if desc == 'y':
                 prog = Programa.obtener_programa()
-                cur.add_programa(prog)
+                can_curso = prog.cant_curso
+                if not (CReglasNegocio.valida_maxmin_curso_program(can_curso)):
+                    print('Error. No se pueden agregar mas cursos al programa...')
+                else:
+                    cur.add_programa(prog)
 
             Curso.add_registro_curso(cur)
             print('Curso agregado exitosamente!!!\nPresione Enter para continuar')

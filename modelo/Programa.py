@@ -1,6 +1,7 @@
 from datetime import date
 
-from controlador.CReglasNegocio import valida_duracion_programa
+from controlador import CReglasNegocio
+from controlador.CReglasNegocio import valida_duracion_programa, valida_maxmin_curso_program
 
 
 class Programa:
@@ -35,11 +36,11 @@ class Programa:
     # region metodos de propiedad del argumeto -> cant_curso
     @property
     def cant_curso(self) -> int:
-        return int(self.__cant_curso)
+        return self.__cant_curso
 
     @cant_curso.setter
     def cant_curso(self, cant_curso):
-        self.__cant_curso = int(cant_curso)
+        self.__cant_curso = cant_curso
 
     @cant_curso.deleter
     def cant_curso(self):
@@ -149,9 +150,14 @@ class Programa:
     def modificar_status_programa(cls):
         Programa.listar_programas()
         op = int(input('[?] Digita el id del programa: '))
+        can_curso = cls.__lstprogramas[(op - 1)].cant_curso
         desicion = input('Desea establecer el estado del programa, como abierto? y/n: ').lower()
         if desicion == 'y':
-            cls.__lstprogramas[(op - 1)].status_programa = 'Abierto'
+            if not(CReglasNegocio.valida_maxmin_curso_program(can_curso)):
+                print('Error. No se pudo cambiar el status del programa...')
+            else:
+                cls.__lstprogramas[(op - 1)].status_programa = 'Abierto'
+                print('El status del programa se cambio a -> "Abierto"')
 
     @classmethod
     def eliminar_programa(cls):

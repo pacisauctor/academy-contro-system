@@ -1,3 +1,4 @@
+from controlador import CReglasNegocio
 from modelo.Aula import Aula
 from modelo.Programa import Programa
 
@@ -163,7 +164,11 @@ class Curso:
         op = input('[?] Desea agregar un programa (y/n): ').lower()
         if op == 'y':
             proAgregar = Programa.obtener_programa()
-            curso_elegido.add_programa(proAgregar)
+            can_curso = proAgregar.cant_curso
+            if not (CReglasNegocio.valida_maxmin_curso_program(can_curso)):
+                print('Error. No se pueden agregar mas cursos al programa...')
+            else:
+                curso_elegido.add_programa(proAgregar)
 
     @classmethod
     def eliminar_registro_curso(cls):

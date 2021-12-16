@@ -1,5 +1,5 @@
 reglas_de_negocio = {
-    "min_cursos_por_programa": 4,
+    "min_cursos_por_programa": 2,
     "max_cursos_por_programa": 6,
     "min_cursos_docente": 1,
     "max_cursos_docente": 5,
