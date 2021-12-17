@@ -1,6 +1,7 @@
 from datetime import date, datetime, time
-
+from modelo.Estudiante import Estudiante
 from modelo.Curso import Curso
+
 class Matricula:
     
     __cont_matricula = 0
@@ -90,7 +91,9 @@ class Matricula:
         print(time.strftime("EL dia es: %d / %m / %y"))
         hora_matricula = datetime.now()
         print(time.strftime(" La hora es: %H:%M:%S"))
-        matricula = Matricula(fecha_matricula=fecha_matricula, hora_matricula=hora_matricula, id_matricula=id_matricula, obj_curso=None)
+        Estudiante.listar_estudiantes()
+
+        matricula = Matricula(fecha_matricula=fecha_matricula, hora_matricula=hora_matricula)
         # listar estudiantes, y seleccionar el id del estudiante
         # est.agregar_matricula(matricula)
         # listar cursos, y selecciono el id del curso

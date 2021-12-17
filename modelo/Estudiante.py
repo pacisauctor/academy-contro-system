@@ -89,4 +89,10 @@ class Estudiante(Persona):
         eleccion = int(input("Ingrese el ID del estudiante: "))
         cls.__lstEstudiantes.pop(eleccion - 1)
 
+    @classmethod
+    def obtener_estudiante(cls):
+        cls.__lstEstudiantes
+        eleccion = int(input("Ingrese el ID del estudiante: "))
+        return cls.__lstEstudiantes[eleccion - 1]
+
     # endregion Metodos de Clase
