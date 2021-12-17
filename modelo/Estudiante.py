@@ -91,8 +91,15 @@ class Estudiante(Persona):
 
     @classmethod
     def obtener_estudiante(cls):
-        cls.__lstEstudiantes
+        cls.listar_estudiantes()
         eleccion = int(input("Ingrese el ID del estudiante: "))
         return cls.__lstEstudiantes[eleccion - 1]
+
+    @classmethod
+    def obtener_estudiante_byMatricula(cls,matricula):
+        for estudiante in cls.__lstEstudiantes:
+            if matricula in estudiante.matriculas:
+                return estudiante
+                break
 
     # endregion Metodos de Clase
