@@ -213,9 +213,10 @@ class Curso:
                 cls.__lst_cursos.remove(curso)
 
     @classmethod
-    def obtener_curso(cls):
+    def obtener_curso(cls, listar=False):
         cursoObtenido = None
-        Curso.listar_registros_cursos()
+        if listar:
+            Curso.listar_registros_cursos()
         op = int(input('Digita el id del curso: '))
         for curso in cls.__lst_cursos:
             if curso.id_curso == op:
@@ -235,5 +236,14 @@ class Curso:
                         break
             else:
                 print(f'El curso {curso.nombre_curso}, no se pudo aperturar.')
+
+    @classmethod
+    def listar_curso_en_programa(cls, obj_programa: Programa):
+        print('Cursos que pertenecen a este programa')
+        for curso in cls.__lst_cursos:
+            for prog in curso.lstprogramas:
+                if obj_programa.id_programa == prog.id_programa:
+                    print(curso)
+                    break
 
     # endregion Metodos de clase

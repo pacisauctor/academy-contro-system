@@ -1,7 +1,7 @@
 from modelo.Estudiante import Estudiante
 
 
-def gestionar(titulo: str, estudiantes: list, matriculas: list):
+def gestionar(titulo: str):
     while True:
         print(titulo.upper())
         print("Seleccione una opción")
@@ -21,12 +21,10 @@ def gestionar(titulo: str, estudiantes: list, matriculas: list):
             continue
         if opcion == 1:
             Estudiante.listar_estudiantes()
-
         elif opcion == 2:
             Estudiante.agregar_estudiantes()
         elif opcion == 3:
             Estudiante.editar_estudiantes()
-
         elif opcion == 4:
             Estudiante.eliminar_estudiante()
         elif opcion == 5:
@@ -37,3 +35,7 @@ def gestionar(titulo: str, estudiantes: list, matriculas: list):
             break
         else:
             print("Escoja una opción válida")
+
+def matricular(titulo: str):
+    print(titulo.upper())
+

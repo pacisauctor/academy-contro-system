@@ -1,5 +1,7 @@
+from modelo.Curso import Curso
 from modelo.Matricula import Matricula
 from modelo.Persona import Persona
+from modelo.Programa import Programa
 
 
 class Estudiante(Persona):
@@ -16,6 +18,14 @@ class Estudiante(Persona):
         self.matriculas = []
         self._id_estudiante = Estudiante.cont_estudiante
 
+    def __str__(self):
+        txt = f"""
+        Id del Estudiante: {self._id_estudiante}
+        Carnet: {self.num_carnet}
+        {Persona.__str__(self)}
+        """
+        return txt
+
     # region metodos de propiedad del argumeto -> id_estudiante
 
     @property
@@ -31,22 +41,21 @@ class Estudiante(Persona):
         del self.__num_carnet
     # endregion Metodos -> id_estudiantes
 
-    def agregar_matricula(self, matricula:Matricula):
+    # region Metodo de matriculas
+    def agregar_matricula(self, matricula: Matricula):
         self.matriculas.append(matricula)
         
-    def remover_matricula(self, matricula:Matricula)->bool:
+    def remover_matricula(self, matricula: Matricula) -> bool:
         for matricula_it in self.matriculas:
             if matricula.id_matricula == matricula_it.id_matricula:
                 self.matriculas.remove(matricula_it)
                 return True
         return False
+
+    # endregion Metodo de matriculas
+
     # region Metodos de Clase
-    @classmethod
-    def crear_persona(cls, objpersona):
-        cls.__lstEstudiantes.append(objpersona)
-        
-        
-    
+
     @classmethod
     def listar_estudiantes(cls):
         print("ID | Nombre | Apellido | Num Carnet")
@@ -66,22 +75,22 @@ class Estudiante(Persona):
         fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
         email = input("Ingrese el email del estudiante: ")
         numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
-        estudiante = Estudiante(nombre=nombre, apellido=apellido, cedula=cedula, direccion=direccion, telefono=telefono, fecha_nac=fecha_nac, email=email, num_carnet=numero_carnet, obj_matricula=None)
+        estudiante = Estudiante(nombre, apellido, cedula, direccion,
+                                telefono, fecha_nac, email, numero_carnet)
         cls.__lstEstudiantes.append(estudiante)
     
     @classmethod
     def editar_estudiantes(cls):
         cls.listar_estudiantes()
-        eleccion = int(input("Ingrese el ID del estudiante: "))
-        cls.__lstEstudiantes[eleccion - 1].numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
-        cls.__lstEstudiantes[eleccion - 1].nombre = input("Ingrese el nombre del estudiante: ")
-        cls.__lstEstudiantes[eleccion - 1].apellido = input("Ingrese el apellido del estudiante: ")
-        cls.__lstEstudiantes[eleccion - 1].cedula = input("Ingrese el cedula del estudiante: ")
-        cls.__lstEstudiantes[eleccion - 1].direccion = input("Ingrese el direccion del estudiante: ")
-        cls.__lstEstudiantes[eleccion - 1].telefono = input("Ingrese el telefono del estudiante: ")
-        cls.__lstEstudiantes[eleccion - 1].fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
-        cls.__lstEstudiantes[eleccion - 1].email = input("Ingrese el email del estudiante: ")
-
+        elc = int(input("Ingrese el ID del estudiante: "))
+        cls.__lstEstudiantes[elc - 1].numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
+        cls.__lstEstudiantes[elc - 1].nombre = input("Ingrese el nombre del estudiante: ")
+        cls.__lstEstudiantes[elc - 1].apellido = input("Ingrese el apellido del estudiante: ")
+        cls.__lstEstudiantes[elc - 1].cedula = input("Ingrese el cedula del estudiante: ")
+        cls.__lstEstudiantes[elc - 1].direccion = input("Ingrese el direccion del estudiante: ")
+        cls.__lstEstudiantes[elc - 1].telefono = input("Ingrese el telefono del estudiante: ")
+        cls.__lstEstudiantes[elc - 1].fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
+        cls.__lstEstudiantes[elc - 1].email = input("Ingrese el email del estudiante: ")
 
     @classmethod
     def eliminar_estudiante(cls):
@@ -96,16 +105,28 @@ class Estudiante(Persona):
         return cls.__lstEstudiantes[eleccion - 1]
 
     @classmethod
-    def obtener_estudiante_byMatricula(cls,matricula):
+    def obtener_estudiante_byMatricula(cls, matricula):
         for estudiante in cls.__lstEstudiantes:
             if matricula in estudiante.matriculas:
                 return estudiante
-                break
 
     @classmethod
-    def addMatriculaToEstudiante(cls,matricula):
+    def addMatriculaToEstudiante(cls, matricula):
         cls.listar_estudiantes()
         eleccion = int(input("Ingrese el ID del estudiante a agregar matricula: "))
         cls.__lstEstudiantes[eleccion - 1].matricula(matricula)
+
+    @classmethod
+    def matricular(cls):
+        est = None
+        carnet = input('Digita tu numero de carnet: ')
+        for estudiante in cls.__lstEstudiantes:
+            if estudiante.num_carnet == carnet:
+                est = estudiante
+                break
+        prog = Programa.obtener_programa()
+        Curso.listar_curso_en_programa(prog)
+        cur = Curso.obtener_curso()
+        est.matriculas.append(cur)
 
     # endregion Metodos de Clase

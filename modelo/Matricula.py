@@ -4,6 +4,7 @@ from modelo.Curso import Curso
 
 
 class Matricula:
+
     __cont_matricula = 0
     __list_matricula = []
 
@@ -13,14 +14,16 @@ class Matricula:
         self.hora_matricula = hora_matricula
         self.curso = None
         self.total_pagar = 0
-        # nota = 0
+        self.nota = 0
         self.id_matricula = Matricula.__cont_matricula
 
     def __str__(self):
         txt = f'''
+        Id Matricula: {self.id_matricula}
         Fecha de Matricula: {self.fecha_matricula}
         Hora: {self.hora_matricula}
-        \nCurso: {self.obj_curso}
+        Curso: {self.curso}
+        Nota Obtenida: {self.nota}
         '''
         return txt
 
@@ -38,6 +41,9 @@ class Matricula:
     def fecha_matricula(self):
         del self.__fecha_matricula
 
+    # endregion metodos de propiedad del argumeto -> fecha_matricula
+
+    # region Metodos curso
     @property
     def curso(self):
         return self.__curso
@@ -50,7 +56,24 @@ class Matricula:
     def curso(self):
         del self.__curso
 
-    # endregion metodos -> fecha_matricula
+    # endregion Metodos curso
+
+    # region Metodos nota
+    @property
+    def nota(self):
+        return self.__nota
+
+    @nota.setter
+    def nota(self, nota):
+        self.__nota = nota
+
+    @nota.deleter
+    def nota(self):
+        del self.__nota
+
+    # endregion Metodos nota
+
+    # region metodos -> toal_pagar
     @property
     def total_pagar(self):
         return self.__total_pagar
@@ -62,6 +85,8 @@ class Matricula:
     @total_pagar.deleter
     def total_pagar(self):
         del self.__total_pagar
+
+    # endregion metodos -> toal_pagar
 
     # region metodos de propiedad del argumeto -> hora_matricula
 

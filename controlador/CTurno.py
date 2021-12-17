@@ -1,7 +1,8 @@
 from modelo.Turno import Turno
 from modelo.TipoProfesor import TipoProfesor
 
-def gestionar(titulo: str, turnos:list, tiposProfesor:list):
+
+def gestionar(titulo: str):
     
     while True:
         print(titulo.upper())
@@ -30,7 +31,7 @@ def gestionar(titulo: str, turnos:list, tiposProfesor:list):
                 option = input("¿Desea agregar un tipo de profesor en el turno?(Y/N)")
                 if option.lower() == "y":
                     TipoProfesor.listar_registros()
-                    id_tipo =  int(input("ID del tipo de profesor: "))
+                    id_tipo = int(input("ID del tipo de profesor: "))
                     trn.agregar_tipoProfesor(TipoProfesor.obtener_registro(id_tipo))
                 else:
                     break

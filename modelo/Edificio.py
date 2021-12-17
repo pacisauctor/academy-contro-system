@@ -2,7 +2,8 @@ from modelo.Aula import Aula
 
 
 class Edificio:
-    __cont_edificio= 0
+
+    __cont_edificio = 0
     __lstEdificio = []
 
     def __init__(self, nombre, direccion, numero_edificio, cantidad_pisos,
@@ -15,6 +16,17 @@ class Edificio:
         self.cantidad_aulas = cantidad_aulas
         self.aulas = []
         self.id_edificio = Edificio.__cont_edificio
+
+    def __str__(self):
+        txt = f"""
+        Id del Edificio: {self.id_edificio}
+        Nombre: {self.nombre}
+        Direccion: {self.direccion}
+        Numero del Edificio: {self.numero_edificio}
+        Cantidad de pisos: {self.cantidad_pisos}
+        Cantidad de aulas: {self.cantidad_aulas}
+        """
+        return txt
 
     # region metodos de propiedad del argumeto -> nombre
 
@@ -31,15 +43,20 @@ class Edificio:
         del self.__nombre
 
     # endregion metodos -> nombre
-    def agregar_aula(self, aula:Aula):
+
+    # region metodos lista aulas
+    def agregar_aula(self, aula: Aula):
         self.aulas.append(aula)
         
-    def remover_aula(self, aula:Aula)->bool:
+    def remover_aula(self, aula: Aula) -> bool:
         for aula_it in self.aulas:
             if aula.id_aula == aula_it.id_aula:
                 self.aulas.remove(aula_it)
                 return True
         return False
+
+    # endregion metodos lista aulas
+
     # region metodos de propiedad del argumeto -> direccion
 
     @property
@@ -101,13 +118,14 @@ class Edificio:
     @cantidad_aulas.deleter
     def cantidad_aulas(self):
         del self.__cantidad_aulas
-        
-        
 
+    # endregion metodos de propiedad del argumeto -> cantidad_aulas
+
+    # region Metodos de Clase
     @classmethod
-    def listar_edificio(cls, list_edificio):
-        for i in range(len(list_edificio)):
-            print(list_edificio[i])
+    def listar_edificio(cls):
+        for edificio in cls.__lstEdificio:
+            print(edificio.__str__())
 
     @classmethod
     def agregar_edificio(cls):
@@ -117,17 +135,36 @@ class Edificio:
         cantidad_pisos = input("Ingrese la cantidad de pisos del edificio: ")
         cantidad_aulas = input("Ingrese cantidad de aulas: ")
 
-        edificio = Edificio(nombre=nombre, direccion=direccion, numero_edificio=numero_edificio, cantidad_pisos=cantidad_pisos, cantidad_aulas=cantidad_aulas, obj_aula=None)
-        return edificio
+        edificio = Edificio(nombre, direccion, numero_edificio,
+                            cantidad_pisos, cantidad_aulas)
+        cls.__lstEdificio.append(edificio)
 
     @classmethod
-    def editar_edificio(cls, edificio):
+    def editar_edificio(cls):
+        edificio = None
+        cls.listar_edificio()
+        op = int(input('Digita el id del edificio: '))
+        for edif in cls.__lstEdificio:
+            if edif.id_edificio == op:
+                edificio = edif
+                break
+
         edificio.nombre = input("Ingrese el nombre del edificio: ")
         edificio.direccion = input("Ingrese la dirrecion del edificio: ")
         edificio.numero_edificio = input("Ingrese el numero del edificio: ")
         edificio.cantidad_pisos = input("Ingrese la cantidad de pisos: ")
         edificio.cantidad_aulas = input("Ingrese la cantidad de aulas: ")
 
-        return edificio
-    
-    
+    @classmethod
+    def eliminar_edificio(cls):
+        cls.listar_edificio()
+        op = int(input('[?] Digita el id del Edificio: '))
+        cls.__lstEdificio.pop((op - 1))
+
+    @classmethod
+    def obtener_edificio(cls):
+        cls.listar_edificio()
+        op = int(input('[?] Digita el id del programa: '))
+        edifico_elegido = cls.__lstEdificio[(op-1)]
+        return edifico_elegido
+    # endregion Metodos de Clase

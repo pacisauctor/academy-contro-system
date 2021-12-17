@@ -1,7 +1,7 @@
 from modelo.Edificio import Edificio
 
 
-def gestionar(titulo: str, edificios:list, aulas:list):
+def gestionar(titulo: str):
     
     while True:
         print(titulo.upper())
@@ -20,15 +20,13 @@ def gestionar(titulo: str, edificios:list, aulas:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            Edificio.listar_edificio(edificios)
+            Edificio.listar_edificio()
         elif opcion == 2:
-            edificios.append(Edificio.agregar_edificio())
+            Edificio.agregar_edificio()
         elif opcion == 3:
-            eleccion = int(input("Ingrese el ID del edificio: "))
-            Edificio.editar_edificio(edificios[eleccion - 1])
+            Edificio.editar_edificio()
         elif opcion == 4:
-            eleccion = int(input("Ingrese el ID del estudiante: "))
-            edificios.pop(eleccion -1)
+            Edificio.eliminar_edificio()
         elif opcion == 5:
             
             print("Regresando...")

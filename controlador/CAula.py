@@ -1,4 +1,7 @@
-def gestionar(titulo: str, aulas:list, edificios:list):
+from modelo.Aula import Aula
+
+
+def gestionar(titulo: str):
     while True:
         print(titulo.upper())
         print("Seleccione una opción")
@@ -16,13 +19,13 @@ def gestionar(titulo: str, aulas:list, edificios:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            print("1")
+            Aula.listar_aulas()
         elif opcion == 2:
-            print("2")
+            Aula.agregar_aula()
         elif opcion == 3:
-            print("3")
+            Aula.editar_aula()
         elif opcion == 4:
-            print("4")
+            Aula.eliminar_aula()
         elif opcion == 5:
             print("Regresando...")
             break

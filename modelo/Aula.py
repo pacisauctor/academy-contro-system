@@ -1,4 +1,8 @@
+from modelo.Edificio import Edificio
+
+
 class Aula:
+
     __cont_aula = 0
     __list = []
 
@@ -11,15 +15,15 @@ class Aula:
         self.id_aula = Aula.__cont_aula
 
     def __str__(self):
-        txt = f'''
-		Aula: {self.nombre_aula}
-		Piso: {self.numero_piso}
-		Edificio: {self.numero_edificio}
-		Capacidad de Asientos: {self.capacidad_asientos}
-		'''
+        txt = f'''Id del Aula: {self.id_aula}
+        Aula: {self.nombre_aula}
+        Piso: {self.numero_piso}
+        Capacidad de Asientos: {self.capacidad_asientos}
+        Edificio: {self.numero_edificio}
+        '''
         return txt
 
-    # metodos de propiedad del argumeto -> nombre_aula
+    # region metodos de propiedad del argumeto -> nombre_aula
 
     @property
     def nombre_aula(self):
@@ -33,8 +37,9 @@ class Aula:
     def nombre_aula(self):
         del self.__nombre_aula
 
-    # metodos de propiedad del argumeto -> numero_piso
+    # endregion metodos de propiedad del argumeto -> nombre_aula
 
+    # region metodos de propiedad del argumeto -> numero_piso
     @property
     def numero_piso(self):
         return self.__numero_piso
@@ -47,8 +52,9 @@ class Aula:
     def numero_piso(self):
         del self.__numero_piso
 
-    # metodos de propiedad del argumeto -> numero_edificio
+    # endregion metodos de propiedad del argumeto -> numero_piso
 
+    # region metodos de propiedad del argumeto -> numero_edificio
     @property
     def numero_edificio(self):
         return self.__numero_edificio
@@ -61,7 +67,9 @@ class Aula:
     def numero_edificio(self):
         del self.__numero_edificio
 
-    # metodos de propiedad del argumeto -> canpacidad_asientos
+    # endregion metodos de propiedad del argumeto -> numero_edificio
+
+    # region metodos de propiedad del argumeto -> canpacidad_asientos
 
     @property
     def capacidad_asientos(self):
@@ -75,6 +83,9 @@ class Aula:
     def capacidad_asientos(self):
         del self.__capacidad_asientos
 
+    # endregion metodos de propiedad del argumeto -> canpacidad_asientos
+
+    # region Metodos de Clase
     @classmethod
     def listar_aulas(cls):
         for aula in cls.__list:
@@ -86,24 +97,20 @@ class Aula:
     @classmethod
     def agregar_aula(cls):
         nombre = input("Nombre del aula: ")
-        numPisos = int(input("Numero de piso: "))
-        numEdificio = int(input("Numero de edificio: "))
+        num_pisos = int(input("Numero de piso: "))
+        edficio_eleccion = Edificio.obtener_edificio()
         capacidad = int(input("Capacidad Asientos: "))
-        aula = (nombre, numPisos, numEdificio, capacidad)
+        aula = Aula(nombre, num_pisos, edficio_eleccion, capacidad)
 
-        # listar los edificios
-        # selecionar el eficio que pertenece al aula
-        # edificioa.agregar_aula(aula)
-        # agregar Aula antes del paréntesis
         cls.__list.append(aula)
 
     @classmethod
     def editar_aula(cls):
         cls.listar_aulas()
         eleccion = int(input("Digite el Id del aula"))
-        cls.__list[eleccion - 1].nombre = input("Nombre del aula: ")
-        cls.__list[eleccion - 1].numPisos = int(input("Numero de piso: "))
-        cls.__list[eleccion - 1].capacidad = int(input("Capacidad Asientos: "))
+        cls.__list[eleccion - 1].nombre_aula = input("Nombre del aula: ")
+        cls.__list[eleccion - 1].numero_piso = int(input("Numero de piso: "))
+        cls.__list[eleccion - 1].capacidad_asientos = int(input("Capacidad Asientos: "))
 
     @classmethod
     def eliminar_aula(cls):
@@ -118,4 +125,4 @@ class Aula:
         op = int(input('Digite el id del aula a obtener: '))
         aula_elegida = cls.__list[(op - 1)]
         return aula_elegida
-
+    # endregion Metodos de Clase

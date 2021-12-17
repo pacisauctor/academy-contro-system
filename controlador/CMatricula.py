@@ -1,6 +1,7 @@
 from modelo.Matricula import Matricula
 
-def gestionar(titulo:str, matriculas:list):
+
+def gestionar(titulo: str):
     
     while True:
         

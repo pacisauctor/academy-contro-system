@@ -1,5 +1,4 @@
 from controlador import CReglasNegocio
-from modelo.Aula import Aula
 from modelo.Curso import Curso
 from modelo.Programa import Programa
 
@@ -13,7 +12,8 @@ def gestionar(titulo: str):
             2. Ingresar un nuevo registro
             3. Editar un registro existente.
             4. Eliminar un registro
-            5. Regresar al menú principal
+            5. Ver Cursos de un Programa
+            6. Regresar al menú principal
             """)
         try:
             opcion = int(input("-->"))
@@ -59,8 +59,10 @@ def gestionar(titulo: str):
             Curso.eliminar_registro_curso()
             print('Curso eliminado exitosamente!!!')
             input()
-
         elif opcion == 5:
+            prg = Programa.obtener_programa()
+            Curso.listar_curso_en_programa(prg)
+        elif opcion == 6:
             print("Regresando...")
             break
 
