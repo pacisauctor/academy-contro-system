@@ -95,20 +95,29 @@ class Matricula:
         print(time.strftime("EL dia es: %d / %m / %y"))
         hora_matricula = datetime.now()
         print(time.strftime(" La hora es: %H:%M:%S"))
-        Estudiante.listar_estudiantes()
-        
-
         matricula = Matricula(fecha_matricula=fecha_matricula, hora_matricula=hora_matricula)
+        Estudiante.addMatriculaToEstudiante(matricula)
+        matricula.curso = Curso.obtener_curso()
+
+
+
         # listar estudiantes, y seleccionar el id del estudiante
         # est.agregar_matricula(matricula)
         # listar cursos, y selecciono el id del curso
         # matricula.obj_curso = curso_seleccionado
         # total_apagar = curso_seleccionado.precio <-- conforme a: años del programa y las notas del estudiante
-        return matricula
+        cls.__list_matricula.append(matricula)
 
     @classmethod
-    def editar_matricula(cls, matricula):
-        matricula.fecha_matricula = input("Ingrese la fecha de matricula: ")
-        matricula.hora_matricula = input("Ingrese la hora de matricula: ")
-        matricula.id_matricula = input("Ingrese el id de matricula: ")
-        return matricula
+    def editar_matricula(cls):
+        cls.listar_matricula()
+        eleccion = int(input("Elija el Id de la matricula"))
+        cls.__list_matricula[eleccion - 1].fecha_matricula = input("Ingrese la fecha de matricula: ")
+        cls.__list_matricula[eleccion - 1].hora_matricula = input("Ingrese la hora de matricula: ")
+
+    @classmethod
+    def eliminar_matricula(cls):
+        cls.listar_matricula()
+        eleccion = int(input("Elija el Id de la matricula"))
+        cls.__list_matricula.pop(eleccion - 1)
+

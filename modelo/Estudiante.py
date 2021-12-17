@@ -102,4 +102,10 @@ class Estudiante(Persona):
                 return estudiante
                 break
 
+    @classmethod
+    def addMatriculaToEstudiante(cls,matricula):
+        cls.listar_estudiantes()
+        eleccion = int(input("Ingrese el ID del estudiante a agregar matricula: "))
+        cls.__lstEstudiantes[eleccion - 1].matricula(matricula)
+
     # endregion Metodos de Clase
