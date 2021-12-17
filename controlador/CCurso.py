@@ -1,4 +1,5 @@
 from controlador import CReglasNegocio
+from modelo.Aula import Aula
 from modelo.Curso import Curso
 from modelo.Programa import Programa
 
@@ -32,6 +33,11 @@ def gestionar(titulo: str):
             cur.creditos = int(input('Proporciona la cantidad de creditos del curso: '))
             cur.cant_hrs_semanales = float(input('Proporciona la cantidad de horas semanales: '))
             cur.precio = float(input('Proporciona el precio del curso: '))
+            desc = input('[?] Desea agregar un aula al curso (y/n): ').lower()
+            if desc == 'y':
+                aul = Aula.obtener_aula()
+                cur.add_aula(aul)
+
             desc = input('[?] Desea agregar el curso a un programa (y/n): ').lower()
             if desc == 'y':
                 prog = Programa.obtener_programa()

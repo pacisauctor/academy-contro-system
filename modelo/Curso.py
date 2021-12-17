@@ -1,4 +1,5 @@
 from controlador import CReglasNegocio
+from controlador.CReglasNegocio import valida_maxmin_estud_curso
 from modelo.Aula import Aula
 from modelo.Programa import Programa
 
@@ -9,12 +10,14 @@ class Curso:
     __lst_cursos = list()
 
     def __init__(self, nombre_curso=None, creditos=None,
-                 cant_hrs_semanales=None, precio=None):
+                 cant_hrs_semanales=None, precio=None, estado='Cerrado'):
         Curso.__cont_curso += 1
         self.nombre_curso = nombre_curso
         self.creditos = creditos
         self.cant_hrs_semanales = cant_hrs_semanales
         self.precio = precio
+        self.estado = estado
+        self.cant_matricula = 0
         self.lstaulas = []
         self.lstprogramas = []
         self.id_curso = Curso.__cont_curso
@@ -91,6 +94,36 @@ class Curso:
         del self.__precio
     # endregion metodos -> precio
 
+    # region metodos de propiedad del argumeto -> estado
+
+    @property
+    def estado(self):
+        return self.__estado
+
+    @estado.setter
+    def estado(self, estado):
+        self.__estado = estado
+
+    @estado.deleter
+    def estado(self):
+        del self.__estado
+    # endregion metodos -> precio
+
+    # region metodos de propiedad del argumeto -> cant_matricula
+    @property
+    def cant_matricula(self):
+        return self.__cant_matricula
+
+    @cant_matricula.setter
+    def cant_matricula(self, cant_matricula):
+        self.__cant_matricula = cant_matricula
+
+    @cant_matricula.deleter
+    def cant_matricula(self):
+        del self.__cant_matricula
+
+    # endregion metodos de propiedad del argumeto -> cant_matricula
+
     # region Metodos de Instancia
 
     def add_aula(self, obj_aula: Aula):
@@ -147,7 +180,8 @@ class Curso:
 
         op = input('[?] Desea agregar un aula (y/n): ').lower()
         if op == 'y':
-            pass  # se debe crear en la clase aula un metodo que me retorne un objeto de aula
+            aulaAgregar = Aula.obtener_aula()
+            curso_elegido.add_aula(aulaAgregar)
 
         if len(curso_elegido.lstprogramas) > 0:
             op = input('[?] Desea eliminar Programas a los que pertenece el curso (y/n): ').lower()
@@ -190,4 +224,16 @@ class Curso:
         if cursoObtenido is None:
             print('Error: No se encontro el curso seleccionado.')
         return cursoObtenido
+
+    @classmethod
+    def modificar_estado_curso(cls, obj_programa: Programa):
+        for curso in cls.__lst_cursos:
+            if valida_maxmin_estud_curso(curso.cant_matricula):
+                for prog in curso.lstprogramas:
+                    if obj_programa.id_programa == prog.id_programa:
+                        curso.estado = 'Abierto'
+                        break
+            else:
+                print(f'El curso {curso.nombre_curso}, no se pudo aperturar.')
+
     # endregion Metodos de clase

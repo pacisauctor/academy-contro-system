@@ -37,12 +37,20 @@ class max_min_doc_est:
 def valida_maxmin_estud_programa(cant_matriculas) -> bool:
     while True:
         if cant_matriculas < reglas_de_negocio["min_estud_programa"]  or cant_matriculas > reglas_de_negocio["max_estud_programa"]:
-            print(f'La duracion de la carrera no puede ser menor a {reglas_de_negocio["min_estud_programa"]}\
-                    o mayor a {reglas_de_negocio["max_estud_programa"]} años')
+            print(f'Para aperturar un Programa debes cumplir el minimo de {reglas_de_negocio["min_estud_programa"]}\
+                    estudiantes matriculados y no exceder el maximo de {reglas_de_negocio["max_estud_programa"]}')
             return False
         else:
             return  True
 
+def valida_maxmin_estud_curso(cant_matriculas) -> bool:
+    while True:
+        if cant_matriculas < reglas_de_negocio["min_estud_curso"]  or cant_matriculas > reglas_de_negocio["max_estud_curso"]:
+            print(f'Para aperturar un Curso debes cumplir el minimo de {reglas_de_negocio["min_estud_programa"]}\
+                    estudiantes matriculados y no exceder el maximo de {reglas_de_negocio["max_estud_curso"]}')
+            return False
+        else:
+            return  True
 
 # 4 Si el programa de estudios es de cinco años se le aplica un 10% de descuento por 
 #curso matriculado respecto al precio de lista, y si es de cuatro años se le aplica un 

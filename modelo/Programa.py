@@ -49,7 +49,7 @@ class Programa:
 
     # endregion metodos de propiedad del argumeto -> cant_curso
 
-    # region metodos de propiedad del argumeto -> cant_curso
+    # region metodos de propiedad del argumeto -> cant_matriculados
     @property
     def cant_matriculados(self) -> int:
         return self.__cant_matriculados
@@ -62,7 +62,7 @@ class Programa:
     def cant_matriculados(self):
         del self.__cant_matriculados
 
-    # endregion metodos de propiedad del argumeto -> cant_curso
+    # endregion metodos de propiedad del argumeto -> cant_matriculados
 
     # region metodos de propiedad del argumeto -> nombre_programa
 
