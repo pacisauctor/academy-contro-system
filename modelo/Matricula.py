@@ -1,15 +1,19 @@
 from datetime import date, datetime, time
-
+from modelo.Estudiante import Estudiante
 from modelo.Curso import Curso
+
+
 class Matricula:
-    
     __cont_matricula = 0
+    __list_matricula = []
+
     def __init__(self, fecha_matricula, hora_matricula):
         Matricula.__cont_matricula += 1
         self.fecha_matricula = fecha_matricula
         self.hora_matricula = hora_matricula
         self.curso = None
         self.total_pagar = 0
+        # nota = 0
         self.id_matricula = Matricula.__cont_matricula
 
     def __str__(self):
@@ -19,6 +23,7 @@ class Matricula:
         \nCurso: {self.obj_curso}
         '''
         return txt
+
     # region metodos de propiedad del argumeto -> fecha_matricula
 
     @property
@@ -32,19 +37,18 @@ class Matricula:
     @fecha_matricula.deleter
     def fecha_matricula(self):
         del self.__fecha_matricula
-        
+
     @property
     def curso(self):
         return self.__curso
 
     @curso.setter
-    def curso(self, curso:Curso):
+    def curso(self, curso: Curso):
         self.__curso = curso
 
     @curso.deleter
     def curso(self):
         del self.__curso
-        
 
     # endregion metodos -> fecha_matricula
     @property
@@ -58,9 +62,7 @@ class Matricula:
     @total_pagar.deleter
     def total_pagar(self):
         del self.__total_pagar
-    
-    
-  
+
     # region metodos de propiedad del argumeto -> hora_matricula
 
     @property
@@ -74,14 +76,18 @@ class Matricula:
     @hora_matricula.deleter
     def hora_matricula(self):
         del self.__hora_matricula
+
     # endregion metodos -> hora_matricula
-    
-   
 
     @classmethod
-    def listar_matricula(cls, list_matricula):
-        for i in range(len(list_matricula)):
-            print(list_matricula[i])
+    def listar_matricula(cls):
+        for matricula in cls.__list_matricula:
+            print(matricula.id_matricula, end="")
+            print(matricula.fecha_matricula, end="")
+            estudiante = Estudiante.obtener_estudiante_byMatricula(matricula)
+            print(estudiante.num_carnet, end="")
+            print(estudiante.nombre, end="")
+            print(estudiante.apellido, end="")
 
     @classmethod
     def agregar_matricula(cls):
@@ -89,15 +95,29 @@ class Matricula:
         print(time.strftime("EL dia es: %d / %m / %y"))
         hora_matricula = datetime.now()
         print(time.strftime(" La hora es: %H:%M:%S"))
-        id_matricula = input("Ingrese el id de matricula: ")
+        matricula = Matricula(fecha_matricula=fecha_matricula, hora_matricula=hora_matricula)
+        Estudiante.addMatriculaToEstudiante(matricula)
+        matricula.curso = Curso.obtener_curso()
 
-        matricula = Matricula(fecha_matricula=fecha_matricula, hora_matricula=hora_matricula, id_matricula=id_matricula, obj_curso=None)
-        return matricula
 
+
+        # listar estudiantes, y seleccionar el id del estudiante
+        # est.agregar_matricula(matricula)
+        # listar cursos, y selecciono el id del curso
+        # matricula.obj_curso = curso_seleccionado
+        # total_apagar = curso_seleccionado.precio <-- conforme a: años del programa y las notas del estudiante
+        cls.__list_matricula.append(matricula)
 
     @classmethod
-    def editar_matricula(cls, matricula):
-        matricula.fecha_matricula = input("Ingrese la fecha de matricula: ")
-        matricula.hora_matricula = input("Ingrese la hora de matricula: ")
-        matricula.id_matricula = input("Ingrese el id de matricula: ")
-        return matricula
+    def editar_matricula(cls):
+        cls.listar_matricula()
+        eleccion = int(input("Elija el Id de la matricula"))
+        cls.__list_matricula[eleccion - 1].fecha_matricula = input("Ingrese la fecha de matricula: ")
+        cls.__list_matricula[eleccion - 1].hora_matricula = input("Ingrese la hora de matricula: ")
+
+    @classmethod
+    def eliminar_matricula(cls):
+        cls.listar_matricula()
+        eleccion = int(input("Elija el Id de la matricula"))
+        cls.__list_matricula.pop(eleccion - 1)
+

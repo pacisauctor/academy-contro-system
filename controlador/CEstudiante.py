@@ -1,7 +1,7 @@
 from modelo.Estudiante import Estudiante
 
-def gestionar(titulo:str, estudiantes:list, matriculas:list):
-    
+
+def gestionar(titulo: str, estudiantes: list, matriculas: list):
     while True:
         print(titulo.upper())
         print("Seleccione una opción")
@@ -20,15 +20,15 @@ def gestionar(titulo:str, estudiantes:list, matriculas:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            Estudiante.listar_estudiantes(estudiantes)
+            Estudiante.listar_estudiantes()
+
         elif opcion == 2:
-            estudiantes.append(Estudiante.agregar_estudiantes())
+            Estudiante.agregar_estudiantes()
         elif opcion == 3:
-            eleccion = int(input("Ingrese el ID del estudiante: "))
-            Estudiante.editar_estudiantes(estudiantes[eleccion-1])
+            Estudiante.editar_estudiantes()
+
         elif opcion == 4:
-            eleccion = int(input("Ingrese el ID del estudiante: "))
-            estudiantes.pop(eleccion -1)
+            Estudiante.eliminar_estudiante()
         elif opcion == 5:
             # TODO
             pass
@@ -37,7 +37,3 @@ def gestionar(titulo:str, estudiantes:list, matriculas:list):
             break
         else:
             print("Escoja una opción válida")
-            
-def agregar_estudiantes(estudiantes:list):
-    print("TODO")
-    return

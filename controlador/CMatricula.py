@@ -20,23 +20,16 @@ def gestionar(titulo:str, matriculas:list):
             print("Escoja una opción válida")
             continue
         if opcion == 1:
-            Matricula.listar_matricula(matriculas)
+            Matricula.listar_matricula()
         elif opcion == 2:
-            Matricula.append(Matricula.agregar_matricula())
+            Matricula.agregar_matricula()
         elif opcion == 3:
-            eleccion = int(input("Ingrese el ID de matricula: "))
-            Matricula.editar_matricula(matriculas[eleccion - 1])
+            Matricula.editar_matricula()
         elif opcion == 4:
-            eleccion = int(input("Ingrese el ID de matricula: "))
-            matriculas.pop(eleccion -1)
+            Matricula.eliminar_matricula()
         elif opcion == 5:
             print("Regresando...")
             break
         else:
             print("Escoja una opción válida")
             
-            
-def agregar_ver_matriculas(estudiantes:list,matriculas:list,cursos:list):
-
-    print("TODO")
-    return
