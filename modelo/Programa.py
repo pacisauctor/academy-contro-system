@@ -1,7 +1,7 @@
 from datetime import date
 
-from controlador import CReglasNegocio
-from controlador.CReglasNegocio import valida_duracion_programa, valida_maxmin_curso_program
+from controlador.CReglasNegocio import valida_duracion_programa, valida_maxmin_estud_programa
+from modelo.Curso import Curso
 from modelo.Profesor import Profesor
 
 
@@ -169,10 +169,12 @@ class Programa:
         matriculados = cls.__lstprogramas[(op - 1)].cant_matriculados
         desicion = input('Desea establecer el estado del programa, como abierto? y/n: ').lower()
         if desicion == 'y':
-            if not(CReglasNegocio.valida_maxmin_estud_programa(matriculados)):
+            if not(valida_maxmin_estud_programa(matriculados)):
                 print('Error. No se pudo cambiar el status del programa...\
                         no se Cumple con la cantidad de matriculas suficientes.')
             else:
+                # se envia el objPrograma para aperturar los cursos del programa
+                Curso.modificar_estado_curso(cls.__lstprogramas[(op - 1)])
                 cls.__lstprogramas[(op - 1)].status_programa = 'Abierto'
                 print('El status del programa se cambio a -> "Abierto"')
 
