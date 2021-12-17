@@ -67,7 +67,7 @@ def submenu_administracion():
             print("Intente otra vez .")
             pass
         if opcion == 1:
-            gestionar_profesores("Gestionar profesores", profesores)
+            gestionar_profesores("Gestionar profesores")
         elif opcion == 2:
             gestionar_estudiantes("Gestionar estudiantes", estudiantes, matriculas)
         elif opcion == 3:

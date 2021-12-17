@@ -5,10 +5,16 @@ from modelo.Curso import Curso
 from modelo.Persona import Persona
 from modelo.Programa import Programa
 
-
+class bcolors:
+    OK = '\033[92m' #GREEN
+    WARNING = '\033[93m' #YELLOW
+    FAIL = '\033[91m' #RED
+    RESET = '\033[0m' #RESET COLOR
+    
 class Profesor(Persona):
     contador_profesor = 0
     lstPersona = []
+    profesores = []
 
     def __init__(self, nombre, apellido, cedula, direccion, telefono, fecha_nac,
                  email, cod_profesor) -> None:
@@ -69,6 +75,58 @@ class Profesor(Persona):
         for profe in list_profesores:
             print(profe)
             
+
+
+    @classmethod
+    def mostrar_profesores(cls, list_profesores:list):
+    
+        print(f"C_P|".ljust(7), end="")
+        print(f"Nombre|".ljust(8), end="")
+        print(f"Apellido|".ljust(12), end="")
+        print(f"Cedula|".ljust(14), end="")
+        print(f"Direccion|".ljust(15), end="")
+        print(f"Telefono|".ljust(17), end="")
+        print(f"Email|".ljust(20), end="")
+        print("\n")
+
+        for profe in list_profesores[:]:
+            print(f"{profe.cod_profesor}".ljust(7), end="")
+            print(f"{profe.nombre}".ljust(8), end="")
+            print(f"{profe.apellido}".ljust(12), end="")
+            print(f"{profe.cedula}".ljust(14), end="")
+            print(f"{profe.direccion}".ljust(15), end="")
+            print(f"{profe.telefono}".ljust(17), end="")
+            print(f"{profe.email}".ljust(20), end="")
+            print("\n")
+
+    @classmethod
+    def profesores_editar_mostar(cls, list_profesores:list):
+        print(f"ID|".ljust(6), end="")
+        print(f"C_P|".ljust(7), end="")
+        print(f"Nombre|".ljust(8), end="")
+        print(f"Apellido|".ljust(12), end="")
+        print(f"Cedula|".ljust(14), end="")
+        print(f"Direccion|".ljust(15), end="")
+        print(f"Telefono|".ljust(17), end="")
+        print(f"Fecha_nac|".ljust(19), end="")
+        print(f"Email|".ljust(20), end="")
+        print("\n")
+
+        for profe in list_profesores[:]:
+            id = list_profesores.index(profe)
+            
+            print(f"{bcolors.FAIL} {id+1} {bcolors.RESET}".ljust(8), end="")
+            print(f"{profe.cod_profesor}".ljust(7), end="")
+            print(f"{profe.nombre}".ljust(8), end="")
+            print(f"{profe.apellido}".ljust(12), end="")
+            print(f"{profe.cedula}".ljust(14), end="")
+            print(f"{profe.direccion}".ljust(15), end="")
+            print(f"{profe.telefono}".ljust(17), end="")
+            print(f"{profe.fecha_nac}".ljust(19), end="")
+            print(f"{profe.email}".ljust(20), end="")
+            print("\n")
+ 
+ 
     @classmethod
     def crear_profesor(cls):
         cod_profesor = input("Digite el cod_profesor del profesor: ")
@@ -103,6 +161,8 @@ class Profesor(Persona):
         profesor.email = input("Digite el email del profesor: ")
         
         return profesor
+
+
 
     @classmethod
     def obtener_profesor(cls):

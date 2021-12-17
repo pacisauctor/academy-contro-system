@@ -1,7 +1,6 @@
-from modelo.Profesor import Profesor
+from modelo.Profesor import Profesor, bcolors
 
-
-def gestionar(titulo:str, profesores:list):
+def gestionar(titulo:str, profesores = []):
     
     while True:
         print(titulo.upper())
@@ -19,16 +18,46 @@ def gestionar(titulo:str, profesores:list):
             print(exc)
             print("Escoja una opción válida")
             continue
+
         if opcion == 1:
             Profesor.mostrar_profesores(profesores)
+
         elif opcion == 2:
             profesores.append(Profesor.crear_profesor())
+
         elif opcion == 3:
-            eleccion = int(input("Seleccione el ID del profesor:"))
-            Profesor.editar_profesor(profesores[eleccion-1])
+            Profesor.profesores_editar_mostar(profesores)
+            while True:
+                try:
+                    print()
+                    eleccion = int(input("Seleccione el ID del profesor:"))
+                    Profesor.editar_profesor(profesores[eleccion-1])
+                    print(f"\n{bcolors.OK}!! Dato editado con exito !!{bcolors.RESET} \n")
+                    break
+
+                except IndexError:
+                    print(f"\n{bcolors.FAIL}!! Error Digita ID correctamente !!{bcolors.RESET} \n")
+                except ValueError:
+                    print(f"\n{bcolors.FAIL}!! Error Digita ID correctamente !!{bcolors.RESET} \n")
+            
+
         elif opcion == 4:
-            eleccion = int(input("Seleccione el ID del profesor:"))
-            profesores.pop(eleccion)
+            while True:
+                try:
+                    Profesor.profesores_editar_mostar(profesores)
+                    print()
+                    posic = int(input("Seleccione el ID del profesor:"))
+                    posi = posic-1
+                    profesores.pop(int(posi))
+                    print(f"\n{bcolors.OK}!! Dato eliminado con exito !!{bcolors.RESET} \n")
+                    break
+
+                except IndexError:
+                    print(f"\n{bcolors.FAIL}!! Error Digita ID correctamente !!{bcolors.RESET} \n")
+                except ValueError:
+                    print(f"\n{bcolors.FAIL}!! Error Digita ID correctamente !!{bcolors.RESET} \n")
+
+
         elif opcion == 5:
             print("Regresando...")
             break
