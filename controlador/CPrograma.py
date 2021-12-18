@@ -1,6 +1,7 @@
 from datetime import date
 
 from controlador.CReglasNegocio import valida_duracion_programa
+from modelo.Curso import Curso
 from modelo.Profesor import Profesor
 from modelo.Programa import Programa
 
@@ -43,15 +44,17 @@ def gestionar(titulo: str):
             print('Precione enter para continuar...')
             input()
         elif opcion == 3:
-
-            Programa.editar_programa()
+            profe = Profesor.obtener_profesor()
+            Programa.editar_programa(profe)
             print('Programa editado correctamente...')
             print('Precione enter para continuar...')
             input()
         elif opcion == 4:
 
             print('Por defecto los programas se encuentrar "Cerrados"')
-            Programa.modificar_status_programa()
+            result = Programa.modificar_status_programa()
+            if result:
+                Curso.modificar_estado_curso(result)
             print('Programa editado correctamente...')
             print('Precione enter para continuar...')
             input()

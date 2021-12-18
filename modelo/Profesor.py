@@ -1,7 +1,7 @@
 from datetime import date
 
 from modelo.Aula import Aula
-from modelo.Curso import Curso
+#from modelo.Curso import Curso
 from modelo.Persona import Persona
 from modelo.Programa import Programa
 
@@ -41,10 +41,10 @@ class Profesor(Persona):
                 return True
         return False
     
-    def agregar_curso(self, curso:Curso):
+    def agregar_curso(self, curso):
         self.cursos.append(curso)
         
-    def remover_curso(self, curso:Curso)->bool:
+    def remover_curso(self, curso)->bool:
         for curso_it in self.cursos:
             if curso.id_curso == curso_it.id_curso:
                 self.cursos.remove(curso_it)
@@ -173,43 +173,43 @@ class Profesor(Persona):
         return obt_profesor
 
 # region Probar Clase Profesor
-if __name__ == '__main__':
-    aul = Aula(
-        'auala ciencias',
-        5,
-        1,
-        24
-    )
+# if __name__ == '__main__':
+#     aul = Aula(
+#         'auala ciencias',
+#         5,
+#         1,
+#         24
+#     )
 
-    cur = Curso(
-        'Ciencias Naturales',
-        4,
-        5,
-        'ciencias',
-        aul
-    )
+#     cur = Curso(
+#         'Ciencias Naturales',
+#         4,
+#         5,
+#         'ciencias',
+#         aul
+#     )
 
-    prg1 = Programa(
-        'Matematicas',
-        date(2021, 5, 12),
-        'Abierto',
-        'Ronald Reyes'
-    )
+#     prg1 = Programa(
+#         'Matematicas',
+#         date(2021, 5, 12),
+#         'Abierto',
+#         'Ronald Reyes'
+#     )
 
-    pro1 = Profesor(
-        'Alex',
-        'carballo',
-        '001-123549-1002G',
-        'rrsdf',
-        '8795-1251',
-        '2021-12-15',
-        'alex@gmail.com',
-        '0215',
-        prg1
-    )
+#     pro1 = Profesor(
+#         'Alex',
+#         'carballo',
+#         '001-123549-1002G',
+#         'rrsdf',
+#         '8795-1251',
+#         '2021-12-15',
+#         'alex@gmail.com',
+#         '0215',
+#         prg1
+#     )
 
 
-    Profesor.crear_persona(pro1)
-    print(Profesor.detalles_personas())
+#     Profesor.crear_persona(pro1)
+#     print(Profesor.detalles_personas())
 
 # endregion Probar Clase Profesor

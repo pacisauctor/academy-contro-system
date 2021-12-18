@@ -1,5 +1,5 @@
 from modelo.Curso import Curso
-from modelo.Matricula import Matricula
+#from modelo.Matricula import Matricula
 from modelo.Persona import Persona
 from modelo.Programa import Programa
 
@@ -42,10 +42,10 @@ class Estudiante(Persona):
     # endregion Metodos -> id_estudiantes
 
     # region Metodo de matriculas
-    def agregar_matricula(self, matricula: Matricula):
+    def agregar_matricula(self, matricula):
         self.matriculas.append(matricula)
         
-    def remover_matricula(self, matricula: Matricula) -> bool:
+    def remover_matricula(self, matricula) -> bool:
         for matricula_it in self.matriculas:
             if matricula.id_matricula == matricula_it.id_matricula:
                 self.matriculas.remove(matricula_it)

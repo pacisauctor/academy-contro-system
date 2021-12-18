@@ -1,8 +1,8 @@
 from datetime import date
 
 from controlador.CReglasNegocio import valida_duracion_programa, valida_maxmin_estud_programa
-from modelo.Curso import Curso
-from modelo.Profesor import Profesor
+#from modelo.Curso import Curso
+#from modelo.Profesor import Profesor
 
 
 class Programa:
@@ -153,14 +153,14 @@ class Programa:
             print(program.__str__())
 
     @classmethod
-    def editar_programa(cls):
+    def editar_programa(cls, profesor):
         cls.listar_programas()
         op = int(input('[?] Digita el id del programa: '))
         print('Proporciona los siguientes datos...')
         cls.__lstprogramas[(op - 1)].nombre_programa = input('Nombre del Programa: ')
         cls.__lstprogramas[(op - 1)].fecha_programa = date.today()
         cls.__lstprogramas[(op - 1)].duracion_anios = valida_duracion_programa()
-        cls.__lstprogramas[(op - 1)].director = Profesor.obtener_profesor()
+        cls.__lstprogramas[(op - 1)].director = profesor
 
     @classmethod
     def modificar_status_programa(cls):
@@ -174,9 +174,10 @@ class Programa:
                         no se Cumple con la cantidad de matriculas suficientes.')
             else:
                 # se envia el objPrograma para aperturar los cursos del programa
-                Curso.modificar_estado_curso(cls.__lstprogramas[(op - 1)])
+                # Curso.modificar_estado_curso(cls.__lstprogramas[(op - 1)])
                 cls.__lstprogramas[(op - 1)].status_programa = 'Abierto'
                 print('El status del programa se cambio a -> "Abierto"')
+                return cls.__lstprogramas[(op - 1)]
 
     @classmethod
     def eliminar_programa(cls):
