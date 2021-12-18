@@ -124,6 +124,17 @@ class Matricula:
         Estudiante.addMatriculaToEstudiante(matricula)
         matricula.curso = Curso.obtener_curso()
 
+        for programa in matricula.curso.lstprogramas:
+            print(programa.nombre_programa,end="")
+            print(programa.id_programa,end="")
+
+        eleccion = int(input("Seleccione un id de programa"))
+
+        if matricula.curso.lstprogramas[eleccion].duracion_anios == 5:
+            matricula.total_pagar = (matricula.curso.precio * 0.9)
+        else:
+            matricula.total_pagar = (matricula.curso.precio * 0.95)
+
 
 
         # listar estudiantes, y seleccionar el id del estudiante
@@ -131,6 +142,7 @@ class Matricula:
         # listar cursos, y selecciono el id del curso
         # matricula.obj_curso = curso_seleccionado
         # total_apagar = curso_seleccionado.precio <-- conforme a: años del programa y las notas del estudiante
+
         cls.__list_matricula.append(matricula)
 
     @classmethod
