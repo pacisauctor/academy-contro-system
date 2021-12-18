@@ -66,40 +66,10 @@ class Profesor(Persona):
     # endregion Metodos attr -> cod_profesor
 
     @classmethod
-    def listar_profesores(cls):
-        for profesor in cls.lstPersona:
-            print(profesor.__str__())
-
-    @classmethod
     def mostrar_profesores(cls):
         for profe in cls.lstProfesores:
             print(profe.__str__())
             
-
-
-    """     @classmethod
-        def mostrar_profesores(cls):
-        
-            print(f"C_P|".ljust(7), end="")
-            print(f"Nombre|".ljust(8), end="")
-            print(f"Apellido|".ljust(12), end="")
-            print(f"Cedula|".ljust(14), end="")
-            print(f"Direccion|".ljust(15), end="")
-            print(f"Telefono|".ljust(17), end="")
-            print(f"Email|".ljust(20), end="")
-            print("\n")
-
-            for profe in cls.lstProfesores[:]:
-                print(f"{profe.cod_profesor}".ljust(7), end="")
-                print(f"{profe.nombre}".ljust(8), end="")
-                print(f"{profe.apellido}".ljust(12), end="")
-                print(f"{profe.cedula}".ljust(14), end="")
-                print(f"{profe.direccion}".ljust(15), end="")
-                print(f"{profe.telefono}".ljust(17), end="")
-                print(f"{profe.email}".ljust(20), end="")
-                print("\n")
-    """
-    
     @classmethod
     def profesores_editar_mostar(cls):
         print(f"ID|".ljust(6), end="")
@@ -171,49 +141,8 @@ class Profesor(Persona):
     @classmethod
     def obtener_profesor(cls):
         """Retorna un objeto de tipo profesor"""
-        cls.listar_profesores()
+        cls.mostrar_profesores()
         op = int(input('Digita el id del Profesor a obtener: '))
         obt_profesor = cls.lstPersona[(op - 1)]
         return obt_profesor
 
-# region Probar Clase Profesor
-# if __name__ == '__main__':
-#     aul = Aula(
-#         'auala ciencias',
-#         5,
-#         1,
-#         24
-#     )
-
-#     cur = Curso(
-#         'Ciencias Naturales',
-#         4,
-#         5,
-#         'ciencias',
-#         aul
-#     )
-
-#     prg1 = Programa(
-#         'Matematicas',
-#         date(2021, 5, 12),
-#         'Abierto',
-#         'Ronald Reyes'
-#     )
-
-#     pro1 = Profesor(
-#         'Alex',
-#         'carballo',
-#         '001-123549-1002G',
-#         'rrsdf',
-#         '8795-1251',
-#         '2021-12-15',
-#         'alex@gmail.com',
-#         '0215',
-#         prg1
-#     )
-
-
-#     Profesor.crear_persona(pro1)
-#     print(Profesor.detalles_personas())
-
-# endregion Probar Clase Profesor

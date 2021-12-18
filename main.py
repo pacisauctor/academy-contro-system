@@ -8,6 +8,7 @@ from controlador.CPrograma import gestionar as gestionar_programas
 from controlador.CTipoProfesor import gestionar as gestionar_tipoProfesor
 from controlador.CTurno import gestionar as gestionar_turnos
 from controlador.CEstudiante import gestionar as gestionar_estudiantes
+from modelo.Estudiante import Estudiante
 
 
 def main():
@@ -155,7 +156,7 @@ def submenu_matriculas():
         print("Menu de opciones.")
         print("""
             1. Agregar estudiantes.
-            2. Agregar y ver matrículas
+            2. Agregar matrículas
             3. Salir
             """)
         try:
@@ -165,9 +166,9 @@ def submenu_matriculas():
             print("Intente otra vez .")
             pass
         if opcion == 1:
-            pass# agregar_estudiantes(estudiantes)
+            Estudiante.agregar_estudiantes()
         elif opcion == 2:
-            pass# agregar_ver_matriculas(estudiantes)
+            Estudiante.matricular()
         elif opcion == 3:
             print("Saliendo...")
             return

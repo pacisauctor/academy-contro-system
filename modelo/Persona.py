@@ -163,32 +163,3 @@ class Persona:
     # endregion Metod de Clase
 
 
-# region Pruebas de la Clase Persona
-if __name__ == '__main__':
-
-    p1 = Persona(
-        'Carlos',
-        'Rosales',
-        '001-150596-100P',
-        'Managua',
-        '5265-8592',
-        date(1996, 5, 15),
-        'carlos@gmail.com'
-    )
-    p2 = Persona(
-        'Alejandro',
-        'Carcamo',
-        '001-271198-100G',
-        'Granada',
-        '7785-5621',
-        date(1998, 11, 27),
-        'alejandro@gmail.com'
-    )
-    # print(p1)
-    # print(p2)
-
-    Persona.crear_persona(p1)
-    Persona.crear_persona(p2)
-
-    print(Persona.detalles_personas())
-# endregion Pruebas de la Clase Persona

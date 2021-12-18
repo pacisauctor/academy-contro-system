@@ -192,19 +192,3 @@ class Programa:
         program_elegido = cls.__lstprogramas[(op-1)]
         return program_elegido
     # endregion Metodos de clase
-
-    #  FALTA --> Se bebe sobreescribir el metodo destructor __del__
-
-# region Pruebas de la clase programa
-# if __name__ == '__main__':
-#     prg1 = Programa(
-#         'Matematicas',
-#         date(2021, 5, 12),
-#         'Abierto',
-#         'Ronald Reyes'
-#     )
-#
-#     # print(prg1)
-#     Programa.agregar_programa(prg1)
-#     print(Programa.mostrar_detalle())
-# endregion Pruebas de la clase programa

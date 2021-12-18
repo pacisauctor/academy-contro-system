@@ -135,14 +135,6 @@ class Matricula:
         else:
             matricula.total_pagar = (matricula.curso.precio * 0.95)
 
-
-
-        # listar estudiantes, y seleccionar el id del estudiante
-        # est.agregar_matricula(matricula)
-        # listar cursos, y selecciono el id del curso
-        # matricula.obj_curso = curso_seleccionado
-        # total_apagar = curso_seleccionado.precio <-- conforme a: años del programa y las notas del estudiante
-
         cls.__list_matricula.append(matricula)
 
     @classmethod

@@ -114,9 +114,3 @@ def editar_minmax_anios_programa():
             print(ex)
             print("Error digita un valor valido")
 
-"""editar_minmax_anios_programa()
-
-print()
-print(reglas_de_negocio)
-print()"""
-
