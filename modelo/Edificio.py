@@ -1,5 +1,3 @@
-from modelo.Aula import Aula
-
 
 class Edificio:
 
@@ -45,10 +43,10 @@ class Edificio:
     # endregion metodos -> nombre
 
     # region metodos lista aulas
-    def agregar_aula(self, aula: Aula):
+    def agregar_aula(self, aula):
         self.aulas.append(aula)
         
-    def remover_aula(self, aula: Aula) -> bool:
+    def remover_aula(self, aula) -> bool:
         for aula_it in self.aulas:
             if aula.id_aula == aula_it.id_aula:
                 self.aulas.remove(aula_it)
