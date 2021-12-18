@@ -1,3 +1,4 @@
+from modelo.Edificio import Edificio
 
 class Aula:
 	__cont_aula = 0
@@ -85,15 +86,18 @@ class Aula:
 
 	@classmethod
 	def agregar_aula(cls):
+
 		nombre = input("Nombre del aula: ")
 		numPisos = int(input("Numero de piso: "))
 		numEdificio = int(input("Numero de edificio: "))
 		capacidad = int(input("Capacidad Asientos: "))
 		aula = (nombre,numPisos,numEdificio,capacidad)
+		Edificio.agregar_aula(aula)
+
   
 		# listar los edificios
 		# selecionar el eficio que pertenece al aula
-		# edificioa.agregar_aula(aula)
+		# edificio.agregar_aula(aula)
 		# agregar Aula antes del paréntesis
 		cls.__list.append(aula)
 
@@ -105,8 +109,8 @@ class Aula:
 		cls.__list[eleccion-1].nombre = input("Nombre del aula: ")
 		cls.__list[eleccion-1].numPisos = int(input("Numero de piso: "))
 		# quitar linea de código
-		cls.__list[eleccion-1].numEdificio = int(input("Numero de edificio: "))
-		cls.__list[eleccion-1].capacidad = int(input("Capacidad Asientos: "))
+		#cls.__list[eleccion-1].numEdificio = int(input("Numero de edificio: "))
+		#cls.__list[eleccion-1].capacidad = int(input("Capacidad Asientos: "))
 
 	@classmethod
 	def eliminar_aula(cls):

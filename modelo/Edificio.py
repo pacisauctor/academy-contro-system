@@ -140,5 +140,9 @@ class Edificio:
         eleccion = int(input("Ingrese el ID del edificio: "))
         cls.__lstEdificio.pop(eleccion)
 
-
+    @classmethod
+    def agregar_aula(cls,aula):
+        cls.listar_edificio()
+        eleccion = int(input("Ingrese el ID del edificio: "))
+        cls.__lstEdificio[eleccion].aula = aula
     
