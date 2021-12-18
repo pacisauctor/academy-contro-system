@@ -20,18 +20,16 @@ def gestionar(titulo:str, profesores = []):
             continue
 
         if opcion == 1:
-            Profesor.mostrar_profesores(profesores)
+            Profesor.mostrar_profesores()
 
         elif opcion == 2:
-            profesores.append(Profesor.crear_profesor())
+            Profesor.crear_profesor()
 
         elif opcion == 3:
-            Profesor.profesores_editar_mostar(profesores)
+            Profesor.profesores_editar_mostar()
             while True:
-                try:
-                    print()
-                    eleccion = int(input("Seleccione el ID del profesor:"))
-                    Profesor.editar_profesor(profesores[eleccion-1])
+                try: 
+                    Profesor.editar_profesor()
                     print(f"\n{bcolors.OK}!! Dato editado con exito !!{bcolors.RESET} \n")
                     break
 
@@ -44,11 +42,11 @@ def gestionar(titulo:str, profesores = []):
         elif opcion == 4:
             while True:
                 try:
-                    Profesor.profesores_editar_mostar(profesores)
+                    Profesor.profesores_editar_mostar()
                     print()
                     posic = int(input("Seleccione el ID del profesor:"))
                     posi = posic-1
-                    profesores.pop(int(posi))
+                    Profesor.lstProfesores.pop(int(posi))
                     print(f"\n{bcolors.OK}!! Dato eliminado con exito !!{bcolors.RESET} \n")
                     break
 
