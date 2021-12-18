@@ -1,4 +1,5 @@
 from controlador import CReglasNegocio
+from modelo.Aula import Aula
 from modelo.Curso import Curso
 from modelo.Programa import Programa
 

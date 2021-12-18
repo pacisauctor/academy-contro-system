@@ -162,7 +162,7 @@ class Edificio:
     @classmethod
     def obtener_edificio(cls):
         cls.listar_edificio()
-        op = int(input('[?] Digita el id del programa: '))
+        op = int(input('[?] Digita el id del Edificio: '))
         edifico_elegido = cls.__lstEdificio[(op-1)]
         return edifico_elegido
     # endregion Metodos de Clase
