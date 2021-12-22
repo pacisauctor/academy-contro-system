@@ -9,9 +9,10 @@ def gestionar(titulo: str):
         print("""
             1. Mostrar todas los registros.
             2. Ingresar un nuevo registro
-            3. Editar un registro existente.
+            3. Editar un registro.
             4. Eliminar un registro
-            5. Regresar al menú principal
+            5. Mostrar los registro detallados
+            6. Regresar al menú principal
             """)
         try:
             opcion = int(input("-->"))
@@ -56,6 +57,8 @@ def gestionar(titulo: str):
                     print(f"\n{bcolors.FAIL}!! Error Digita ID correctamente !!{bcolors.RESET} \n")
 
         elif opcion == 5:
+            Profesor.mostrar_reg_detallados()
+        elif opcion == 6:
             print("Regresando...")
             break
         else:

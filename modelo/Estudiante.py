@@ -1,6 +1,6 @@
 from datetime import date
 
-from controlador.CReglasNegocio import valida_maxmin_estudiante_asign
+from controlador.CReglasNegocio import valida_max_estudiante_asign
 from modelo.Curso import Curso
 from modelo.Persona import Persona
 from modelo.Programa import Programa
@@ -24,7 +24,7 @@ class Estudiante(Persona):
         txt = f"""
         Id del Estudiante: {self._id_estudiante}
         Carnet: {self.num_carnet}
-        {super.__str__(self)}
+        {super().__str__()}
         """
         return txt
 
@@ -66,6 +66,7 @@ class Estudiante(Persona):
             print(f"{estudiante.num_carnet}".ljust(5), end="")
             print(f"{estudiante.nombre}".ljust(10), end="")
             print(f"{estudiante.apellido}".ljust(11), end="")
+            print('\n')
             
     @classmethod
     def agregar_estudiantes(cls):
@@ -134,12 +135,13 @@ class Estudiante(Persona):
                 if estudiante.num_carnet == carnet:
                     est = estudiante
                     can_matricula = len(est.matriculas)
-                    if valida_maxmin_estudiante_asign(can_matricula):
+                    if valida_max_estudiante_asign(can_matricula):
                         prog = Programa.obtener_programa()
                         Curso.listar_curso_en_programa(prog)
-                        cur = Curso.obtener_curso()
+                        cur = Curso.obtener_curso(True)
                         est.matriculas.append(cur)
-                    break
+                        prog.aumentar_matricula()
+                        break
                 else:
                     print('No se encontro el estudiante')
         else:

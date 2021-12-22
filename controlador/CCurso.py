@@ -1,4 +1,4 @@
-from controlador import CReglasNegocio
+from controlador.CReglasNegocio import valida_max_curso_program
 from modelo.Aula import Aula
 from modelo.Curso import Curso
 from modelo.Programa import Programa
@@ -46,7 +46,7 @@ def gestionar(titulo: str):
                 if desc == 'y':
                     prog = Programa.obtener_programa()
                     can_curso = prog.cant_curso
-                    if not (CReglasNegocio.valida_maxmin_curso_program(can_curso)):
+                    if not (valida_max_curso_program(can_curso)):
                         print('Error. No se pueden agregar mas cursos al programa...')
                     else:
                         cur.add_programa(prog)

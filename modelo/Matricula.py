@@ -104,6 +104,7 @@ class Matricula:
 
     # endregion metodos -> hora_matricula
 
+    # region Metodos de Clase
     @classmethod
     def listar_matricula(cls):
         for matricula in cls.__list_matricula:
@@ -149,3 +150,4 @@ class Matricula:
         cls.listar_matricula()
         eleccion = int(input("Elija el Id de la matricula"))
         cls.__list_matricula.pop(eleccion - 1)
+    # endregion Metodos de Clase

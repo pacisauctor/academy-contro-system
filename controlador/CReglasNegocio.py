@@ -2,14 +2,22 @@ from controlador.Editar_CReglasNegocio import reglas_de_negocio
 
 
 # 1 Un programa tiene un minimo y un maximo de cursos o asignaturas.
-def valida_maxmin_curso_program(cant_curso):
+def valida_max_curso_program(cant_curso):
     while True:
         cat_progr_curso = cant_curso
-        if (cat_progr_curso < int(reglas_de_negocio["min_cursos_por_programa"])
-                or cat_progr_curso > int(reglas_de_negocio["max_cursos_por_programa"])):
+        if (cat_progr_curso > reglas_de_negocio["max_cursos_por_programa"]):
+            print(f'No puede ecceder el numero de asignatura : {reglas_de_negocio["max_cursos_por_programa"]}')
+            return False
+        else:
+            return True
 
-            print(f'No puede ecceder el numero de asignatura entre : {reglas_de_negocio["min_cursos_por_programa"]}\
-            <--y--> {reglas_de_negocio["max_cursos_por_programa"]}')
+def valida_min_curso_program(cant_curso):
+    while True:
+        cat_progr_curso = cant_curso
+        if (cat_progr_curso < reglas_de_negocio["min_cursos_por_programa"]):
+
+            print(f'El programa tiene un minimo de : {reglas_de_negocio["max_cursos_por_programa"]} '
+                  f'cursos los cuales no cumple')
             return False
         else:
             return True
@@ -18,34 +26,50 @@ def valida_maxmin_curso_program(cant_curso):
 # 2 Tanto un estudiante como los profesores pueden recibir o impartir un numero 
 # minimo y maximo de asignaturas (cursos) respectivamente.
 
-def valida_maxmin_estudiante_asign(cant_asignaturas):
+def valida_min_estudiante_asign(cant_asignaturas):
     while True:
         cat_asig_estud = cant_asignaturas
-        if cat_asig_estud == 0:
-            return True
-        elif (cat_asig_estud < int(reglas_de_negocio["min_cursos_estudiante"])
-                or cat_asig_estud > int(reglas_de_negocio["max_cursos_estudiante"])):
+        if (cat_asig_estud < reglas_de_negocio["min_cursos_estudiante"]):
 
-            print(f'No puede ecceder el numero de asignatura entre : {reglas_de_negocio["min_cursos_estudiante"]} '
-                  f'<--y--> {reglas_de_negocio["max_cursos_estudiante"]}')
+            print(f'No se cumple con el minimo de asignaturas: {reglas_de_negocio["min_cursos_estudiante"]}')
             return False
         else:
             return True
 
 
-def valida_maxmin_docente_asign(cant_asignaturas):
+def valida_max_estudiante_asign(cant_asignaturas):
+    while True:
+        cat_asig_estud = cant_asignaturas
+        if (cat_asig_estud > reglas_de_negocio["max_cursos_estudiante"]):
+
+            print(f'No puede ecceder el numero {reglas_de_negocio["max_cursos_estudiante"]} de asignatura')
+            return False
+        else:
+            return True
+
+
+def valida_min_docente_asign(cant_asignaturas):
     while True:
         cat_asig_docen = cant_asignaturas
-        if (cat_asig_docen < int(reglas_de_negocio["min_cursos_docente"])
-                or cat_asig_docen > int(reglas_de_negocio["max_cursos_docente"])):
 
-            print(f'No puede ecceder el numero de asignatura asignadas entre : '
-                  f'{reglas_de_negocio["min_cursos_docente"]} '
-                  f' <--y--> {reglas_de_negocio["max_cursos_docente"]}')
+        if (cat_asig_docen < reglas_de_negocio["min_cursos_docente"]):
+
+            print(f'No se cumple el minimo de cursos :{reglas_de_negocio["min_cursos_docente"]}')
             return False
         else:
             return True
 
+
+def valida_max_docente_asign(cant_asignaturas):
+    while True:
+        cat_asig_docen = cant_asignaturas
+
+        if (cat_asig_docen > reglas_de_negocio["max_cursos_docente"]):
+
+            print(f'No puede ecceder el numero {reglas_de_negocio["max_cursos_docente"]} de asignatura asignadas')
+            return False
+        else:
+            return True
 
 # 3 Respecto a la matricula existe como regla de negocio un minimo y maximo de 
 # estudiantes para poder aperturar un programa de estudios, así como los cursos
@@ -84,8 +108,8 @@ def valida_duracion_programa():
         if (anios < int(reglas_de_negocio["min_estud_curso"])
                 or anios > int(reglas_de_negocio["max_estud_curso"])):
 
-            print(f'La duracion de la carrera no puede ser menor a {reglas_de_negocio["min_estud_curso"]}\
-            o mayor a {reglas_de_negocio["max_estud_curso"]} años')
+            print(f'La duracion de la carrera no puede ser menor a {reglas_de_negocio["min_estud_curso"]}'
+                  f' o mayor a {reglas_de_negocio["max_estud_curso"]} años')
         else:
             if anios == 5:
                 anios = 5

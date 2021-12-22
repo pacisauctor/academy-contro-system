@@ -1,6 +1,8 @@
 from datetime import date
 
-from controlador.CReglasNegocio import valida_duracion_programa, valida_maxmin_estud_programa
+from controlador.CReglasNegocio import valida_duracion_programa, valida_max_curso_program, valida_min_curso_program
+
+
 # from modelo.Curso import Curso
 # from modelo.Profesor import Profesor
 
@@ -31,6 +33,7 @@ class Programa:
         Estado: {self.status_programa}
         Duracion (años): {self.duracion_anios}
         Cantidad de cursos en el programa: {self.cant_curso}
+        Cantidad Matriculas: {self.cant_matriculados}
         Director: {self.director}\n'''
         return txt
 
@@ -61,6 +64,11 @@ class Programa:
     @cant_matriculados.deleter
     def cant_matriculados(self):
         del self.__cant_matriculados
+
+    def aumentar_matricula(self):
+        matriculas = self.cant_matriculados
+        matriculas += 1
+        self.cant_matriculados = matriculas
 
     # endregion metodos de propiedad del argumeto -> cant_matriculados
 
@@ -169,7 +177,7 @@ class Programa:
         matriculados = cls.__lstprogramas[(op - 1)].cant_matriculados
         desicion = input('Desea establecer el estado del programa, como abierto? y/n: ').lower()
         if desicion == 'y':
-            if not(valida_maxmin_estud_programa(matriculados)):
+            if not(valida_min_curso_program(matriculados) or valida_max_curso_program(matriculados)):
                 print('Error. No se pudo cambiar el status del programa...\
                         no se Cumple con la cantidad de matriculas suficientes.')
             else:

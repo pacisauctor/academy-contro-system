@@ -244,7 +244,8 @@ class Curso:
             for prog in curso.lstprogramas:
                 if obj_programa.id_programa == prog.id_programa:
                     print(curso)
-                    break
+                break
+
 
     @classmethod
     def obtener_cant_registros_cursos(cls):
