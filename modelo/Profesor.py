@@ -66,7 +66,25 @@ class Profesor(Persona):
     @classmethod
     def mostrar_profesores(cls):
         for profe in cls.lstProfesores:
-            print(profe.__str__())
+            print(f"C_P|".ljust(7), end="")
+            print(f"Nombre|".ljust(8), end="")
+            print(f"Apellido|".ljust(12), end="")
+            print(f"Cedula|".ljust(14), end="")
+            print(f"Direccion|".ljust(15), end="")
+            print(f"Telefono|".ljust(17), end="")
+            print(f"Fecha_nac|".ljust(19), end="")
+            print(f"Email|".ljust(20), end="")
+            print("\n")
+            #print(profe.__str__())
+            print(f"{profe.cod_profesor}".ljust(7), end="")
+            print(f"{profe.nombre}".ljust(8), end="")
+            print(f"{profe.apellido}".ljust(12), end="")
+            print(f"{profe.cedula}".ljust(14), end="")
+            print(f"{profe.direccion}".ljust(15), end="")
+            print(f"{profe.telefono}".ljust(17), end="")
+            print(f"{profe.fecha_nac}".ljust(19), end="")
+            print(f"{profe.email}".ljust(20), end="")
+            print("\n")
             
     @classmethod
     def profesores_editar_mostar(cls):
