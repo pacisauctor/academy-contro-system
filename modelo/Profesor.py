@@ -121,11 +121,18 @@ class Profesor(Persona):
         cedula = input("Digite la cedula: ")
         direccion = input("Digite la direccion: ")
         telefono = input("Digite el numero de telefono: ")
-        print("Digite la fecha de nacimiento")
-        anio = int(input('Digite el Año[1999]: '))
-        mes = int(input('Digite el mes[1-12]: '))
-        dia = int(input('Digite el dia: '))
-        fecha_nac = date(anio, mes, dia)
+
+        while True:
+            print("Digite la fecha de nacimiento")
+            try:
+                anio = int(input('Digite el Año[1999]: '))
+                mes = int(input('Digite el mes[1-12]: '))
+                dia = int(input('Digite el dia: '))
+                fecha_nac = date(anio, mes, dia)
+                break
+            except ValueError:
+                    print(f"\n{bcolors.FAIL}!! Error digita fecha, dia, año Correctamente !!{bcolors.RESET} \n")
+
         email = input("Digite el email: ")
 
         profe = Profesor(nombre, apellido, cedula, direccion, telefono, fecha_nac, email, cod_profesor)
@@ -146,11 +153,18 @@ class Profesor(Persona):
         cls.lstProfesores[op-1].cedula = input("Digite la cedula: ")
         cls.lstProfesores[op-1].direccion = input("Digite la direccion: ")
         cls.lstProfesores[op-1].telefono = input("Digite el telefono: ")
-        print("Digite la fecha de nacimiento")
-        anio = int(input('Digite el Año: '))
-        mes = int(input('Digite el mes[1-12]: '))
-        dia = int(input('Digite el dia: '))
-        cls.lstProfesores[op-1].fecha_nac = date(anio, mes, dia)
+        while True:
+            print("Digite la fecha de nacimiento")
+            try:
+                anio = int(input('Digite el Año: '))
+                mes = int(input('Digite el mes[1-12]: '))
+                dia = int(input('Digite el dia: '))
+                cls.lstProfesores[op-1].fecha_nac = date(anio, mes, dia)
+                break
+            except ValueError:
+                    print(f"\n{bcolors.FAIL}!! Error digita fecha, dia, año Correctamente !!{bcolors.RESET} \n")
+
+
         cls.lstProfesores[op-1].email = input("Digite el email: ")
 
         if len(cls.lstProfesores[op-1].cursos) > 0:
