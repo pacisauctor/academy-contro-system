@@ -48,19 +48,28 @@ def gestionar(titulo: str):
             print('Precione enter para continuar...')
             input()
         elif opcion == 3:
-            profe = Profesor.obtener_profesor()
-            Programa.editar_programa(profe)
+            progr = Programa.obtener_programa()
+            if Profesor.obtener_cant_registros_profesores() > 0:
+                prof = Profesor.obtener_profesor()
+                progr.editar_programa(prof)
+            else:
+                print('No existen registro de profesores,\
+                        \nno se pudo asignar un profesor al programa')
+                progr.editar_programa()
             print('Programa editado correctamente...')
             print('Precione enter para continuar...')
             input()
         elif opcion == 4:
 
             print('Por defecto los programas se encuentrar "Cerrados"')
-            result = Programa.modificar_status_programa()
+            prog = Programa.obtener_programa()
+            result  = prog.modificar_status_programa()
             if result:
-                Curso.modificar_estado_curso(result)
-            print('Programa editado correctamente...')
-            print('Precione enter para continuar...')
+                Curso.modificar_estado_curso(prog)
+                print('Programa editado correctamente...')
+                print('Precione enter para continuar...')
+            else:
+                print('Error al cambiar el estado del programa\n Precione Enter')
             input()
         elif opcion == 5:
             Programa.eliminar_programa()
