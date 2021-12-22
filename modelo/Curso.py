@@ -1,7 +1,4 @@
-from controlador import CReglasNegocio
 from controlador.CReglasNegocio import valida_maxmin_estud_curso
-from modelo.Aula import Aula
-from modelo.Programa import Programa
 
 
 class Curso:
@@ -28,6 +25,7 @@ class Curso:
         Nombre del Curso: {self.nombre_curso}
         Creditos: {self.creditos}
         Horas Semanales: {self.cant_hrs_semanales}
+        Estado: {self.estado}
         '''
         return txt
 
@@ -126,19 +124,48 @@ class Curso:
 
     # region Metodos de Instancia
 
-    def add_aula(self, obj_aula: Aula):
+    def add_aula(self, obj_aula):
         self.lstprogramas.append(obj_aula)
 
-    def delete_aula(self, obj_aula: Aula):
+    def delete_aula(self, obj_aula):
         self.lstprogramas.remove(obj_aula)
 
-    def add_programa(self, obj_programa: Programa):
+    def add_programa(self, obj_programa):
         obj_programa.cant_curso += 1
         self.lstprogramas.append(obj_programa)
 
-    def delete_progama(self, obj_programa: Programa):
+    def delete_progama(self, obj_programa):
         obj_programa.cant_curso -= 1
         self.lstprogramas.remove(obj_programa)
+
+    def editar_registro_curso(self):
+        print('Proporciona los siguientes Datos...')
+        self.nombre = input('Digita el nombre del curso: ')
+        self.creditos = int(input('Digita la cantidad de creditos del curso: '))
+        self.horas = float(input('Digita la cantidad de horas del curso: '))
+        self.precio = float(input('Digita el precio: '))
+
+        if len(self.lstaulas) > 0:
+            op = input('[?] Desea eliminar aulas (y/n): ').lower()
+            if op == 'y':
+                print('Aulas en las que se imparte el curso...')
+                for aula in self.lstaulas:
+                    print(aula.__str__())
+                    opt = input('[?] Desea elinar el aula (y/n): ').lower()
+                    if opt == 'y':
+                        self.delete_aula(aula)
+
+        if len(self.lstprogramas) > 0:
+            op = input('[?] Desea eliminar Programas a los que pertenece el curso (y/n): ').lower()
+            if op == 'y':
+                print('Programas a los que pertenece el Curso...')
+                for programa in self.lstprogramas:
+                    print(programa.__str__())
+                    opt = input('[?] Desea eliminar este Programa (y/n): ').lower()
+                    if opt == 'y':
+                        self.delete_progama(programa)
+                    else:
+                        break
 
     # endregion Metodos de Instancia
 
@@ -150,59 +177,11 @@ class Curso:
 
     @classmethod
     def listar_registros_cursos(cls):
-        for curso in cls.__lst_cursos:
-            print(curso.__str__())
-
-    @classmethod
-    def editar_registro_curso(cls):
-        curso_elegido = None
-        Curso.listar_registros_cursos()
-        op = int(input('Digita el id del curso a editar: '))
-        for registro in cls.__lst_cursos:
-            if registro.id_curso == op:
-                curso_elegido = registro
-
-        print('Proporciona los siguientes Datos...')
-        curso_elegido.nombre = input('Digita el nombre del curso: ')
-        curso_elegido.creditos = int(input('Digita la cantidad de creditos del curso: '))
-        curso_elegido.horas = float(input('Digita la cantidad de horas del curso: '))
-        curso_elegido.precio = float(input('Digita el precio: '))
-
-        if len(curso_elegido.lstaulas) > 0:
-            op = input('[?] Desea eliminar aulas (y/n): ').lower()
-            if op == 'y':
-                print('Aulas en las que se imparte el curso...')
-                for aula in curso_elegido.lstaulas:
-                    print(aula.__str__())
-                    opt = input('[?] Desea elinar el aula (y/n): ').lower()
-                    if opt == 'y':
-                        curso_elegido.delete_aula(aula)
-
-        op = input('[?] Desea agregar un aula (y/n): ').lower()
-        if op == 'y':
-            aula_agregar = Aula.obtener_aula()
-            curso_elegido.add_aula(aula_agregar)
-
-        if len(curso_elegido.lstprogramas) > 0:
-            op = input('[?] Desea eliminar Programas a los que pertenece el curso (y/n): ').lower()
-            if op == 'y':
-                print('Programas a los que pertenece el Curso...')
-                for programa in curso_elegido.lstprogramas:
-                    print(programa.__str__())
-                    opt = input('[?] Desea eliminar este Programa (y/n): ').lower()
-                    if opt == 'y':
-                        curso_elegido.delete_progama(programa)
-                    else:
-                        break
-
-        op = input('[?] Desea agregar un programa (y/n): ').lower()
-        if op == 'y':
-            pro_agregar = Programa.obtener_programa()
-            can_curso = pro_agregar.cant_curso
-            if not (CReglasNegocio.valida_maxmin_curso_program(can_curso)):
-                print('Error. No se pueden agregar mas cursos al programa...')
-            else:
-                curso_elegido.add_programa(pro_agregar)
+        if len(cls.__lst_cursos) <= 0:
+            print('No existen registros para mostrar')
+        else:
+            for curso in cls.__lst_cursos:
+                print(curso.__str__())
 
     @classmethod
     def eliminar_registro_curso(cls):
@@ -214,20 +193,23 @@ class Curso:
 
     @classmethod
     def obtener_curso(cls, listar=False):
-        curso_obtenido = None
-        if listar:
-            Curso.listar_registros_cursos()
-        op = int(input('Digita el id del curso: '))
-        for curso in cls.__lst_cursos:
-            if curso.id_curso == op:
-                curso_obtenido = curso
-                break
-        if curso_obtenido is None:
-            print('Error: No se encontro el curso seleccionado.')
-        return curso_obtenido
+        if len(cls.__lst_cursos) <= 0:
+            return 0
+        else:
+            curso_obtenido = None
+            if listar:
+                Curso.listar_registros_cursos()
+            op = int(input('Digita el id del curso: '))
+            for curso in cls.__lst_cursos:
+                if curso.id_curso == op:
+                    curso_obtenido = curso
+                    break
+            if curso_obtenido is None:
+                print('Error: No se encontro el curso seleccionado.')
+            return curso_obtenido
 
     @classmethod
-    def modificar_estado_curso(cls, obj_programa: Programa):
+    def modificar_estado_curso(cls, obj_programa):
         for curso in cls.__lst_cursos:
             if valida_maxmin_estud_curso(curso.cant_matricula):
                 for prog in curso.lstprogramas:
@@ -238,14 +220,13 @@ class Curso:
                 print(f'El curso {curso.nombre_curso}, no se pudo aperturar.')
 
     @classmethod
-    def listar_curso_en_programa(cls, obj_programa: Programa):
+    def listar_curso_en_programa(cls, obj_programa):
         print('Cursos que pertenecen a este programa')
         for curso in cls.__lst_cursos:
             for prog in curso.lstprogramas:
                 if obj_programa.id_programa == prog.id_programa:
                     print(curso)
                 break
-
 
     @classmethod
     def obtener_cant_registros_cursos(cls):

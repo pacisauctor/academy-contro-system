@@ -14,7 +14,9 @@ def gestionar(titulo: str):
             3. Editar un registro existente.
             4. Eliminar un registro
             5. Ver Cursos de un Programa
-            6. Regresar al menú principal
+            6. Cerrar un curso
+            7. Aperturar un curso
+            8. Regresar al menú principal
             """)
         try:
             opcion = int(input("-->"))
@@ -56,8 +58,27 @@ def gestionar(titulo: str):
             input()
 
         elif opcion == 3:
-            Curso.editar_registro_curso()
-            print('Curso editado exitosamente!!!')
+
+            curs = Curso.obtener_curso(True)
+            if curs == 0:
+                print('No existen registros de cursos')
+            else:
+                curs.editar_registro_curso()
+                if Aula.obtener_cant_registro_aulas() > 0:
+                    op = input('[?] Desea agregar un aula (y/n): ').lower()
+                    if op == 'y':
+                        aula_agregar = Aula.obtener_aula()
+                        curs.add_aula(aula_agregar)
+                if Programa.obtener_cant_registros_programas() > 0:
+                    op = input('[?] Desea agregar un programa (y/n): ').lower()
+                    if op == 'y':
+                        pro_agregar = Programa.obtener_programa()
+                        can_curso = pro_agregar.cant_curso
+                        if not (valida_max_curso_program(can_curso)):
+                            print('Error. No se pueden agregar mas cursos al programa...')
+                        else:
+                            curs.add_programa(pro_agregar)
+                print('Curso editado exitosamente!!!')
             input()
         elif opcion == 4:
             Curso.eliminar_registro_curso()
@@ -67,6 +88,18 @@ def gestionar(titulo: str):
             prg = Programa.obtener_programa()
             Curso.listar_curso_en_programa(prg)
         elif opcion == 6:
+            cur = Curso.obtener_curso(True)
+            if cur == 0:
+                print('Error. No existen registros de cursos')
+            else:
+                cur.estado = 'Cerrado'
+        elif opcion == 7:
+            cur = Curso.obtener_curso(True)
+            if cur == 0:
+                print('Error. No existen registros de cursos')
+            else:
+                cur.estado = 'Abierto'
+        elif opcion == 8:
             print("Regresando...")
             break
 
