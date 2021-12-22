@@ -5,18 +5,18 @@ from controlador.Editar_CReglasNegocio import reglas_de_negocio
 def valida_max_curso_program(cant_curso):
     while True:
         cat_progr_curso = cant_curso
-        if (cat_progr_curso > reglas_de_negocio["max_cursos_por_programa"]):
+        if cat_progr_curso > reglas_de_negocio["max_cursos_por_programa"]:
             print(f'No puede ecceder el numero de asignatura : {reglas_de_negocio["max_cursos_por_programa"]}')
             return False
         else:
             return True
 
+
 def valida_min_curso_program(cant_curso):
     while True:
         cat_progr_curso = cant_curso
-        if (cat_progr_curso < reglas_de_negocio["min_cursos_por_programa"]):
-
-            print(f'El programa tiene un minimo de : {reglas_de_negocio["max_cursos_por_programa"]} '
+        if cat_progr_curso < reglas_de_negocio["min_cursos_por_programa"]:
+            print(f'El programa tiene un minimo de : {reglas_de_negocio["min_cursos_por_programa"]} '
                   f'cursos los cuales no cumple')
             return False
         else:
@@ -25,11 +25,10 @@ def valida_min_curso_program(cant_curso):
 
 # 2 Tanto un estudiante como los profesores pueden recibir o impartir un numero 
 # minimo y maximo de asignaturas (cursos) respectivamente.
-
 def valida_min_estudiante_asign(cant_asignaturas):
     while True:
         cat_asig_estud = cant_asignaturas
-        if (cat_asig_estud < reglas_de_negocio["min_cursos_estudiante"]):
+        if cat_asig_estud < reglas_de_negocio["min_cursos_estudiante"]:
 
             print(f'No se cumple con el minimo de asignaturas: {reglas_de_negocio["min_cursos_estudiante"]}')
             return False
@@ -40,7 +39,7 @@ def valida_min_estudiante_asign(cant_asignaturas):
 def valida_max_estudiante_asign(cant_asignaturas):
     while True:
         cat_asig_estud = cant_asignaturas
-        if (cat_asig_estud > reglas_de_negocio["max_cursos_estudiante"]):
+        if not(cat_asig_estud > reglas_de_negocio["max_cursos_estudiante"]):
 
             print(f'No puede ecceder el numero {reglas_de_negocio["max_cursos_estudiante"]} de asignatura')
             return False
@@ -52,7 +51,7 @@ def valida_min_docente_asign(cant_asignaturas):
     while True:
         cat_asig_docen = cant_asignaturas
 
-        if (cat_asig_docen < reglas_de_negocio["min_cursos_docente"]):
+        if cat_asig_docen < reglas_de_negocio["min_cursos_docente"]:
 
             print(f'No se cumple el minimo de cursos :{reglas_de_negocio["min_cursos_docente"]}')
             return False
@@ -64,24 +63,32 @@ def valida_max_docente_asign(cant_asignaturas):
     while True:
         cat_asig_docen = cant_asignaturas
 
-        if (cat_asig_docen > reglas_de_negocio["max_cursos_docente"]):
+        if not(cat_asig_docen > reglas_de_negocio["max_cursos_docente"]):
 
             print(f'No puede ecceder el numero {reglas_de_negocio["max_cursos_docente"]} de asignatura asignadas')
             return False
         else:
             return True
 
+
 # 3 Respecto a la matricula existe como regla de negocio un minimo y maximo de 
 # estudiantes para poder aperturar un programa de estudios, así como los cursos
 # de la carrera
-
-def valida_maxmin_estud_programa(cant_matriculas) -> bool:
+def valida_max_estud_programa(cant_matriculas) -> bool:
     while True:
-        if (cant_matriculas < reglas_de_negocio["min_estud_programa"]
-                or cant_matriculas > reglas_de_negocio["max_estud_programa"]):
+        if cant_matriculas > reglas_de_negocio["max_estud_programa"]:
+            print(f'Para aperturar un Programa no debes exceder el maximo de {reglas_de_negocio["max_estud_programa"]}'
+                  f' Estudiantes matriculados')
+            return False
+        else:
+            return True
 
+
+def valida_min_estud_programa(cant_matriculas) -> bool:
+    while True:
+        if cant_matriculas < reglas_de_negocio["min_estud_programa"]:
             print(f'Para aperturar un Programa debes cumplir el minimo de {reglas_de_negocio["min_estud_programa"]}'
-                  f'estudiantes matriculados y no exceder el maximo de {reglas_de_negocio["max_estud_programa"]}')
+                  f' Estudiantes matriculados')
             return False
         else:
             return True
@@ -99,7 +106,7 @@ def valida_maxmin_estud_curso(cant_matriculas) -> bool:
             return True
 
 
-# 4 Si el programa de estudios es de cinco años se le aplica un 10% de descuento por 
+# 4 Si el programa de estudios es de cinco años se le aplica un 10% de descuento por
 # curso matriculado respecto al precio de lista, y si es de cuatro años se le aplica un
 # %5 (Importante mencionar que no existen programas de menor duración).
 def valida_duracion_programa():
