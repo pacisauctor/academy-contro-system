@@ -125,8 +125,8 @@ class Matricula:
         matricula.curso = Curso.obtener_curso()
 
         for programa in matricula.curso.lstprogramas:
-            print(programa.nombre_programa,end="")
-            print(programa.id_programa,end="")
+            print(programa.nombre_programa, end="")
+            print(programa.id_programa, end="")
 
         eleccion = int(input("Seleccione un id de programa"))
 
@@ -149,4 +149,3 @@ class Matricula:
         cls.listar_matricula()
         eleccion = int(input("Elija el Id de la matricula"))
         cls.__list_matricula.pop(eleccion - 1)
-

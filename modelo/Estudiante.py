@@ -1,5 +1,7 @@
+from datetime import date
+
+from controlador.CReglasNegocio import valida_maxmin_estudiante_asign
 from modelo.Curso import Curso
-#from modelo.Matricula import Matricula
 from modelo.Persona import Persona
 from modelo.Programa import Programa
 
@@ -22,7 +24,7 @@ class Estudiante(Persona):
         txt = f"""
         Id del Estudiante: {self._id_estudiante}
         Carnet: {self.num_carnet}
-        {Persona.__str__(self)}
+        {super.__str__(self)}
         """
         return txt
 
@@ -72,7 +74,11 @@ class Estudiante(Persona):
         cedula = input("Ingrese el cedula del estudiante: ")
         direccion = input("Ingrese el direccion del estudiante: ")
         telefono = input("Ingrese el telefono del estudiante: ")
-        fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
+        print("Digite el fecha_nac del profesor ")
+        anio = int(input('Digite el Año: '))
+        mes = int(input('Digite el mes[1-12]: '))
+        dia = int(input('Digite el dia: '))
+        fecha_nac = date(anio, mes, dia)
         email = input("Ingrese el email del estudiante: ")
         numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
         estudiante = Estudiante(nombre, apellido, cedula, direccion,
@@ -89,7 +95,11 @@ class Estudiante(Persona):
         cls.__lstEstudiantes[elc - 1].cedula = input("Ingrese el cedula del estudiante: ")
         cls.__lstEstudiantes[elc - 1].direccion = input("Ingrese el direccion del estudiante: ")
         cls.__lstEstudiantes[elc - 1].telefono = input("Ingrese el telefono del estudiante: ")
-        cls.__lstEstudiantes[elc - 1].fecha_nac = input("Ingrese la fecha de nacimiento del estudiante: ")
+        print("Digite el fecha_nac del profesor ")
+        anio = int(input('Digite el Año: '))
+        mes = int(input('Digite el mes[1-12]: '))
+        dia = int(input('Digite el dia: '))
+        cls.__lstEstudiantes[elc - 1].fecha_nac = date(anio, mes, dia)
         cls.__lstEstudiantes[elc - 1].email = input("Ingrese el email del estudiante: ")
 
     @classmethod
@@ -118,15 +128,25 @@ class Estudiante(Persona):
 
     @classmethod
     def matricular(cls):
-        est = None
-        carnet = input('Digita tu numero de carnet: ')
-        for estudiante in cls.__lstEstudiantes:
-            if estudiante.num_carnet == carnet:
-                est = estudiante
-                break
-        prog = Programa.obtener_programa()
-        Curso.listar_curso_en_programa(prog)
-        cur = Curso.obtener_curso()
-        est.matriculas.append(cur)
+        if len(cls.__lstEstudiantes) > 0:
+            carnet = input('Digita tu numero de carnet: ')
+            for estudiante in cls.__lstEstudiantes:
+                if estudiante.num_carnet == carnet:
+                    est = estudiante
+                    can_matricula = len(est.matriculas)
+                    if valida_maxmin_estudiante_asign(can_matricula):
+                        prog = Programa.obtener_programa()
+                        Curso.listar_curso_en_programa(prog)
+                        cur = Curso.obtener_curso()
+                        est.matriculas.append(cur)
+                    break
+                else:
+                    print('No se encontro el estudiante')
+        else:
+            print('No existen registros de estudiantes matriculados')
+
+    @classmethod
+    def obtener_cant_registro_estudiantes(cls):
+        return len(cls.__lstEstudiantes)
 
     # endregion Metodos de Clase

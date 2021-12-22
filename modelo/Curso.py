@@ -180,8 +180,8 @@ class Curso:
 
         op = input('[?] Desea agregar un aula (y/n): ').lower()
         if op == 'y':
-            aulaAgregar = Aula.obtener_aula()
-            curso_elegido.add_aula(aulaAgregar)
+            aula_agregar = Aula.obtener_aula()
+            curso_elegido.add_aula(aula_agregar)
 
         if len(curso_elegido.lstprogramas) > 0:
             op = input('[?] Desea eliminar Programas a los que pertenece el curso (y/n): ').lower()
@@ -197,12 +197,12 @@ class Curso:
 
         op = input('[?] Desea agregar un programa (y/n): ').lower()
         if op == 'y':
-            proAgregar = Programa.obtener_programa()
-            can_curso = proAgregar.cant_curso
+            pro_agregar = Programa.obtener_programa()
+            can_curso = pro_agregar.cant_curso
             if not (CReglasNegocio.valida_maxmin_curso_program(can_curso)):
                 print('Error. No se pueden agregar mas cursos al programa...')
             else:
-                curso_elegido.add_programa(proAgregar)
+                curso_elegido.add_programa(pro_agregar)
 
     @classmethod
     def eliminar_registro_curso(cls):
@@ -214,17 +214,17 @@ class Curso:
 
     @classmethod
     def obtener_curso(cls, listar=False):
-        cursoObtenido = None
+        curso_obtenido = None
         if listar:
             Curso.listar_registros_cursos()
         op = int(input('Digita el id del curso: '))
         for curso in cls.__lst_cursos:
             if curso.id_curso == op:
-                cursoObtenido = curso
+                curso_obtenido = curso
                 break
-        if cursoObtenido is None:
+        if curso_obtenido is None:
             print('Error: No se encontro el curso seleccionado.')
-        return cursoObtenido
+        return curso_obtenido
 
     @classmethod
     def modificar_estado_curso(cls, obj_programa: Programa):
@@ -245,5 +245,9 @@ class Curso:
                 if obj_programa.id_programa == prog.id_programa:
                     print(curso)
                     break
+
+    @classmethod
+    def obtener_cant_registros_cursos(cls):
+        return len(cls.__lst_cursos)
 
     # endregion Metodos de clase

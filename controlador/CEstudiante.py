@@ -38,4 +38,3 @@ def gestionar(titulo: str):
 
 def matricular(titulo: str):
     print(titulo.upper())
-

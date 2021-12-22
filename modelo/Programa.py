@@ -1,8 +1,8 @@
 from datetime import date
 
 from controlador.CReglasNegocio import valida_duracion_programa, valida_maxmin_estud_programa
-#from modelo.Curso import Curso
-#from modelo.Profesor import Profesor
+# from modelo.Curso import Curso
+# from modelo.Profesor import Profesor
 
 
 class Programa:
@@ -11,7 +11,7 @@ class Programa:
     __lstprogramas = []
 
     def __init__(self, nombre_programa=None, fecha_programa=None,
-                 duracion_anios=None, status_programa='Cerrado', director=None):
+                 duracion_anios=None, status_programa='Cerrado', director='Sin Asignar'):
         """Constructor de la clase programa"""
         Programa.cont_prgrama += 1
         self.nombre_programa = nombre_programa
@@ -173,11 +173,8 @@ class Programa:
                 print('Error. No se pudo cambiar el status del programa...\
                         no se Cumple con la cantidad de matriculas suficientes.')
             else:
-                # se envia el objPrograma para aperturar los cursos del programa
-                # Curso.modificar_estado_curso(cls.__lstprogramas[(op - 1)])
                 cls.__lstprogramas[(op - 1)].status_programa = 'Abierto'
                 print('El status del programa se cambio a -> "Abierto"')
-                return cls.__lstprogramas[(op - 1)]
 
     @classmethod
     def eliminar_programa(cls):
@@ -191,4 +188,8 @@ class Programa:
         op = int(input('[?] Digita el id del programa: '))
         program_elegido = cls.__lstprogramas[(op-1)]
         return program_elegido
+
+    @classmethod
+    def obtener_cant_registros_programas(cls):
+        return len(cls.__lstprogramas)
     # endregion Metodos de clase

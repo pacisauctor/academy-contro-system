@@ -33,7 +33,11 @@ def gestionar(titulo: str):
             prg.nombre_programa = input('Nombre del Programa: ')
             prg.fecha_programa = date.today()
             prg.duracion_anios = valida_duracion_programa()
-            prg.director = Profesor.obtener_profesor()
+            if Profesor.obtener_cant_registros_profesores() > 0:
+                prg.director = Profesor.obtener_profesor()
+            else:
+                print('No existen registro de profesores,\
+                        \nno se pudo asignar un profesor al programa')
             Programa.ingresar_registro(prg)
             print('Programa agregado correctamente...')
             print('Precione enter para continuar...')

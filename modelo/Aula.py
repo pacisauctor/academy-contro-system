@@ -125,4 +125,8 @@ class Aula:
         op = int(input('Digite el id del aula a obtener: '))
         aula_elegida = cls.__list[(op - 1)]
         return aula_elegida
+
+    @classmethod
+    def obtener_cant_registro_aulas(cls):
+        return len(cls.__list)
     # endregion Metodos de Clase

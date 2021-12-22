@@ -1,6 +1,7 @@
 from modelo.Profesor import Profesor, bcolors
 
-def gestionar(titulo:str, profesores = []):
+
+def gestionar(titulo: str):
     
     while True:
         print(titulo.upper())
@@ -37,7 +38,6 @@ def gestionar(titulo:str, profesores = []):
                     print(f"\n{bcolors.FAIL}!! Error Digita ID correctamente !!{bcolors.RESET} \n")
                 except ValueError:
                     print(f"\n{bcolors.FAIL}!! Error Digita ID correctamente !!{bcolors.RESET} \n")
-            
 
         elif opcion == 4:
             while True:
@@ -54,7 +54,6 @@ def gestionar(titulo:str, profesores = []):
                     print(f"\n{bcolors.FAIL}!! Error Digita ID correctamente !!{bcolors.RESET} \n")
                 except ValueError:
                     print(f"\n{bcolors.FAIL}!! Error Digita ID correctamente !!{bcolors.RESET} \n")
-
 
         elif opcion == 5:
             print("Regresando...")

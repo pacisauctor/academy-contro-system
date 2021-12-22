@@ -1,19 +1,18 @@
 from datetime import date
 
-from modelo.Aula import Aula
-#from modelo.Curso import Curso
 from modelo.Persona import Persona
-from modelo.Programa import Programa
+
 
 class bcolors:
-    OK = '\033[92m' #GREEN
-    WARNING = '\033[93m' #YELLOW
-    FAIL = '\033[91m' #RED
-    RESET = '\033[0m' #RESET COLOR
-    
+    OK = '\033[92m'  # GREEN
+    WARNING = '\033[93m'  # YELLOW
+    FAIL = '\033[91m'  # RED
+    RESET = '\033[0m'  # RESET COLOR
+
+
 class Profesor(Persona):
+
     contador_profesor = 0
-    #lstPersona = []
     lstProfesores = []
 
     def __init__(self, nombre, apellido, cedula, direccion, telefono, fecha_nac,
@@ -31,10 +30,10 @@ class Profesor(Persona):
         """
         return txt
 
-    def agregar_programa(self, programa:Programa):
+    def agregar_programa(self, programa):
         self.programas.append(programa)
         
-    def remover_programa(self, programa:Programa)->bool:
+    def remover_programa(self, programa) -> bool:
         for programa_it in self.programas:
             if programa.id_programa == programa_it.id_programa:
                 self.programas.remove(programa_it)
@@ -44,12 +43,13 @@ class Profesor(Persona):
     def agregar_curso(self, curso):
         self.cursos.append(curso)
         
-    def remover_curso(self, curso)->bool:
+    def remover_curso(self, curso) -> bool:
         for curso_it in self.cursos:
             if curso.id_curso == curso_it.id_curso:
                 self.cursos.remove(curso_it)
                 return True
         return False
+
     # region Metodos attr -> cod_profesor
     @property
     def cod_profesor(self):
@@ -84,9 +84,9 @@ class Profesor(Persona):
         print("\n")
 
         for profe in cls.lstProfesores[:]:
-            id = cls.lstProfesores.index(profe)
+            id_ = cls.lstProfesores.index(profe)
             
-            print(f"{bcolors.FAIL} {id+1} {bcolors.RESET}".ljust(8), end="")
+            print(f"{bcolors.FAIL} {id_+1} {bcolors.RESET}".ljust(8), end="")
             print(f"{profe.cod_profesor}".ljust(7), end="")
             print(f"{profe.nombre}".ljust(8), end="")
             print(f"{profe.apellido}".ljust(12), end="")
@@ -96,8 +96,7 @@ class Profesor(Persona):
             print(f"{profe.fecha_nac}".ljust(19), end="")
             print(f"{profe.email}".ljust(20), end="")
             print("\n")
- 
- 
+
     @classmethod
     def crear_profesor(cls):
         cod_profesor = input("Digite el cod_profesor del profesor: ")
@@ -106,20 +105,17 @@ class Profesor(Persona):
         cedula = input("Digite el cedula del profesor: ")
         direccion = input("Digite el direccion del profesor: ")
         telefono = input("Digite el telefono del profesor: ")
-        fecha_nac = input("Digite el fecha_nac del profesor: ")
+        print("Digite el fecha_nac del profesor ")
+        anio = int(input('Digite el Año: '))
+        mes = int(input('Digite el mes[1-12]: '))
+        dia = int(input('Digite el dia: '))
+        fecha_nac = date(anio, mes, dia)
         email = input("Digite el email del profesor: ")
         
         cls.lstProfesores.append(
-            Profesor(
-                cod_profesor=cod_profesor,
-                nombre=nombre,
-                apellido=apellido,
-                cedula=cedula,
-                direccion=direccion,
-                telefono=telefono,
-                fecha_nac=fecha_nac,
-                email=email
-        ))
+            Profesor(nombre, apellido, cedula, direccion,
+                     telefono, fecha_nac, email, cod_profesor)
+        )
 
     @classmethod
     def editar_profesor(cls):
@@ -132,11 +128,12 @@ class Profesor(Persona):
         cls.lstProfesores[op-1].cedula = input("Digite el cedula del profesor: ")
         cls.lstProfesores[op-1].direccion = input("Digite el direccion del profesor: ")
         cls.lstProfesores[op-1].telefono = input("Digite el telefono del profesor: ")
-        cls.lstProfesores[op-1].fecha_nac = input("Digite el fecha_nac del profesor: ")
+        print("Digite el fecha_nac del profesor ")
+        anio = int(input('Digite el Año: '))
+        mes = int(input('Digite el mes[1-12]: '))
+        dia = int(input('Digite el dia: '))
+        cls.lstProfesores[op-1].fecha_nac = date(anio, mes, dia)
         cls.lstProfesores[op-1].email = input("Digite el email del profesor: ")
-        
-
-
 
     @classmethod
     def obtener_profesor(cls):
@@ -146,3 +143,6 @@ class Profesor(Persona):
         obt_profesor = cls.lstPersona[(op - 1)]
         return obt_profesor
 
+    @classmethod
+    def obtener_cant_registros_profesores(cls):
+        return len(cls.lstProfesores)

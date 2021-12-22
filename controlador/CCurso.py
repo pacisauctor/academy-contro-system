@@ -34,19 +34,22 @@ def gestionar(titulo: str):
             cur.creditos = int(input('Proporciona la cantidad de creditos del curso: '))
             cur.cant_hrs_semanales = float(input('Proporciona la cantidad de horas semanales: '))
             cur.precio = float(input('Proporciona el precio del curso: '))
-            desc = input('[?] Desea agregar un aula al curso (y/n): ').lower()
-            if desc == 'y':
-                aul = Aula.obtener_aula()
-                cur.add_aula(aul)
 
-            desc = input('[?] Desea agregar el curso a un programa (y/n): ').lower()
-            if desc == 'y':
-                prog = Programa.obtener_programa()
-                can_curso = prog.cant_curso
-                if not (CReglasNegocio.valida_maxmin_curso_program(can_curso)):
-                    print('Error. No se pueden agregar mas cursos al programa...')
-                else:
-                    cur.add_programa(prog)
+            if Aula.obtener_cant_registro_aulas() > 0:
+                desc = input('[?] Desea agregar un aula al curso (y/n): ').lower()
+                if desc == 'y':
+                    aul = Aula.obtener_aula()
+                    cur.add_aula(aul)
+
+            if Programa.obtener_cant_registros_programas() > 0:
+                desc = input('[?] Desea agregar el curso a un programa (y/n): ').lower()
+                if desc == 'y':
+                    prog = Programa.obtener_programa()
+                    can_curso = prog.cant_curso
+                    if not (CReglasNegocio.valida_maxmin_curso_program(can_curso)):
+                        print('Error. No se pueden agregar mas cursos al programa...')
+                    else:
+                        cur.add_programa(prog)
 
             Curso.add_registro_curso(cur)
             print('Curso agregado exitosamente!!!\nPresione Enter para continuar')

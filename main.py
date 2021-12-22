@@ -1,18 +1,19 @@
 from controlador.CAula import gestionar as gestionar_aulas
 from controlador.CCurso import gestionar as gestionar_cursos
 from controlador.CEdificio import gestionar as gestionar_edificios
-from controlador.CMatricula import gestionar as gestionar_matriculas
-from controlador.CReglasNegocio import * 
 from controlador.CProfesor import gestionar as gestionar_profesores
 from controlador.CPrograma import gestionar as gestionar_programas
 from controlador.CTipoProfesor import gestionar as gestionar_tipoProfesor
 from controlador.CTurno import gestionar as gestionar_turnos
 from controlador.CEstudiante import gestionar as gestionar_estudiantes
+from controlador.Editar_CReglasNegocio import editar_min_max_curso_programa, editar_minmax_asigna_xdocente, \
+    editar_minmax_asigna_xrecibir_estu, editar_minmax_estudiante_aper_programa
 from modelo.Estudiante import Estudiante
 
 
 def main():
-    while(True):
+    opcion = None
+    while True:
         print("-"*15)
         print("ACADEMICAL CONTROL SYSTEM")
         print("-"*15)
@@ -43,7 +44,8 @@ def main():
             
 
 def submenu_administracion():
-    while(True):
+    opcion = None
+    while True:
         print("Menu de opciones.")
         print("""
             1. Gestionar profesores.
@@ -63,7 +65,7 @@ def submenu_administracion():
             gestionar_estudiantes("Gestionar estudiantes")
         elif opcion == 3:
         
-            while(True):
+            while True:
                 print("-"*25)
                 print("Editar Reglas de Negocio")
                 print("-"*25)
@@ -104,7 +106,6 @@ def submenu_administracion():
                 else:
                     print("Seleccione una opción válida.")
 
-
         elif opcion == 4:
             print("Saliendo...")
             return
@@ -113,7 +114,8 @@ def submenu_administracion():
 
 
 def submenu_catalogos():
-    while(True):
+    opcion = None
+    while True:
         print("Menu de opciones.")
         print("""
             1. Gestionar aulas.
@@ -152,7 +154,8 @@ def submenu_catalogos():
 
 
 def submenu_matriculas():
-    while(True):
+    opcion = None
+    while True:
         print("Menu de opciones.")
         print("""
             1. Agregar estudiantes.
