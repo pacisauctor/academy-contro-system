@@ -122,16 +122,32 @@ class Profesor(Persona):
         direccion = input("Digite la direccion: ")
         telefono = input("Digite el numero de telefono: ")
 
+
         while True:
-            print("Digite la fecha de nacimiento")
-            try:
-                anio = int(input('Digite el Año[1999]: '))
-                mes = int(input('Digite el mes[1-12]: '))
-                dia = int(input('Digite el dia: '))
+                print("Digite la fecha de nacimiento")
+                while True:
+                 try:
+                    anio = int(input('Digite el Año: [<-2001]'))
+                    break
+                 except ValueError:
+                        print(f"{bcolors.FAIL}!! Error digita año Correctamente !!{bcolors.RESET}")
+
+                while True:
+                 try:
+                    mes = int(input('Digite el mes [1-12]: '))
+                    break
+                 except ValueError:
+                        print(f"{bcolors.FAIL}!! Error digita Mes Correctamente !!{bcolors.RESET}")
+
+                while True:
+                 try:
+                    dia = int(input('Digite el dia: '))
+                    break
+                 except ValueError:
+                        print(f"{bcolors.FAIL}!! Error digita el Dia Correctamente !!{bcolors.RESET}")
+
                 fecha_nac = date(anio, mes, dia)
                 break
-            except ValueError:
-                    print(f"\n{bcolors.FAIL}!! Error digita fecha, dia, año Correctamente !!{bcolors.RESET} \n")
 
         email = input("Digite el email: ")
 
@@ -148,22 +164,36 @@ class Profesor(Persona):
         print('Proporciona los siguientes datos...')
         
         cls.lstProfesores[op-1].cod_profesor = input("Digite el codigo del profesor: ")
-        cls.lstProfesores[op-1].nombre = input("Digite el nombrer: ")
+        cls.lstProfesores[op-1].nombre = input("Digite el nombre: ")
         cls.lstProfesores[op-1].apellido = input("Digite el apellido: ")
         cls.lstProfesores[op-1].cedula = input("Digite la cedula: ")
         cls.lstProfesores[op-1].direccion = input("Digite la direccion: ")
         cls.lstProfesores[op-1].telefono = input("Digite el telefono: ")
         while True:
-            print("Digite la fecha de nacimiento")
-            try:
-                anio = int(input('Digite el Año: '))
-                mes = int(input('Digite el mes[1-12]: '))
-                dia = int(input('Digite el dia: '))
+                print("Digite la fecha de nacimiento")
+                while True:
+                 try:
+                    anio = int(input('Digite el Año: [<-2001]'))
+                    break
+                 except ValueError:
+                        print(f"{bcolors.FAIL}!! Error digita año Correctamente !!{bcolors.RESET}")
+
+                while True:
+                 try:
+                    mes = int(input('Digite el mes[1-12]: '))
+                    break
+                 except ValueError:
+                        print(f"{bcolors.FAIL}!! Error digita Mes Correctamente !!{bcolors.RESET}")
+
+                while True:
+                 try:
+                    dia = int(input('Digite el dia: '))
+                    break
+                 except ValueError:
+                        print(f"{bcolors.FAIL}!! Error digita el Dia Correctamente !!{bcolors.RESET}")
+
                 cls.lstProfesores[op-1].fecha_nac = date(anio, mes, dia)
                 break
-            except ValueError:
-                    print(f"\n{bcolors.FAIL}!! Error digita fecha, dia, año Correctamente !!{bcolors.RESET} \n")
-
 
         cls.lstProfesores[op-1].email = input("Digite el email: ")
 
