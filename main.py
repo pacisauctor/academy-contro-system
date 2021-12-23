@@ -8,7 +8,9 @@ from controlador.CTurno import gestionar as gestionar_turnos
 from controlador.CEstudiante import gestionar as gestionar_estudiantes
 from controlador.Editar_CReglasNegocio import editar_min_max_curso_programa, editar_minmax_asigna_xdocente, \
     editar_minmax_asigna_xrecibir_estu, editar_minmax_estudiante_aper_programa
+from controlador.CMatricula import gestionar as gestionar_matricula
 from modelo.Estudiante import Estudiante
+from modelo.Matricula import Matricula
 
 
 def main():
@@ -159,8 +161,9 @@ def submenu_matriculas():
         print("Menu de opciones.")
         print("""
             1. Agregar estudiantes.
-            2. Agregar matrículas
-            3. Salir
+            2. Matricularme.
+            3. Gestionar Matriculas.
+            4. Salir
             """)
         try:
             opcion = int(input("-> "))
@@ -171,8 +174,10 @@ def submenu_matriculas():
         if opcion == 1:
             Estudiante.agregar_estudiantes()
         elif opcion == 2:
-            Estudiante.matricular()
+            Matricula.agregar_matricula()
         elif opcion == 3:
+            gestionar_matricula("Gestion de las Matriculas")
+        elif opcion == 4:
             print("Saliendo...")
             return
         else:

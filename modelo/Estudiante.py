@@ -28,7 +28,7 @@ class Estudiante(Persona):
         """
         return txt
 
-    # region metodos de propiedad del argumeto -> id_estudiante
+    # region metodos de propiedad del argumeto -> num_carnet
 
     @property
     def num_carnet(self):
@@ -41,7 +41,7 @@ class Estudiante(Persona):
     @num_carnet.deleter
     def num_carnet(self):
         del self.__num_carnet
-    # endregion Metodos -> id_estudiantes
+    # endregion Metodos -> num_carnet
 
     # region Metodo de matriculas
     def agregar_matricula(self, matricula):
@@ -63,25 +63,25 @@ class Estudiante(Persona):
         print("ID | Nombre | Apellido | Num Carnet")
         for estudiante in cls.__lstEstudiantes:
             print(f"{estudiante._id_estudiante}".ljust(5), end="")
-            print(f"{estudiante.num_carnet}".ljust(5), end="")
             print(f"{estudiante.nombre}".ljust(10), end="")
             print(f"{estudiante.apellido}".ljust(11), end="")
+            print(f"{estudiante.num_carnet}".ljust(5), end="")
             print('\n')
             
     @classmethod
     def agregar_estudiantes(cls):
-        nombre = input("Ingrese el nombre del estudiante: ")
-        apellido = input("Ingrese el apellido del estudiante: ")
-        cedula = input("Ingrese el cedula del estudiante: ")
-        direccion = input("Ingrese el direccion del estudiante: ")
-        telefono = input("Ingrese el telefono del estudiante: ")
-        print("Digite el fecha_nac del profesor ")
-        anio = int(input('Digite el Año: '))
+        nombre = input("Ingrese el nombre: ")
+        apellido = input("Ingrese el apellido: ")
+        cedula = input("Ingrese la cedula: ")
+        direccion = input("Ingrese la direccion: ")
+        telefono = input("Ingrese el numero telefonico: ")
+        print("Digite la fecha de nacimiento")
+        anio = int(input('Digite el Año EJ->[1999]: '))
         mes = int(input('Digite el mes[1-12]: '))
         dia = int(input('Digite el dia: '))
         fecha_nac = date(anio, mes, dia)
-        email = input("Ingrese el email del estudiante: ")
-        numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
+        email = input("Ingrese el email: ")
+        numero_carnet = input("Ingrese el numero de carnet: ")
         estudiante = Estudiante(nombre, apellido, cedula, direccion,
                                 telefono, fecha_nac, email, numero_carnet)
         cls.__lstEstudiantes.append(estudiante)
@@ -90,18 +90,18 @@ class Estudiante(Persona):
     def editar_estudiantes(cls):
         cls.listar_estudiantes()
         elc = int(input("Ingrese el ID del estudiante: "))
-        cls.__lstEstudiantes[elc - 1].numero_carnet = input("Ingrese el numero de carnet del estudiante: ")
-        cls.__lstEstudiantes[elc - 1].nombre = input("Ingrese el nombre del estudiante: ")
-        cls.__lstEstudiantes[elc - 1].apellido = input("Ingrese el apellido del estudiante: ")
-        cls.__lstEstudiantes[elc - 1].cedula = input("Ingrese el cedula del estudiante: ")
-        cls.__lstEstudiantes[elc - 1].direccion = input("Ingrese el direccion del estudiante: ")
-        cls.__lstEstudiantes[elc - 1].telefono = input("Ingrese el telefono del estudiante: ")
+        cls.__lstEstudiantes[elc - 1].numero_carnet = input("Ingrese el numero de carnet: ")
+        cls.__lstEstudiantes[elc - 1].nombre = input("Ingrese el nombre: ")
+        cls.__lstEstudiantes[elc - 1].apellido = input("Ingrese el apellido: ")
+        cls.__lstEstudiantes[elc - 1].cedula = input("Ingrese la cedula: ")
+        cls.__lstEstudiantes[elc - 1].direccion = input("Ingrese la direccion: ")
+        cls.__lstEstudiantes[elc - 1].telefono = input("Ingrese el numero telefonico: ")
         print("Digite el fecha_nac del profesor ")
-        anio = int(input('Digite el Año: '))
+        anio = int(input('Digite el Año EJ->[1999]: '))
         mes = int(input('Digite el mes[1-12]: '))
         dia = int(input('Digite el dia: '))
         cls.__lstEstudiantes[elc - 1].fecha_nac = date(anio, mes, dia)
-        cls.__lstEstudiantes[elc - 1].email = input("Ingrese el email del estudiante: ")
+        cls.__lstEstudiantes[elc - 1].email = input("Ingrese el email: ")
 
     @classmethod
     def eliminar_estudiante(cls):
@@ -118,14 +118,19 @@ class Estudiante(Persona):
     @classmethod
     def obtener_estudiante_byMatricula(cls, matricula):
         for estudiante in cls.__lstEstudiantes:
-            if matricula in estudiante.matriculas:
-                return estudiante
+            for mat in estudiante.matriculas:
+                if matricula.id_matricula == mat.id_matricula:
+                    return estudiante
 
     @classmethod
     def addMatriculaToEstudiante(cls, matricula):
-        cls.listar_estudiantes()
-        eleccion = int(input("Ingrese el ID del estudiante a agregar matricula: "))
-        cls.__lstEstudiantes[eleccion - 1].matricula(matricula)
+        if len(cls.__lstEstudiantes) > 0:
+            carnet = input("Ingrese el numero de carnet: ")
+            for estud in cls.__lstEstudiantes:
+                if estud.num_carnet == carnet:
+                    estud.matriculas.append(matricula)
+        else:
+            print('Error. No existen registros de Estudiantes.')
 
     @classmethod
     def matricular(cls):

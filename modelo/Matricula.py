@@ -108,46 +108,61 @@ class Matricula:
     @classmethod
     def listar_matricula(cls):
         for matricula in cls.__list_matricula:
-            print(matricula.id_matricula, end="")
-            print(matricula.fecha_matricula, end="")
+            print('Datos de la matricula')
+            print(f'Id: {matricula.id_matricula}', end=" ")
+            print(f'Fecha: {matricula.fecha_matricula}', end=" ")
+            print(f'Total: {matricula.total_pagar:.2f}', end=' ')
             estudiante = Estudiante.obtener_estudiante_byMatricula(matricula)
-            print(estudiante.num_carnet, end="")
-            print(estudiante.nombre, end="")
-            print(estudiante.apellido, end="")
+            print(f'\nDatos del Estudiante')
+            print(f'Carnet: {estudiante.num_carnet}', end=" ")
+            print(f'Nombre: {estudiante.nombre}', end=" ")
+            print(f'Apellido: {estudiante.apellido}', end=' ')
+            print(f'Nota obtenida: {matricula.nota}\n\n')
 
     @classmethod
     def agregar_matricula(cls):
         fecha_matricula = date.today()
-        print(time.strftime("EL dia es: %d / %m / %y"))
+        print(fecha_matricula.strftime("EL dia es: %d/%m/%y"))
         hora_matricula = datetime.now()
-        print(time.strftime(" La hora es: %H:%M:%S"))
-        matricula = Matricula(fecha_matricula=fecha_matricula, hora_matricula=hora_matricula)
+        print(hora_matricula.strftime("La hora es: %H:%M:%S"))
+        matricula = Matricula(fecha_matricula, hora_matricula)
         Estudiante.addMatriculaToEstudiante(matricula)
-        matricula.curso = Curso.obtener_curso()
-
-        for programa in matricula.curso.lstprogramas:
-            print(programa.nombre_programa, end="")
-            print(programa.id_programa, end="")
-
-        eleccion = int(input("Seleccione un id de programa"))
-
-        if matricula.curso.lstprogramas[eleccion].duracion_anios == 5:
-            matricula.total_pagar = (matricula.curso.precio * 0.9)
+        cur = Curso.obtener_curso(True)
+        if cur == 0:
+            print('Error. No existen registros de cursos.')
         else:
-            matricula.total_pagar = (matricula.curso.precio * 0.95)
+            matricula.curso = cur
+            if len(matricula.curso.lstprogramas) > 0:
+                print('Datos de los programas...')
+                for programa in matricula.curso.lstprogramas:
+                    print(f'Id: {programa.id_programa}', end=" ")
+                    print(f'Nombre: {programa.nombre_programa}')
+
+                eleccion = int(input("Seleccione un id de programa: "))
+                prg = None
+                for programa in matricula.curso.lstprogramas:
+                    if programa.id_programa == eleccion:
+                        prg = programa
+
+                if prg.duracion_anios == 5:
+                    matricula.total_pagar = (matricula.curso.precio * 0.9)
+                else:
+                    matricula.total_pagar = (matricula.curso.precio * 0.95)
+                prg.aumentar_matricula()
 
         cls.__list_matricula.append(matricula)
 
     @classmethod
     def editar_matricula(cls):
         cls.listar_matricula()
-        eleccion = int(input("Elija el Id de la matricula"))
-        cls.__list_matricula[eleccion - 1].fecha_matricula = input("Ingrese la fecha de matricula: ")
-        cls.__list_matricula[eleccion - 1].hora_matricula = input("Ingrese la hora de matricula: ")
+        op = int(input("\nElija el Id de la matricula: "))
+        # cls.__list_matricula[op - 1].fecha_matricula = input("Ingrese la fecha de matricula: ")
+        # cls.__list_matricula[op - 1].hora_matricula = input("Ingrese la hora de matricula: ")
+        cls.__list_matricula[op - 1].nota = int(input('Digite la Nota: '))
 
     @classmethod
     def eliminar_matricula(cls):
         cls.listar_matricula()
-        eleccion = int(input("Elija el Id de la matricula"))
+        eleccion = int(input("\nElija el Id de la matricula"))
         cls.__list_matricula.pop(eleccion - 1)
     # endregion Metodos de Clase

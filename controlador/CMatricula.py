@@ -10,7 +10,7 @@ def gestionar(titulo: str):
         print("""
             1. Mostrar todas los registros de matricula.
             2. Ingresar un nuevo registro de matricula.
-            3. Editar un registro existente de matricula.
+            3. Agregar Nota.
             4. Eliminar un registro de matricula.
             5. Regresar al menú principal
             """)

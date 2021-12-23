@@ -75,7 +75,7 @@ class Profesor(Persona):
             print(f"Fecha_nac|".ljust(19), end="")
             print(f"Email|".ljust(20), end="")
             print("\n")
-            #print(profe.__str__())
+            # print(profe.__str__())
             print(f"{profe.cod_profesor}".ljust(7), end="")
             print(f"{profe.nombre}".ljust(8), end="")
             print(f"{profe.apellido}".ljust(12), end="")
@@ -122,39 +122,39 @@ class Profesor(Persona):
         direccion = input("Digite la direccion: ")
         telefono = input("Digite el numero de telefono: ")
 
-
         while True:
-                print("Digite la fecha de nacimiento")
-                while True:
-                 try:
-                    anio = int(input('Digite el Año: [<-2001]'))
+            print("Digite la fecha de nacimiento")
+            while True:
+                try:
+                    anio = int(input('Digite el Año EJ->[2001]: '))
                     break
-                 except ValueError:
-                        print(f"{bcolors.FAIL}!! Error digita año Correctamente !!{bcolors.RESET}")
+                except ValueError:
+                    print(f"{bcolors.FAIL}!! Error digita año Correctamente !!{bcolors.RESET}")
 
-                while True:
-                 try:
+            while True:
+                try:
                     mes = int(input('Digite el mes [1-12]: '))
                     break
-                 except ValueError:
-                        print(f"{bcolors.FAIL}!! Error digita Mes Correctamente !!{bcolors.RESET}")
+                except ValueError:
+                    print(f"{bcolors.FAIL}!! Error digita Mes Correctamente !!{bcolors.RESET}")
 
-                while True:
-                 try:
+            while True:
+                try:
                     dia = int(input('Digite el dia: '))
                     break
-                 except ValueError:
-                        print(f"{bcolors.FAIL}!! Error digita el Dia Correctamente !!{bcolors.RESET}")
+                except ValueError:
+                    print(f"{bcolors.FAIL}!! Error digita el Dia Correctamente !!{bcolors.RESET}")
 
-                fecha_nac = date(anio, mes, dia)
-                break
+            fecha_nac = date(anio, mes, dia)
+            break
 
         email = input("Digite el email: ")
 
         profe = Profesor(nombre, apellido, cedula, direccion, telefono, fecha_nac, email, cod_profesor)
-        dec = input(f'[?] Desea agregar un curso al profesor {profe.nombre} y/n: ').lower()
-        if dec == 'y':
-            profe.agregar_curso(Curso.obtener_curso(True))
+        if Curso.obtener_cant_registros_cursos() > 0:
+            dec = input(f'[?] Desea agregar un curso al profesor {profe.nombre} y/n: ').lower()
+            if dec == 'y':
+                profe.agregar_curso(Curso.obtener_curso(True))
 
         cls.lstProfesores.append(profe)
 
@@ -169,31 +169,32 @@ class Profesor(Persona):
         cls.lstProfesores[op-1].cedula = input("Digite la cedula: ")
         cls.lstProfesores[op-1].direccion = input("Digite la direccion: ")
         cls.lstProfesores[op-1].telefono = input("Digite el telefono: ")
+
         while True:
-                print("Digite la fecha de nacimiento")
-                while True:
-                 try:
+            print("Digite la fecha de nacimiento")
+            while True:
+                try:
                     anio = int(input('Digite el Año: [<-2001]'))
                     break
-                 except ValueError:
-                        print(f"{bcolors.FAIL}!! Error digita año Correctamente !!{bcolors.RESET}")
+                except ValueError:
+                    print(f"{bcolors.FAIL}!! Error digita año Correctamente !!{bcolors.RESET}")
 
-                while True:
-                 try:
+            while True:
+                try:
                     mes = int(input('Digite el mes[1-12]: '))
                     break
-                 except ValueError:
-                        print(f"{bcolors.FAIL}!! Error digita Mes Correctamente !!{bcolors.RESET}")
+                except ValueError:
+                    print(f"{bcolors.FAIL}!! Error digita Mes Correctamente !!{bcolors.RESET}")
 
-                while True:
-                 try:
+            while True:
+                try:
                     dia = int(input('Digite el dia: '))
                     break
-                 except ValueError:
-                        print(f"{bcolors.FAIL}!! Error digita el Dia Correctamente !!{bcolors.RESET}")
+                except ValueError:
+                    print(f"{bcolors.FAIL}!! Error digita el Dia Correctamente !!{bcolors.RESET}")
 
-                cls.lstProfesores[op-1].fecha_nac = date(anio, mes, dia)
-                break
+            cls.lstProfesores[op-1].fecha_nac = date(anio, mes, dia)
+            break
 
         cls.lstProfesores[op-1].email = input("Digite el email: ")
 
@@ -208,11 +209,12 @@ class Profesor(Persona):
                     if opt == 'y':
                         cls.lstProfesores[op-1].remover_curso(curso)
 
-        dec = input(f'[?] Desea agregar un curso al profesor {cls.lstProfesores[op-1].nombre} y/n: ').lower()
-        if dec == 'y':
-            cant_curso = len(cls.lstProfesores[op - 1].cursos)
-            if valida_max_docente_asign(cant_curso):
-                cls.lstProfesores[op - 1].agregar_curso(Curso.obtener_curso(True))
+        if Curso.obtener_cant_registros_cursos() > 0:
+            dec = input(f'[?] Desea agregar un curso al profesor {cls.lstProfesores[op-1].nombre} y/n: ').lower()
+            if dec == 'y':
+                cant_curso = len(cls.lstProfesores[op - 1].cursos)
+                if valida_max_docente_asign(cant_curso):
+                    cls.lstProfesores[op - 1].agregar_curso(Curso.obtener_curso(True))
 
     @classmethod
     def obtener_profesor(cls):

@@ -1,4 +1,3 @@
-from modelo.Profesor import Profesor
 from modelo.TipoProfesor import TipoProfesor
 
 
